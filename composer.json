@@ -1,0 +1,12 @@
+{
+    "name": "pyro/admin-theme",
+    "type": "streams-addon",
+    "description": "PyroCMS admin theme",
+    "keywords": ["pyrocms"],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Pyro\\AdminTheme\\": "src/"
+        }
+    }
+}
