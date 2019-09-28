@@ -8,5 +8,10 @@
         "psr-4": {
             "Pyro\\AdminTheme\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pyro\\Tests\\AdminTheme\\": "tests/"
+        }
     }
 }
