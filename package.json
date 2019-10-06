@@ -2,6 +2,7 @@
     "name": "@pyro/admin-theme",
     "version": "1.0.0",
     "scripts": {},
+    "main": "resources/js/addon.js",
     "pyro": {
         "srcPath": "lib",
         "entry": {
