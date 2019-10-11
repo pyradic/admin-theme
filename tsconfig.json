@@ -7,12 +7,8 @@
             "../../../../node_modules/@types"
         ],
         "paths": {
-            "@/*": ["lib/*"],
-            "@c/*": ["lib/classes/*"],
-            "@u/*": ["lib/utils/*"],
-            "#/*": ["lib/components/*"]
         }
     },
     "include": ["lib"],
-    "exclude": [ "node_modules","resources", "../select2-field_type", "../clients-module", "../core-module", "../menus-module"]
+    "exclude": [ "node_modules"]
 }
