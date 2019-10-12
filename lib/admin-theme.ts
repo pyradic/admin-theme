@@ -1,1 +1,5 @@
-         export  const admin='admin';
+import { AdminThemeServiceProvider } from './AdminThemeServiceProvider';
+import {AdminThemeVuePlugin} from './AdminThemeVuePlugin';
+
+
+export { AdminThemeVuePlugin, AdminThemeServiceProvider }

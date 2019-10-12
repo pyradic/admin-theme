@@ -1,0 +1,59 @@
+$fa-font-path                  : '~font-awesome/fonts';
+//$fa-font-path                  : '../fonts/font-awesome';
+//$enable-flex                   : true;
+//$enable-rounded                : false;
+//$font-size-root                : 14px;
+//$border-radius                 : 0;
+//$border-radius-lg              : 0;
+//$border-radius-sm              : 0;
+//
+//$background-color              : $blue-grey-50;
+//
+//$layout-header-background      : $blue-grey-800;
+//$layout-footer-background      : $grey-900;
+//$layout-compact-font-size      : 13px;
+//$layout-side-background        : #252525;
+//
+//
+//$layout-breadcrumbs-background : $blue-grey-100;
+//
+//$prefix                        : c;
+//$menu-prefix                   : #{$prefix}-menu;
+//$layout-prefix                 : #{$prefix}-layout;
+//$toolbar-prefix                : #{$prefix}-toolbar;
+//$dropdown-prefix               : #{$prefix}-dropdown;
+//$shortcut-prefix               : #{$prefix}-shortcut;
+//
+//
+//$grid-columns                  : 24;
+//
+////@formatter:off
+//$_variables: (
+//    layout-header-background: $layout-header-background,
+//    layout-footer-background: $layout-footer-background,
+//    layout-compact-font-size: $layout-compact-font-size,
+//    layout-side-background: $layout-side-background,
+//    layout-breadcrumbs-background: $layout-breadcrumbs-background,
+//);
+////@formatter:on
+//@mixin root-vars() {
+//    :root {
+//        // Custom variable values only support SassScript inside `#{}`.
+//        //@each $name, $variants in $material-colors {
+//        //    @each $variant, $value in $variants{
+//        //        --#{$name}-#{$variant}: #{$value};
+//        //    }
+//        //}
+//        --test-size : 50;
+//
+//        @each $color, $value in $_variables {
+//            --#{$color}: #{$value};
+//        }
+//
+//        @each $bp, $value in $grid-breakpoints {
+//            --breakpoint-#{$bp}: #{$value};
+//        }
+//
+//    }
+//
+//}

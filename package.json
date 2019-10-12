@@ -11,8 +11,11 @@
         }
     },
     "dependencies": {
-        "@pyro/platform": "^1.0.0"
+        "@pyro/platform": "^1.0.0",
+        "bootstrap": "^4.3.1",
+        "font-awesome": "^4.7.0",
+        "foundation-sites": "^6.5.3",
+        "sass-ignis": "^1.0.3"
     },
-    "devDependencies": {
-    }
+    "devDependencies": {}
 }
