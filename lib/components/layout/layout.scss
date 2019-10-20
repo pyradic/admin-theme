@@ -1,0 +1,146 @@
+@import "../../styling/base";
+
+.#{$layout-prefix} {
+    $self  : &;
+    height : 100%;
+
+    &__header {
+
+        flex-direction : row;
+        display        : flex;
+        height         : $layout-header-height;
+        line-height    : $layout-header-height;
+        padding        : 0;
+        background     : $layout-header-background;
+        border-bottom  : $layout-header-border-bottom;
+
+        .el-menu--horizontal {
+            height     : $layout-header-height - 1px;
+            border     : none;
+            background : transparent;
+
+            > .el-submenu .el-submenu__title,
+            > .el-menu-item {
+                line-height : $layout-header-height;
+                height      : $layout-header-height;
+            }
+
+            > .el-submenu .el-submenu__title {
+                color : $layout-header-font-color;
+
+                &:hover {
+                    color      : $layout-header-hover-font-color;
+                    background : $layout-header-hover-background;
+                }
+            }
+        }
+
+        //.el-submenu .el-submenu__title,
+        //.el-menu-item {
+        //    line-height : $layout-header-height;
+        //    height      : $layout-header-height;
+        //}
+
+        a {
+            color : $layout-header-font-color;
+
+            &:hover {
+                color : $layout-header-hover-font-color;
+            }
+        }
+
+    }
+
+    &__header-sidebar-toggle {
+
+        line-height : $layout-header-height;
+        height      : $layout-header-height;
+    }
+
+    &__sidebar {
+        background : #333;
+        height     : 100%;
+
+        @include m(collapse) {
+            width : $layout-sidebar-collapse-width;
+            @include b(menu) {
+                @include m(collapse) {
+                    width : $layout-sidebar-collapse-width;
+                }
+            }
+        }
+    }
+
+    &__sidebar-menu {
+        background : #333;
+        border     : none;
+        @include m(collapse) {
+            width : $layout-sidebar-collapse-width;
+            @include b(submenu) {
+                width : $layout-sidebar-collapse-width;
+                @include e(title){
+                    line-height: 32px;
+                    font-size: 14px;
+                    padding-left: 23px !important;
+                }
+            }
+        }
+
+        .el-submenu__title,
+        .el-submenu__title span,
+        .el-submenu > .el-menu > .el-menu-item span {
+            font-size    : 12px;
+            padding-left : 10px;
+        }
+
+        .el-submenu__title,
+        .el-submenu .el-menu-item {
+            height      : 35px;
+            line-height : 35px;
+        }
+    }
+
+    &__sidebar-menu-popper {
+        .el-menu {
+            .el-menu-item {
+
+                height      : 35px;
+                line-height : 35px;
+
+                span {
+                    font-size : 12px;
+                }
+            }
+        }
+    }
+
+    &__main {
+        #{$self} & {
+            padding : 0;
+        }
+
+        #buttons {
+
+            float: right;
+            position: absolute;
+            right: 0;
+            margin: 8px;
+        }
+    }
+
+    &__main-breadcrumb {
+    }
+
+    &__main-buttons {
+    }
+
+    &__main-messages {
+    }
+
+    &__main-content {
+    }
+
+    &__footer {
+        padding : 0;
+    }
+}

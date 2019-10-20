@@ -2,12 +2,12 @@
     "name": "@pyro/admin-theme",
     "version": "1.0.0",
     "scripts": {},
-    "main": "resources/js/addon.js",
+    "main": "lib/index.ts",
     "pyro": {
         "srcPath": "lib",
         "entry": {
-            "development": "admin-theme.development.ts",
-            "production": "admin-theme.production.ts"
+            "development": "index.ts",
+            "production": "index.ts"
         }
     },
     "dependencies": {
@@ -15,7 +15,9 @@
         "bootstrap": "^4.3.1",
         "font-awesome": "^4.7.0",
         "foundation-sites": "^6.5.3",
-        "sass-ignis": "^1.0.3"
+        "sass-ignis": "^1.0.3",
+        "element-ui": "^2.12.0",
+        "vue-styled-components": "^1.4.13"
     },
     "devDependencies": {}
 }

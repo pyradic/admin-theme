@@ -1,4 +1,20 @@
-$fa-font-path                  : '~font-awesome/fonts';
+$fa-font-path                   : '~font-awesome/fonts';
+
+$layout-prefix                  : #{$prefix}-layout;
+$layout-sidebar-collapse-width  : 64px;
+$layout-header-height           : 50px;
+$layout-header-background       : $blue-grey-800; //#475861;
+$layout-header-hover-background : lighten($layout-header-background, 10);
+$layout-header-font-color       : #BBB6B6;
+$layout-header-hover-font-color : darken($layout-header-font-color, 10);
+$layout-header-border-bottom    : 1px solid #4A626F;
+$layout-footer-height           : 61px;
+$layout-sidebar-width           : 200px;
+
+$shortcut-prefix                : #{$prefix}-shortcut;
+$toolbar-prefix                 : #{$prefix}-toolbar;
+
+
 //$fa-font-path                  : '../fonts/font-awesome';
 //$enable-flex                   : true;
 //$enable-rounded                : false;

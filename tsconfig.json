@@ -3,12 +3,13 @@
     "compileOnSave": false,
     "compilerOptions": {
         "baseUrl": ".",
+        "jsxFactory": "h",
         "typeRoots": [
             "../../../../node_modules/@types"
         ],
         "paths": {
-        }
+            "@pyro/platform": ["../../../../packages/pyro/platform/lib"]}
     },
     "include": ["lib"],
-    "exclude": [ "node_modules"]
+    "exclude": [ "node_modules","../../../../packages/pyro/platform/lib"]
 }

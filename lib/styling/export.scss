@@ -1,0 +1,19 @@
+
+@import "_base.scss";
+
+:export {
+	fa-font-path: $fa-font-path;
+	layout-prefix: $layout-prefix;
+	layout-sidebar-collapse-width: $layout-sidebar-collapse-width;
+	layout-header-height: $layout-header-height;
+	layout-header-background: $layout-header-background;
+	layout-header-hover-background: $layout-header-hover-background;
+	layout-header-font-color: $layout-header-font-color;
+	layout-header-hover-font-color: $layout-header-hover-font-color;
+	layout-header-border-bottom: $layout-header-border-bottom;
+	layout-footer-height: $layout-footer-height;
+	layout-sidebar-width: $layout-sidebar-width;
+	shortcut-prefix: $shortcut-prefix;
+	toolbar-prefix: $toolbar-prefix;
+}
+    

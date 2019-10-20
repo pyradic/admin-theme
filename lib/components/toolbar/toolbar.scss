@@ -1,0 +1,88 @@
+@import "../../styling/base";
+
+.#{$toolbar-prefix} {
+    $self          : &;
+    height         : inherit;
+    display        : flex;
+    flex-direction : row;
+    width          : 100%;
+    min-height     : 50px;
+    align-items    : center;
+    white-space    : nowrap;
+
+
+    &--around {
+        justify-content : flex-start;
+    }
+
+    &--end {
+        justify-content : flex-end;
+    }
+
+    &--between {
+        justify-content : space-between;
+    }
+
+    &--around {
+        justify-content : space-around;
+    }
+
+    &--even {
+        justify-content : space-evenly;
+    }
+
+    &__item {
+        flex-direction: column;
+        color : #BBB6B6;
+        padding: 0 10px;
+
+        &--separator {
+            width      : 1px;
+            background : #607D8B;
+        }
+
+        &--spacer {
+            flex : 1 1 auto;
+        }
+
+        &--clickable {
+            cursor : pointer;
+        }
+
+
+    }
+
+
+    &__title {
+        padding   : 0 20px;
+        font-size : 20px;
+    }
+
+    &__toggle {
+        border     : none;
+        //background : rgba(black, 0.1);
+        background: transparent;
+        color: antiquewhite;
+        height     : inherit;
+        width      : $layout-sidebar-collapse-width;
+        font-size  : 24px;
+
+        &:hover {
+            cursor     : pointer;
+            background : rgba(white, 0.1);
+        }
+    }
+
+    > .el-menu {
+        background : transparent;
+    }
+
+    &__spacer {
+        flex-grow : 1;
+
+    }
+
+    &__divider {
+
+    }
+}

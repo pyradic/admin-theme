@@ -6,39 +6,114 @@
     {% include "theme::partials/metadata" %}
 </head>
 
-<body class="variant-{{ random(8) }}{{ locale().isRtl() ? ' rtl' }} display--{{ preference_value('pyrocms.theme.accelerant::display', 'default') }} sidebars--{{ preference_value('pyrocms.theme.accelerant::sidebars', 'default') }}"
+<body class="variant-{{ random(8) }}{{ locale().isRtl() ? ' rtl' }} theme-compact"
       data-variants="8">
+{% block body %}
+    {#{% include "theme::partials/push" %}#}
+    {#{% include "theme::partials/brand" %}#}
+    {#{% include "theme::partials/navbar" %}#}
+    {#{% include "theme::partials/header" %}#}
 
-{#{% include "theme::partials/push" %}#}
-{#{% include "theme::partials/brand" %}#}
-{#{% include "theme::partials/navbar" %}#}
-{#{% include "theme::partials/header" %}#}
+    <py-layout id="app">
+        <template #header-toolbar>
+            {% block header_toolbar %}
+                <py-toolbar-title v-if="!layout.sidebar.collapsed" :width="layout.sidebar.normalWidth" title="CRVS" link="{{ url('admin') }}"></py-toolbar-title>
+                <py-toolbar-toggle></py-toolbar-toggle>
+                <py-toolbar-item>
+                    {{ menu('admin_header').pyroAdmin()|raw }}
+                </py-toolbar-item>
+                <py-toolbar-item spacer></py-toolbar-item>
+                <py-shortcut-info></py-shortcut-info>
+                {% for shortcut in template.cp.shortcuts %}
+                    <py-shortcut
+                            :attributes="{{ shortcut.attributes|json_encode }}"
+                            :highlighted="{{ shortcut.highlighted ? 'true':'false' }}"
+                            slug="{{ shortcut.slug }}"
+                            icon="{{ shortcut.icon }}"
+                            href="{{ shortcut.href }}"
+                            title="{{ trans(shortcut.title) }}"
+                            label="{{ trans(shortcut.label) }}"
+                            class="{{ shortcut.class }}"
+                    >
+                        {{ icon(shortcut.icon) }}
+                    </py-shortcut>
+                {% endfor %}
 
-<section id="app">
+                <div class="py-toolbar__item dropdown">
+                    <a href="javascript:void(0);" data-toggle="dropdown">
+                        <img src="{{ user().gravatar.path }}" width="36" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu-right dropdown-menu">
+                        <li class="dropdown-item">
+                            <a href="/" target="_blank">
+                                <i class="fa fa-external-link"></i>
+                                {{ trans('pyrocms.theme.accelerant::control_panel.view_site') }}
+                            </a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="/admin/logout">
+                                <i class="fa fa-power-off"></i>
+                                {{ trans('pyrocms.theme.accelerant::control_panel.logout') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {% endblock %}
+        </template>
+        <template #sidebar>
+            {% block sidebar %}
+                {% for key, navigation in template.cp_nav %}
+                    {% if navigation.children.isNotEmpty() %}
+                        <el-submenu index="{{ navigation.slug|replace({'.':'_'}) }}" popper-class="py-layout__sidebar-menu-popper">
+                            <template slot="title">
+                                {% if navigation.icon %}
+                                    {{ icon(navigation.icon) }}
+                                {% endif %}
+                                <span>{{ trans(navigation.title) }}</span>
+                            </template>
+                            {% for childKey, child in navigation.children %}
+                                <el-menu-item index="{{ navigation.slug|replace({'.':'_'}) }}.{{ child.slug }}" href="{{ child.href }}" {{ html_attributes(child.attributes) }}>
+                                    <span>{{ trans(child.title) }}</span>
 
-    {% include "theme::partials/topbar" %}
-    {% include "theme::partials/sidebar" %}
-    {% include "theme::partials/menu" %}
+                                </el-menu-item>
+                            {% endfor %}
+                        </el-submenu>
+                    {% else %}
+                        <el-menu-item index="{{ navigation.slug|replace({'.':'_'}) }}" href="{{ navigation.href }}" {{ html_attributes(navigation.attributes) }}>
+                            {% if navigation.icon %}
+                                {{ icon(navigation.icon) }}
+                            {% endif %}
+                            <span>{{ trans(navigation.title) }}</span>
+                        </el-menu-item>
+                    {% endif %}
+                {% endfor %}
+            {% endblock %}
+        </template>
 
-    <main id="main" style="min-height: 1500px;">
-
-        {{ breadcrumb() }}
-
-        <div class="container-fluid">
-            {% include "theme::partials/messages" %}
+        <template #main>
             {% include "theme::partials/buttons" %}
-        </div>
+            {% block breadcrumb %}
+                {{ breadcrumb() }}
+            {% endblock %}
 
-        {% block content %}{% endblock %}
+            {% block pre_content %}
+                {% include "theme::partials/messages" %}
+            {% endblock %}
 
-    </main>
+            {% block content %}{% endblock %}
 
-    {% include "theme::partials/footer" %}
-    {% include "theme::partials/modals" %}
+        </template>
+        <template #footer>
+            {% block footer %}
+                {{ menu('admin_footer').pyroAdmin()|raw }}
+            {% endblock %}
+        </template>
+    </py-layout>
+{% endblock %}
 
-</section>
+
+{% include "theme::partials/modals" %}
 
 {% include "theme::partials/assets" %}
-
 </body>
 </html>

@@ -11,7 +11,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Pyro\\Tests\\AdminTheme\\": "tests/"
+            "Pyro\\AdminTheme\\Tests\\": "tests/"
         }
     }
 }

@@ -1,0 +1,68 @@
+@import "../../styling/base";
+
+
+$shortcut-icon-color        : #A6A6A7 !default;
+$shortcut-label-color       : $shortcut-icon-color !default;
+$shortcut-background        : transparent !default;
+$shortcut-label-font-size   : null;
+$shortcut-icon-font-size    : null;
+
+$shortcut-hover-icon-color  : lighten($shortcut-icon-color, 10) !default;
+$shortcut-hover-label-color : lighten($shortcut-hover-icon-color, 10) !default;
+$shortcut-hover-background  : rgba(white, 0.1); //$shortcut-background !default;
+
+
+.#{$shortcut-prefix} {
+    min-height  : inherit;
+    display     : flex;
+    align-items : center;
+    padding     : 10px 15px;
+    background  : $shortcut-background;
+
+    &:hover, &:focus, &:active {
+        outline         : 0;
+        text-decoration : none;
+    }
+
+    &__icon {
+        color     : $shortcut-icon-color;
+        font-size : $shortcut-icon-font-size;
+    }
+
+    &__label {
+        margin-left : 7px;
+        color       : $shortcut-label-color;
+        font-size   : $shortcut-label-font-size;
+    }
+
+    &--highlighted {
+        border-top : 2px solid #607D8B;
+        background : rgba(0, 0, 0, 0.3);
+    }
+
+    &--hover,
+    &:hover {
+        background      : $shortcut-hover-background;
+
+        > .#{$shortcut-prefix}__icon {
+            color : $shortcut-hover-icon-color;
+        }
+
+        > .#{$shortcut-prefix}__label {
+            color : $shortcut-hover-label-color;
+        }
+    }
+
+}
+
+.#{$shortcut-prefix}-info {
+    color          : #8C8C8E;
+    padding        : 20px;
+    text-transform : uppercase;
+    font-size      : 10px;
+    font-family    : monospace;
+    font-weight    : bold;
+    text-shadow    : 1px 1px 1px #0000004D;
+    transition     : all 1s linear;
+
+}
