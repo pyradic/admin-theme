@@ -58,7 +58,7 @@
     }
 
     &__sidebar {
-        background : #333;
+        background : $layout-sidebar-background;
         height     : 100%;
 
         @include m(collapse) {
@@ -78,11 +78,22 @@
             width : $layout-sidebar-collapse-width;
             @include b(submenu) {
                 width : $layout-sidebar-collapse-width;
-                @include e(title){
-                    line-height: 32px;
-                    font-size: 14px;
-                    padding-left: 23px !important;
+                @include e(title) {
+                    line-height  : 32px;
+                    font-size    : 14px;
+                    padding-left : 23px !important;
                 }
+            }
+        }
+
+        > .el-submenu {
+            &.is-active > .el-submenu__title{
+                border-left  : 3px solid #409EFF;
+                padding-left : 17px !important;
+            }
+
+            &.is-opened > .el-submenu__title{
+                background : #2F2E2E !important;
             }
         }
 
@@ -121,10 +132,10 @@
 
         #buttons {
 
-            float: right;
-            position: absolute;
-            right: 0;
-            margin: 8px;
+            float    : right;
+            position : absolute;
+            right    : 0;
+            margin   : 8px;
         }
     }
 

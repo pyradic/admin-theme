@@ -1,5 +1,5 @@
 <template>
-    <el-aside width="200px" :class="classes" :width="layout.sidebar.width">
+    <el-aside :class="classes" :width="layout.sidebar.width || '200px'">
         <el-menu
                 :default-active="activeMenuItem"
                 :class="menuClasses"
@@ -27,30 +27,35 @@
     export default class LayoutSidebar extends Vue {
         $refs: { menu: IMenu }
         @inject() layout: typeof Layout.prototype
-        @prop.classPrefix('layout__sidebar') classPrefix:string
+        @prop.classPrefix('layout__sidebar') classPrefix: string
 
-        get classes(){
+        get classes() {
             return {
-                [this.classPrefix]: true,
-                [`${this.classPrefix}--collapse`]: this.layout.sidebar.collapsed
+                [ this.classPrefix ]               : true,
+                [ `${this.classPrefix}--collapse` ]: this.layout.sidebar.collapsed
             }
         }
 
-        get menuClasses(){
+        get styles() {
             return {
-                [`${this.classPrefix}-menu`]: true,
-                [`${this.classPrefix}-menu--collapse`]: this.layout.sidebar.collapsed
+                background: this.layout.styleVars[ 'layout-sidebar-background' ]
             }
         }
 
-        get sidebarWidth() {
-            return this.layout.sidebar.collapsed ? '64px' : '200px';
+        get menuClasses() {
+            return {
+                [ `${this.classPrefix}-menu` ]          : true,
+                [ `${this.classPrefix}-menu--collapse` ]: this.layout.sidebar.collapsed
+            }
         }
 
         mounted() {
             this.$log('mounted', { menu: this.menu, menuItems: this.menu.items })
             this.menu.$on('item-click', (item: MenuItem) => {
                 this.$log('item-click', { item })
+                if ( 'data-toggle' in item.$attrs ) {
+                    return;
+                }
                 if ( 'href' in item.$attrs ) {
                     window.location.href = item.$attrs.href;
                 }

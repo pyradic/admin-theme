@@ -14,9 +14,12 @@
     export default class ToolbarToggle extends Vue {
         @prop.classPrefix('toolbar__toggle') classPrefix: string
         @prop.string('button') tag: string
-        @prop.string('el-icon-arrow-right') icon: string
+        // @prop.string('el-icon-arrow-right') icon: string
         @inject() layout: typeof Layout.prototype
 
+        get icon(){
+            return this.layout.sidebar.collapsed ? 'el-icon-arrow-right' : 'el-icon-arrow-left'
+        }
         get classes() {
             return {
                 [ this.classPrefix ]: true

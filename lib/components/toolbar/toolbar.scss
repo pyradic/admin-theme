@@ -32,9 +32,9 @@
     }
 
     &__item {
-        flex-direction: column;
-        color : #BBB6B6;
-        padding: 0 10px;
+        flex-direction : column;
+        color          : #BBB6B6;
+        padding        : 0 10px;
 
         &--separator {
             width      : 1px;
@@ -61,11 +61,11 @@
     &__toggle {
         border     : none;
         //background : rgba(black, 0.1);
-        background: transparent;
-        color: antiquewhite;
+        background : transparent;
+        color      : $blue-grey-200;
         height     : inherit;
         width      : $layout-sidebar-collapse-width;
-        font-size  : 24px;
+        font-size  : 20px;
 
         &:hover {
             cursor     : pointer;

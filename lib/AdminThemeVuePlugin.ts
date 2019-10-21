@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import { prefixAndRegisterComponents, registerElementComponents } from '@pyro/platform';
 // noinspection ES6UnusedImports
-import { Aside, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Main, Menu, MenuItem, MenuItemGroup, Row, Submenu } from 'element-ui'
+import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Menu, MenuItem, MenuItemGroup, Row, Submenu, Tag } from 'element-ui'
 
 import * as components from './components';
 
@@ -18,7 +18,8 @@ export class AdminThemeVuePlugin {
         prefixAndRegisterComponents(_Vue, components)
 
         registerElementComponents(_Vue, {
-            Row, Col, Aside, Header, Footer, Container, Main, Divider,
+            Row, Col, Aside, Header, Footer, Container, Main,
+            Divider, Alert, Tag, Button, Link,
             Menu, MenuItem, MenuItemGroup, Submenu
             // DropdownMenu, DropdownItem, Dropdown
         })

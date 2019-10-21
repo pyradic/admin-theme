@@ -1,7 +1,17 @@
 $fa-font-path                   : '~font-awesome/fonts';
 
+$primary                        : #607D8B;
+$primary-light                  : #8EACBB;
+$primary-dark                   : #34515E;
+$primary-text                   : #CFD8DC;
+
+$secondary                      : #B0BEC5;
+$secondary-light                : #E2F1F8;
+$secondary-dark                 : #808E95;
+$secondary-text                 : #ECEFF1;
+
+
 $layout-prefix                  : #{$prefix}-layout;
-$layout-sidebar-collapse-width  : 64px;
 $layout-header-height           : 50px;
 $layout-header-background       : $blue-grey-800; //#475861;
 $layout-header-hover-background : lighten($layout-header-background, 10);
@@ -9,7 +19,10 @@ $layout-header-font-color       : #BBB6B6;
 $layout-header-hover-font-color : darken($layout-header-font-color, 10);
 $layout-header-border-bottom    : 1px solid #4A626F;
 $layout-footer-height           : 61px;
+
+$layout-sidebar-background      : #333333;
 $layout-sidebar-width           : 200px;
+$layout-sidebar-collapse-width  : 64px;
 
 $shortcut-prefix                : #{$prefix}-shortcut;
 $toolbar-prefix                 : #{$prefix}-toolbar;

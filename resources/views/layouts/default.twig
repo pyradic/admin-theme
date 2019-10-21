@@ -90,19 +90,27 @@
             {% endblock %}
         </template>
 
-        <template #main>
+        <template #breadcrumb>
             {% include "theme::partials/buttons" %}
             {% block breadcrumb %}
                 {{ breadcrumb() }}
             {% endblock %}
 
-            {% block pre_content %}
+        </template>
+
+        <template #messages>
+            {% block messages %}
                 {% include "theme::partials/messages" %}
             {% endblock %}
-
-            {% block content %}{% endblock %}
-
         </template>
+
+        <template #default>
+            {% block content %}{% endblock %}
+        </template>
+
+        {% block main %}{% endblock %}
+
+
         <template #footer>
             {% block footer %}
                 {{ menu('admin_footer').pyroAdmin()|raw }}
@@ -113,6 +121,10 @@
 
 
 {% include "theme::partials/modals" %}
+
+<script>
+
+</script>
 
 {% include "theme::partials/assets" %}
 </body>
