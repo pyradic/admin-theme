@@ -4,6 +4,7 @@ import { prefixAndRegisterComponents, registerElementComponents } from '@pyro/pl
 import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Menu, MenuItem, MenuItemGroup, Row, Submenu, Tag } from 'element-ui'
 
 import * as components from './components';
+import * as directives from './directives';
 
 export class AdminThemeVuePlugin {
 
@@ -23,6 +24,10 @@ export class AdminThemeVuePlugin {
             Menu, MenuItem, MenuItemGroup, Submenu
             // DropdownMenu, DropdownItem, Dropdown
         })
+
+        for ( const id in directives ) {
+            _Vue.directive(id, directives[ id ])
+        }
 
     }
 }
