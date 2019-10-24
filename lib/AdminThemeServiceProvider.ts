@@ -1,9 +1,13 @@
 import { Config, ServiceProvider } from '@pyro/platform';
 import { AdminThemeVuePlugin } from './AdminThemeVuePlugin';
 import { styleVars } from './styling/export';
+import { MenuServiceProvider } from './components/menu/MenuServiceProvider';
 
 
 export class AdminThemeServiceProvider extends ServiceProvider {
+    providers = [
+        MenuServiceProvider
+    ]
     public register() {
         this.app.extendRoot({
             data() {

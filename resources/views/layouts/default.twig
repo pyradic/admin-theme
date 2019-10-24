@@ -20,7 +20,8 @@
                 <py-toolbar-title v-if="!layout.sidebar.collapsed" :width="layout.sidebar.normalWidth" title="CRVS" link="{{ url('admin') }}"></py-toolbar-title>
                 <py-toolbar-toggle></py-toolbar-toggle>
                 <py-toolbar-item>
-                    {{ menu('admin_header').pyroAdmin()|raw }}
+                    <py-demo-menu></py-demo-menu>
+{#                    {{ menu('admin_header').pyroAdmin()|raw }}#}
                 </py-toolbar-item>
                 <py-toolbar-item spacer></py-toolbar-item>
                 <py-shortcut-info></py-shortcut-info>

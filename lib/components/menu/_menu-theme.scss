@@ -1,0 +1,119 @@
+
+
+$menu-theme                             : default !default;
+
+// Theme
+$menu-header-background                 : transparent !default;
+$menu-header-color                      : darken(#A6A6A7, 10) !default;
+$menu-header-border-bottom              : 1px solid #353131 !default;
+
+
+$menu-divider-color                     : $blue-grey-800 !default;
+$menu-item-background                   : transparent !default;
+$menu-item-icon-color                   : $blue-grey-700 !default;
+$menu-item-title-color                  : #A6A6A7 !default;
+$menu-item-arrow-color                  : $blue-grey-700 !default;
+
+$menu-item-hover-background             : darken($blue-grey-900, 5) !default;
+$menu-item-icon-hover-color             : darken($menu-item-icon-color, 5) !default;
+$menu-item-title-hover-color            : darken($menu-item-title-color, 5) !default;
+$menu-item-arrow-hover-color            : darken($menu-item-arrow-color, 5) !default;
+
+$menu-item-active-background            : null !default; //rgba($blue-grey-400, 0.1) !default;
+$menu-item-icon-active-color            : lighten($menu-item-icon-color, 10) !default;
+$menu-item-title-active-color           : lighten($menu-item-title-color, 10) !default;
+$menu-item-arrow-active-color           : $menu-item-title-color !default;
+
+$menu-item-selected-background          : null !default;
+$menu-item-icon-selected-color          : $menu-item-title-color !default;
+$menu-item-title-selected-color         : $menu-item-title-active-color !default;
+$menu-item-arrow-selected-color         : $menu-item-title-color !default;
+
+
+$menu-dropdown-submenu-border-width     : $dropdown-border-width !default;
+$menu-dropdown-submenu-border-color     : $dropdown-border-color !default;
+$menu-dropdown-submenu-box-shadow       : 1px 1px 5px 2px rgba(#000, 0.175) !default;
+$menu-dropdown-submenu-item-background  : $blue-grey-900 !default;
+$menu-dropdown-submenu-item-title-color : $blue-grey-200 !default;
+$menu-dropdown-submenu-item-icon-color  : $blue-grey-200 !default;
+$menu-dropdown-submenu-item-arrow-color : $blue-grey-200 !default;
+
+$menu-slide-submenu-transition          : all 1s linear !default; //cubic-bezier(0, 1, 0.5, 1) !default;
+
+@mixin menu-theme-item-colors($background: $menu-item-background, $icon: $menu-item-icon-color, $title: $menu-item-title-color, $arrow: $menu-item-arrow-color) {
+    .#{$menu-prefix}__type {
+        background : $background;
+        color      : $title;
+
+        &:active, &:focus, &:hover {color : $title; }
+
+        .#{$menu-prefix}__icon { color : $icon; }
+
+        .#{$menu-prefix}__title { color : $title; }
+
+        .#{$menu-prefix}__arrow { color : $arrow; }
+
+        @content
+    }
+}
+
+@mixin menu-theme-wrap($name: $menu-theme){
+    .#{$menu-prefix}--theme-#{$name} {
+        @content
+    }
+}
+
+@mixin menu-theme($name: $menu-theme){
+    @include menu-theme-wrap($name){
+        @include menu-theme-item-colors(
+                $menu-item-background,
+                $menu-item-icon-color,
+                $menu-item-title-color,
+                $menu-item-arrow-color
+        );
+
+
+        .#{$menu-prefix}__item--hover > {
+            @include menu-theme-item-colors(
+                    $menu-item-hover-background,
+                    $menu-item-icon-hover-color,
+                    $menu-item-title-hover-color,
+                    $menu-item-arrow-hover-color
+            );
+        }
+
+        .#{$menu-prefix}__item--open >,
+        .#{$menu-prefix}__item--active >,
+        .#{$menu-prefix}__item--focused > {
+            @include menu-theme-item-colors(
+                    $menu-item-active-background,
+                    $menu-item-icon-active-color,
+                    $menu-item-title-active-color,
+                    $menu-item-arrow-active-color
+            );
+        }
+
+        .#{$menu-prefix}__item--selected >,
+        .#{$menu-prefix}__item--focused > {
+            @include menu-theme-item-colors(
+                    $menu-item-selected-background,
+                    $menu-item-icon-selected-color,
+                    $menu-item-title-selected-color,
+                    $menu-item-arrow-selected-color
+            );
+        }
+
+        &.#{$menu-prefix}--dropdown {
+            > .#{$menu-prefix}__item {
+                .#{$menu-prefix}__submenu {
+                    box-shadow : $menu-dropdown-submenu-box-shadow;
+                    background : $menu-dropdown-submenu-item-background;
+                    border     : $menu-dropdown-submenu-border-width solid $menu-dropdown-submenu-border-color;
+
+                }
+            }
+        }
+
+        @content
+    }
+}
