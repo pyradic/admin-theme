@@ -4,7 +4,7 @@
         <slot>
             <template v-if="hasLinks">
                 <template v-for="(link,ilink) in links">
-                    <c-menu-item v-bind="link" :link="link" :links="link.children"/>
+                    <py-menu-item v-bind="link" :link="link" :links="link.children"/>
                 </template>
             </template>
         </slot>

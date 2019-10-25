@@ -16,17 +16,17 @@
             />
         </slot>
         <template v-if="hasChildren">
-            <c-expand-transition :enabled="isSlide" :show="!state.collapsed">
+            <py-expand-transition :enabled="isSlide" :show="!state.collapsed">
                 <slot name="submenu" v-bind:submenuStyle="submenuStyle">
-                    <c-menu-submenu ref="submenu" :style="submenuStyle" v-show="!state.collapsed">
+                    <py-menu-submenu ref="submenu" :style="submenuStyle" v-show="!state.collapsed">
                         <slot>
                             <template v-if="hasLinks" v-for="(link,ilink) in links">
-                                <c-menu-item v-bind="link" :link="link" :links="link.children"/>
+                                <py-menu-item v-bind="link" :link="link" :links="link.children"/>
                             </template>
                         </slot>
-                    </c-menu-submenu>
+                    </py-menu-submenu>
                 </slot>
-            </c-expand-transition>
+            </py-expand-transition>
 
         </template>
     </component>

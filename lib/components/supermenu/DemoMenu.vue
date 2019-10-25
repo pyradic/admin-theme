@@ -1,25 +1,16 @@
 <template>
     <div :class="classes" :style="style">
-        <py-menu
-                horizontal
-                submenu-type="dropdown"
-                submenu-tag="div"
-                item-tag="div"
-                tag="div"
-                :links="menu.children"
-        >
-        </py-menu>
     </div>
 </template>
 <script lang="ts">
     import { component, prop, Styles } from '@pyro/platform';
     import Vue from 'vue';
-    import Menu from './Menu.vue';
     import { IMenu } from '@pyro/menus/lib/interfaces';
+
     @component()
     export default class DemoMenu extends Vue {
         @prop.classPrefix('demomenu') classPrefix: string
-        @prop.object() menu:IMenu
+        @prop.object() menu: IMenu
 
         get classes() {
             return {

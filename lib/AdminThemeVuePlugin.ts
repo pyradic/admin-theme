@@ -29,5 +29,31 @@ export class AdminThemeVuePlugin {
             _Vue.directive(id, directives[ id ])
         }
 
+        _Vue.mixin({
+            methods: {
+
+                getFirstMatchingParent(isMatch: (component: Vue) => boolean, shouldCancel?: (component: Vue) => boolean) {
+                    return this.getAllMatchingParents(isMatch, (component, matches) => {
+                        return matches.length > 0 || (shouldCancel ? shouldCancel(component) : false);
+                    })[ 0 ]
+                },
+                getAllMatchingParents(isMatch: (component: Vue) => boolean, shouldCancel?: (component: Vue, matches: Vue[]) => boolean) {
+                    let cancel  = false;
+                    let matches = []
+                    let parent  = this.$parent
+                    while ( parent && cancel !== true ) {
+                        if ( isMatch(parent) === true ) {
+                            matches.push(parent)
+                        }
+                        if ( typeof shouldCancel === 'function' ) {
+                            cancel = shouldCancel(parent, matches)
+                        }
+                        parent = parent.$parent
+                    }
+                    return matches;
+                },
+            }
+        })
+
     }
 }
