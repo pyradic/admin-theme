@@ -51,15 +51,15 @@
 
         mounted() {
             this.$log('mounted', { menu: this.menu, menuItems: this.menu.items })
-            this.menu.$on('item-click', (item: MenuItem) => {
-                this.$log('item-click', { item })
-                if ( 'data-toggle' in item.$attrs ) {
-                    return;
-                }
-                if ( 'href' in item.$attrs ) {
-                    window.location.href = item.$attrs.href;
-                }
-            })
+            // this.menu.$on('item-click', (item: MenuItem) => {
+            //     this.$log('item-click', { item })
+            //     if ( 'data-toggle' in item.$attrs ) {
+            //         return;
+            //     }
+            //     if ( 'href' in item.$attrs ) {
+            //         window.location.href = item.$attrs.href;
+            //     }
+            // })
         }
 
         get activeMenuItem() {

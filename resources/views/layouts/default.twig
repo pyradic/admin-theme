@@ -73,14 +73,14 @@
                                 <span>{{ trans(navigation.title) }}</span>
                             </template>
                             {% for childKey, child in navigation.children %}
-                                <el-menu-item index="{{ navigation.slug|replace({'.':'_'}) }}.{{ child.slug }}" href="{{ child.href }}" {{ html_attributes(child.attributes) }}>
+                                <el-menu-item tag="a" index="{{ navigation.slug|replace({'.':'_'}) }}.{{ child.slug }}" href="{{ child.href }}" {{ html_attributes(child.attributes) }}>
                                     <span>{{ trans(child.title) }}</span>
 
                                 </el-menu-item>
                             {% endfor %}
                         </el-submenu>
                     {% else %}
-                        <el-menu-item index="{{ navigation.slug|replace({'.':'_'}) }}" href="{{ navigation.href }}" {{ html_attributes(navigation.attributes) }}>
+                        <el-menu-item tag="a" index="{{ navigation.slug|replace({'.':'_'}) }}" href="{{ navigation.href }}" {{ html_attributes(navigation.attributes) }}>
                             {% if navigation.icon %}
                                 {{ icon(navigation.icon) }}
                             {% endif %}

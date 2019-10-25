@@ -60,6 +60,7 @@
     &__sidebar {
         background : $layout-sidebar-background;
         height     : 100%;
+        overflow-x: hidden !important;
 
         @include m(collapse) {
             width : $layout-sidebar-collapse-width;
@@ -71,7 +72,7 @@
         }
     }
 
-    &__sidebar-menu {
+    &__sidebar-menu.el-menu {
         background : #333;
         border     : none;
         @include m(collapse) {
@@ -108,6 +109,7 @@
         .el-submenu .el-menu-item {
             height      : 35px;
             line-height : 35px;
+            display: block;
         }
     }
 
@@ -117,6 +119,7 @@
 
                 height      : 35px;
                 line-height : 35px;
+                display: block;
 
                 span {
                     font-size : 12px;
