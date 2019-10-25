@@ -14,7 +14,7 @@
         background     : $layout-header-background;
         border-bottom  : $layout-header-border-bottom;
 
-        .el-menu--horizontal {
+        .el-menu.el-menu--horizontal {
             height     : $layout-header-height - 1px;
             border     : none;
             background : transparent;

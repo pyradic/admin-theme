@@ -1,7 +1,12 @@
 import Vue from 'vue';
 import { prefixAndRegisterComponents, registerElementComponents } from '@pyro/platform';
 // noinspection ES6UnusedImports
-import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Menu, MenuItem, MenuItemGroup, Row, Submenu, Tag } from 'element-ui'
+import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Row, Tag } from 'element-ui' //
+import Menu from './components/el-menu/menu.vue'
+import MenuItem from './components/el-menu/menu-item.vue'
+import MenuItemGroup from './components/el-menu/menu-item-group.vue'
+import Submenu from './components/el-menu/submenu.vue'
+
 
 import * as components from './components';
 import * as directives from './directives';
@@ -20,10 +25,15 @@ export class AdminThemeVuePlugin {
 
         registerElementComponents(_Vue, {
             Row, Col, Aside, Header, Footer, Container, Main,
-            Divider, Alert, Tag, Button, Link,
-            Menu, MenuItem, MenuItemGroup, Submenu
+            Divider, Alert, Tag, Button, Link
+            // Menu, MenuItem, MenuItemGroup, Submenu
             // DropdownMenu, DropdownItem, Dropdown
         })
+
+        _Vue.component(Menu.name, Menu)
+        _Vue.component(MenuItem.name, MenuItem)
+        _Vue.component(MenuItemGroup.name, MenuItemGroup)
+        _Vue.component(Submenu.name, Submenu)
 
         for ( const id in directives ) {
             _Vue.directive(id, directives[ id ])
@@ -51,7 +61,7 @@ export class AdminThemeVuePlugin {
                         parent = parent.$parent
                     }
                     return matches;
-                },
+                }
             }
         })
 
