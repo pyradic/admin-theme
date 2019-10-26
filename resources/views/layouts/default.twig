@@ -64,8 +64,9 @@
         <template #sidebar>
             {% block sidebar %}
                 {% for key, navigation in template.cp_nav %}
+                    {% set slug = navigation.slug|replace({'.':'_'}) %}
                     {% if navigation.children.isNotEmpty() %}
-                        <el-submenu index="{{ navigation.slug|replace({'.':'_'}) }}" popper-class="py-layout__sidebar-menu-popper">
+                        <el-submenu index="{{ slug }}" data-slug="{{ slug }}" popper-class="py-layout__sidebar-menu-popper">
                             <template slot="title">
                                 {% if navigation.icon %}
                                     {{ icon(navigation.icon) }}
@@ -73,14 +74,23 @@
                                 <span>{{ trans(navigation.title) }}</span>
                             </template>
                             {% for childKey, child in navigation.children %}
-                                <el-menu-item tag="a" index="{{ navigation.slug|replace({'.':'_'}) }}.{{ child.slug }}" href="{{ child.href }}" {{ html_attributes(child.attributes) }}>
+                                {% set slug = navigation.slug|replace({'.':'_'}) ~ '.' ~ child.slug  %}
+                                <el-menu-item tag="a"
+                                              index="{{ slug }}"
+                                              data-slug="{{ slug }}"
+                                              href="{{ child.href }}" {{ html_attributes(child.attributes) }}>
                                     <span>{{ trans(child.title) }}</span>
 
                                 </el-menu-item>
                             {% endfor %}
                         </el-submenu>
                     {% else %}
-                        <el-menu-item tag="a" index="{{ navigation.slug|replace({'.':'_'}) }}" href="{{ navigation.href }}" {{ html_attributes(navigation.attributes) }}>
+                        <el-menu-item tag="a"
+                                      index="{{ slug }}"
+                                      href="{{ navigation.href }}"
+                                      slug="{{ slug }}"
+                                {{ html_attributes(navigation.attributes) }}
+                        >
                             {% if navigation.icon %}
                                 {{ icon(navigation.icon) }}
                             {% endif %}

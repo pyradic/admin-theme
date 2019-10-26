@@ -49,7 +49,7 @@ export default class Menu extends tsx.Component<{}> {
                     index={item.id.toString()}
                     href={item.url}
                 >
-                    {item.icon ? <i class={item.icon} /> : null}
+                    {/*{item.icon ? <i class={item.icon} /> : null}*/}
                     <span>{item.title}</span>
                 </el-menu-item>
             )
