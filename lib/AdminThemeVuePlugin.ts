@@ -6,7 +6,8 @@ import Menu from './components/el-menu/menu.vue'
 import MenuItem from './components/el-menu/menu-item.vue'
 import MenuItemGroup from './components/el-menu/menu-item-group.vue'
 import Submenu from './components/el-menu/submenu.vue'
-
+import {Config} from 'vuescroll'
+import vuescroll  from 'vuescroll'
 
 import * as components from './components';
 import * as directives from './directives';
@@ -38,6 +39,12 @@ export class AdminThemeVuePlugin {
         for ( const id in directives ) {
             _Vue.directive(id, directives[ id ])
         }
+
+        _Vue.component('py-scroll', async function(){
+            const VueScroll:typeof vuescroll = await import('vuescroll/dist/vuescroll-native')
+            VueScroll.install(Vue)
+            return VueScroll
+        })
 
         _Vue.mixin({
             methods: {

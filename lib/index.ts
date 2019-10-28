@@ -4,7 +4,13 @@ import './admin-theme.scss'
 import { AdminThemeServiceProvider } from './AdminThemeServiceProvider';
 import {AdminThemeVuePlugin} from './AdminThemeVuePlugin';
 import { styleVars } from './styling/export';
+import { colors } from './utils/colors';
 
-window['styleVars'] = styleVars
-export {styleVars}
+export {styleVars,colors}
 export { AdminThemeVuePlugin, AdminThemeServiceProvider }
+
+
+if(DEV) {
+    window[ 'styleVars' ] = styleVars
+    window[ 'colors' ] = colors
+}

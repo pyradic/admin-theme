@@ -23,16 +23,23 @@
             > .el-menu-item {
                 line-height : $layout-header-height;
                 height      : $layout-header-height;
-            }
-
-            > .el-submenu .el-submenu__title {
-                color : $layout-header-font-color;
+                color       : $layout-header-font-color;
 
                 &:hover {
                     color      : $layout-header-hover-font-color;
                     background : $layout-header-hover-background;
                 }
             }
+
+            //> .el-submenu .el-submenu__title,
+            //> .el-menu-item {
+            //    color : $layout-header-font-color;
+            //
+            //    &:hover {
+            //        color      : $layout-header-hover-font-color;
+            //        background : $layout-header-hover-background;
+            //    }
+            //}
         }
 
         //.el-submenu .el-submenu__title,
@@ -60,7 +67,7 @@
     &__sidebar {
         background : $layout-sidebar-background;
         height     : 100%;
-        overflow-x: hidden !important;
+        overflow-x : hidden !important;
 
         @include m(collapse) {
             width : $layout-sidebar-collapse-width;
@@ -88,12 +95,12 @@
         }
 
         > .el-submenu {
-            &.is-active > .el-submenu__title{
+            &.is-active > .el-submenu__title {
                 border-left  : 3px solid #409EFF;
                 padding-left : 17px !important;
             }
 
-            &.is-opened > .el-submenu__title{
+            &.is-opened > .el-submenu__title {
                 background : #2F2E2E !important;
             }
         }
@@ -109,7 +116,7 @@
         .el-submenu .el-menu-item {
             height      : 35px;
             line-height : 35px;
-            display: block;
+            display     : block;
         }
     }
 
@@ -119,7 +126,7 @@
 
                 height      : 35px;
                 line-height : 35px;
-                display: block;
+                display     : block;
 
                 span {
                     font-size : 12px;

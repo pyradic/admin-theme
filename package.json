@@ -19,7 +19,8 @@
         "foundation-sites": "^6.5.3",
         "sass-ignis": "^1.0.3",
         "vue-clickaway": "^2.2.2",
-        "vue-styled-components": "^1.4.13"
+        "vue-styled-components": "^1.4.13",
+        "vuescroll": "^4.14.4"
     },
     "devDependencies": {}
 }

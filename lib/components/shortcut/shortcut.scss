@@ -13,6 +13,7 @@ $shortcut-hover-background  : rgba(white, 0.1); //$shortcut-background !default;
 
 
 .#{$shortcut-prefix} {
+    $self: &;
     min-height  : inherit;
     display     : flex;
     align-items : center;
@@ -35,9 +36,19 @@ $shortcut-hover-background  : rgba(white, 0.1); //$shortcut-background !default;
         font-size   : $shortcut-label-font-size;
     }
 
-    &--highlighted {
+    &--highlighted, &.is-highlighted {
         border-top : 2px solid #607D8B;
         background : rgba(0, 0, 0, 0.3);
+    }
+
+    &.is-error {
+        #{$self}__label {
+            color: $red-500;
+        }
+        #{$self}__icon {
+            color: $red-500;
+        }
+
     }
 
     &--hover,

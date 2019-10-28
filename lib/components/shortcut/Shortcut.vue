@@ -50,7 +50,7 @@
 
         get classNames() {
             return {
-                icon : `${this.classPrefix}__icon`,
+                icon : { [ `${this.classPrefix}__icon` ]: true, [ this.icon ]: true },
                 label: `${this.classPrefix}__label`
             }
         }
