@@ -10,6 +10,44 @@
                         @toggle-click="toggleSidebarCollapse"
                 >
                     <slot name="header-toolbar"></slot>
+                    <slot name="header-shortcuts">
+                        <py-toolbar-item spacer></py-toolbar-item>
+                        <py-shortcut-info></py-shortcut-info>
+                        <py-shortcut
+                                v-for="(shortcut, ishortcut) in $root.shortcuts"
+                                :key="ishortcut"
+                                :highlighted="shortcut.highlighted"
+                                :slug="shortcut.slug"
+                                :icon="shortcut.icon"
+                                :href="shortcut.href"
+                                :title="shortcut.title"
+                                :label="shortcut.label"
+                                :class="shortcut.class"
+                                :children="shortcut.children"
+                                :attributes="shortcut.attributes"
+
+                        >
+                        </py-shortcut>
+                        <div class="py-toolbar__item dropdown">
+                            <a href="javascript:void(0);" data-toggle="dropdown">
+                                <img :src="$root.user.gravatar" width="36" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu-right dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a href="/" target="_blank">
+                                        <i class="fa fa-external-link"></i> Site
+<!--                                        {{ trans('pyrocms.theme.accelerant::control_panel.view_site') }}-->
+                                    </a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="/admin/logout">
+                                        <i class="fa fa-power-off"></i> Logout
+<!--                                        {{ trans('pyrocms.theme.accelerant::control_panel.logout') }}-->
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </slot>
                 </py-toolbar>
             </slot>
         </el-header>

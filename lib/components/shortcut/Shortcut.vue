@@ -6,7 +6,8 @@
 </template2>
 <template>
 
-    <a
+    <component
+            :is="tag"
             :class="classes"
             :style="style"
             :title="title"
@@ -16,13 +17,28 @@
             @mouseleave="handleMouseOut">
         <slot><i v-if="icon" :icon="icon" :class="classNames.icon"/></slot>
         <span v-if="label" :class="classNames.label">{{label}}</span>
-    </a>
+
+        <template v-if="isDropdown">
+            <el-dropdown-menu class="py-shortcut__dropdown-menu" slot="dropdown">
+                <el-dropdown-item class="py-shortcut__dropdown-item" v-for="(child,ichild) in children" :key="ichild">
+                    <a :href="child.href">{{child.label || child.title }}</a>
+                </el-dropdown-item>
+            </el-dropdown-menu>
+        </template>
+    </component>
 </template>
 <script lang="ts">
     import { component, prop, Styles } from '@pyro/platform';
     import Vue from 'vue';
+    import { Dropdown, DropdownItem, DropdownMenu } from 'element-ui';
 
-    @component()
+    @component({
+        components: {
+            [ Dropdown.name ]    : Dropdown,
+            [ DropdownItem.name ]: DropdownItem,
+            [ DropdownMenu.name ]: DropdownMenu
+        }
+    })
     export default class Shortcut extends Vue {
         @prop.classPrefix('shortcut') classPrefix: string
         @prop.string() label: string
@@ -31,6 +47,7 @@
         @prop.string() slug: string
         @prop.string() icon: string
         @prop.boolean() highlighted: boolean
+        @prop.array() children: any[]
         @prop.object(() => ({})) attributes: string
 
         get computedAttributes() {
@@ -38,7 +55,17 @@
             if ( 'href' in attributes === false ) {
                 attributes.href = 'javascript:void(0)'
             }
+            if(this.isDropdown){
+                attributes.trigger = 'click';
+            }
             return attributes;
+        }
+
+        get tag() {
+            if ( this.isDropdown ) {
+                return 'el-dropdown'
+            }
+            return 'a';
         }
 
         get classes() {
@@ -59,6 +86,8 @@
             let style: Styles = {}
             return style;
         }
+
+        get isDropdown() {return this.children && this.children.length}
 
         handleMouseEnter(event: MouseEvent) {
             this.$py.events.emit('shortcut-info:set', this.title)

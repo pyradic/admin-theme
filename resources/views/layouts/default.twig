@@ -23,6 +23,7 @@
 {#                    <py-demo-menu :menu="menus.admin_header"></py-demo-menu>#}
                     {{ menu_json('admin_header')|raw }}
                 </py-toolbar-item>
+                {#
                 <py-toolbar-item spacer></py-toolbar-item>
                 <py-shortcut-info></py-shortcut-info>
                 {% for shortcut in template.cp.shortcuts %}
@@ -58,6 +59,7 @@
                         </li>
                     </ul>
                 </div>
+                #}
             {% endblock %}
         </template>
         <template #sidebar>

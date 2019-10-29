@@ -32,6 +32,7 @@ use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\Command\BuildN
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\Command\SetMainNavigationLinks;
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\Command\SetActiveNavigationLink;
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\Contract\NavigationLinkInterface;
+use Pyro\Platform\Command\GetClassArray;
 
 class BuildFullControlPanelNavigation
 {
@@ -179,17 +180,7 @@ class BuildFullControlPanelNavigation
 
     protected function getClassData($instance)
     {
-        $data    = [];
-        $class   = new \ReflectionClass(get_class($instance));
-        $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
-        foreach ($methods as $method) {
-            $methodName = $method->getName();
-            if (Str::startsWith($methodName, [ 'get', 'is' ])) {
-                $name          = preg_replace('/^(get|is)/', '', $methodName);
-                $name          = Str::camel($name);
-                $data[ $name ] = call_user_func([ $instance, $methodName ]);
-            }
-        }
+        $data    = $this->dispatchNow(new GetClassArray($instance));
         if(isset($data['attributes'])){
             $data = array_replace($data, $data['attributes']);
         }

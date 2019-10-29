@@ -64,6 +64,15 @@ $shortcut-hover-background  : rgba(white, 0.1); //$shortcut-background !default;
         }
     }
 
+    &____dropdown-menu{}
+    &____dropdown-item{
+        padding: 0;
+        > a {
+            padding: 0 20px;
+            display:block;
+        }
+    }
+
 }
 
 .#{$shortcut-prefix}-info {
