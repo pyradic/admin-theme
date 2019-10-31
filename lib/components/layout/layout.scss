@@ -163,5 +163,8 @@
 
     &__footer {
         padding : 0;
+        .el-menu.el-menu--horizontal {
+            border-bottom: none;
+        }
     }
 }
