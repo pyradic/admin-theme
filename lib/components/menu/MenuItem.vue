@@ -11,7 +11,7 @@
 <script lang="ts">
     import { component, prop, Styles } from '@pyro/platform';
     import Vue from 'vue';
-    import { IMenuItem } from '@pyro/menus/lib/interfaces';
+    import { IMenuItem } from '@pyro/menus-module/lib/interfaces';
 
     @component()
     export default class MenuItem extends Vue {

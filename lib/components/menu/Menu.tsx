@@ -1,6 +1,6 @@
 import { component, prop, Styles } from '@pyro/platform';
 import Vue from 'vue';
-import { IMenu, IMenuItem } from '@pyro/menus/lib/interfaces';
+import { IMenu, IMenuItem } from '@pyro/menus-module/lib/interfaces';
 import 'vue-tsx-support/enable-check'
 import * as tsx from 'vue-tsx-support'
 @component()
@@ -25,12 +25,13 @@ export default class Menu extends tsx.Component<{}> {
     render(h) {
 
         const renderItems = (items: IMenuItem[]) => items.map(item => {
+            let index=item.id.toString()
             if ( item.children.length > 0 ) {
                 return (
                     <el-submenu
                         tag="div"
                         class={item.class}
-                        index={item.id.toString()}
+                        index={index}
                         href={item.url}
                     >
                         {/*<template slot="title">{item.title}</template>*/}
@@ -46,7 +47,7 @@ export default class Menu extends tsx.Component<{}> {
                 <el-menu-item
                     tag="a"
                     class={item.class}
-                    index={item.id.toString()}
+                    index={index}
                     href={item.url}
                 >
                     {/*{item.icon ? <i class={item.icon} /> : null}*/}

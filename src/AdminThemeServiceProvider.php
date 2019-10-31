@@ -2,21 +2,26 @@
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\View\Event\TemplateDataIsLoading;
+use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Laradic\Support\Wrap;
 use Pyro\AdminTheme\Ui\Command\AddCPNavToTemplate;
 use Pyro\Platform\Command\GetClassArray;
+use Pyro\Platform\Platform;
 
 class AdminThemeServiceProvider extends AddonServiceProvider
 {
-    public function register()
+    public function register(Platform $platform)
     {
+        $platform->addAddon($this->addon);
         $this->dispatchNow(new AddCPNavToTemplate());
+        LoginFormBuilder::when('make', function () use ($platform) {
+            $platform->preventBootstrap();
+        });
+        $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
 
-        $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) {
             $template = $event->getTemplate();
-
             /** @var \Anomaly\Streams\Platform\Ui\ControlPanel\ControlPanel $cp */
             $cp = $template->get('cp');
             /** @var \Anomaly\Streams\Platform\Addon\Module\Module|\Anomaly\Streams\Platform\Addon\Module\ModulePresenter $module */
@@ -24,9 +29,13 @@ class AdminThemeServiceProvider extends AddonServiceProvider
             /** @var \Pyro\Platform\Addon\Theme\Theme $theme */
             $theme = $template->get('theme');
             if ($theme->getNamespace() === 'pyro.theme.admin') {
-                $this->app->platform->addPublicScript('assets/js/pyro__admin_theme.js');
-                $this->app->platform->addPublicStyle('assets/css/pyro__admin_theme.css');
-                $this->app->platform->addProvider('pyro.pyro__admin_theme.AdminThemeServiceProvider');
+//                $this->app->platform->addPublicScript('assets/js/pyro__admin_theme.js');
+//                $this->app->platform->addPublicStyle('assets/css/pyro__admin_theme.css');
+//                $this->app->platform->addProvider('pyro.pyro__admin_theme.AdminThemeServiceProvider');
+                $platform
+                    ->addScript('@pyro/admin-theme')
+                    ->addStyle('@pyro/admin-theme')
+                    ->addProvider($this);
             }
 
             if ($module) {
