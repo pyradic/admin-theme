@@ -18,8 +18,9 @@
         <slot><i v-if="icon" :icon="icon" :class="classNames.icon"/></slot>
         <span v-if="label" :class="classNames.label">{{label}}</span>
 
+
         <template v-if="isDropdown">
-            <el-dropdown-menu class="py-shortcut__dropdown-menu" slot="dropdown">
+            <el-dropdown-menu class="py-shortcut__dropdown-menu" slot="dropdown" size="small">
                 <el-dropdown-item class="py-shortcut__dropdown-item" v-for="(child,ichild) in children" :key="ichild">
                     <a :href="child.href">{{child.label || child.title }}</a>
                 </el-dropdown-item>
@@ -51,12 +52,19 @@
         @prop.object(() => ({})) attributes: string
 
         get computedAttributes() {
-            const attributes: any = this.attributes
+            const attributes: Dropdown & any = this.attributes as any
             if ( 'href' in attributes === false ) {
                 attributes.href = 'javascript:void(0)'
             }
             if(this.isDropdown){
+                let attrs:Partial<Dropdown> = {
+                    trigger: 'click',
+                    size: 'mini',
+
+                }
+
                 attributes.trigger = 'click';
+                attributes.size = 'mini'
             }
             return attributes;
         }

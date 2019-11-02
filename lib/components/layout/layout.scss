@@ -17,13 +17,14 @@
         .el-menu.el-menu--horizontal {
             height     : $layout-header-height - 1px;
             border     : none;
-            background : transparent;
+            background : transparent !important;
 
             > .el-submenu .el-submenu__title,
             > .el-menu-item {
                 line-height : $layout-header-height;
                 height      : $layout-header-height;
                 color       : $layout-header-font-color;
+                background : transparent !important;
 
                 &:hover {
                     color      : $layout-header-hover-font-color;
@@ -162,9 +163,16 @@
     }
 
     &__footer {
+        background : #333;
         padding : 0;
         .el-menu.el-menu--horizontal {
             border-bottom: none;
+            background : transparent !important;
+
+            > .el-submenu .el-submenu__title,
+            > .el-menu-item {
+                background : transparent !important;
+            }
         }
     }
 }

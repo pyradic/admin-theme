@@ -93,6 +93,9 @@ class BuildFullControlPanelNavigation
         $builder            = $this->createControlPanelBuilder();
         $this->cp           = $builder->getControlPanel();
         $this->activeModule = $this->modules->active();
+        if(!$this->activeModule){
+            $this->activeModule = $this->modules->first()->setActive(true);
+        }
 
 
         $this->dispatchNow(new BuildNavigation($builder));
