@@ -14,7 +14,7 @@ class AdminThemeServiceProvider extends AddonServiceProvider
 {
     public function register(Platform $platform)
     {
-        $platform->addAddon($this->addon);
+//        $platform->addAddon($this->addon);
         $this->dispatchNow(new AddCPNavToTemplate());
         LoginFormBuilder::when('make', function () use ($platform) {
             $platform->preventBootstrap();
@@ -32,22 +32,27 @@ class AdminThemeServiceProvider extends AddonServiceProvider
 //                $this->app->platform->addPublicScript('assets/js/pyro__admin_theme.js');
 //                $this->app->platform->addPublicStyle('assets/css/pyro__admin_theme.css');
 //                $this->app->platform->addProvider('pyro.pyro__admin_theme.AdminThemeServiceProvider');
-                $platform
-                    ->addScript('@pyro/admin-theme')
-                    ->addStyle('@pyro/admin-theme')
-                    ->addProvider($this);
+                $platform->addWebpackEntry('@pyro/admin-theme');
             }
 
             if ($module) {
-                $this->app->platform->set('module', $module->toArray());
+                $platform[ 'module' ] = $module->toArray();
             }
             if ($cp) {
                 $section = $cp->getSections()->active();
                 if ($section) {
-                    $this->app->platform->set('section.title', trans($section->getTitle()));
-                    $this->app->platform->set('section.slug', $section->getSlug());
+                    $platform[ 'cp.section.title' ] = trans($section->getTitle());
+                    $platform[ 'cp.section.slug' ]  = $section->getSlug();
                 }
-                $this->app->platform->set('shortcuts', $shortcuts = $cp->getShortcuts()->toArray());
+                $platform->set('cp.shortcuts', $shortcuts = $cp->getShortcuts()->toArray());
+            }
+            if ($cpnav = $template[ 'cp_nav' ]) {
+                $platform[ 'cp.nav' ] = $cpnav->toArray();
+            }
+            if ($breadcrumbs = $template[ 'breadcrumbs' ]) {
+                $platform[ 'breadcrumbs' ] = $breadcrumbs->mapWithKeys(function ($url, $title) {
+                    return [ trans($title) => $url ];
+                })->toArray();
             }
 
 //            $cpdata = array_replace(
@@ -70,7 +75,7 @@ class AdminThemeServiceProvider extends AddonServiceProvider
                 }
             }
 
-            $this->app->platform->set('user', $user);
+            $platform->set('user', $user);
             $template = $event->getTemplate();
             return;
         });

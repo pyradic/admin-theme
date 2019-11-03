@@ -318,8 +318,8 @@ const Tag= tag
         rootMenu.mode === 'vertical' && !rootMenu.collapse
       ) ? 'el-icon-arrow-down' : 'el-icon-arrow-right';
 
-      const ParentTag = this.$parent.tag
-        console.log('submenu ParentTag', ParentTag, this)
+      const ParentTag = this.$parent.tag;
+        // console.log('submenu ParentTag', ParentTag, this)
       return (
         <ParentTag
           class={{
