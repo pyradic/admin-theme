@@ -1,6 +1,7 @@
 
 @import "_base.scss";
 
+//noinspection CssInvalidPseudoSelector,CssUnknownProperty
 :export {
 	fa-font-path: $fa-font-path;
 	primary: $primary;

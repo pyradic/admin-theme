@@ -116,8 +116,8 @@
                 default: 'hover'
             },
             collapse          : Boolean,
-            backgroundColor   : {type:String,default:"#333333"},
-            textColor         : {type:String, default:"#c6c6c6"},
+            backgroundColor   : {type:String}, //default:"#333333"
+            textColor         : {type:String}, //default:"#c6c6c6"
             activeTextColor   : String,
             collapseTransition: {
                 type   : Boolean,

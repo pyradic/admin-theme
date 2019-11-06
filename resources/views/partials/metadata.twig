@@ -15,15 +15,16 @@
 <title>{{ trans('pyrocms.theme.accelerant::control_panel.title') }}
     &#8250; {{ trans(template.breadcrumbs.all()|keys|last)|raw }}</title>
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
 {# Favicons #}
 {{ favicons("pyrocms.theme.accelerant::img/favicon.png") }}
 
 {{ asset_add("theme.css", "pyrocms.theme.accelerant::css/fonts.css", ["parse"]) }}
-{{ asset_add("theme.css", "pyrocms.theme.accelerant::css/bootstrap.css") }}
+{{ asset_add("theme.css", "pyro.theme.admin::css/bootstrap.css") }}
 
 {{ asset_add(
     "build.css",
-    "pyrocms.theme.accelerant::css/theme.css",
+    "pyro.theme.admin::css/theme.css",
     [
         "required",
         "as:t4t5/sweetalert.css",

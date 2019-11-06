@@ -10,6 +10,6 @@
         "paths": {
             "@pyro/platform": ["../../../../packages/pyro/platform/lib"]}
     },
-    "include": ["lib"],
+    "include": ["lib","webpack.config.ts"],
     "exclude": [ "node_modules","../../../../packages/pyro/platform/lib"]
 }

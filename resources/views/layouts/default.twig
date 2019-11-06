@@ -14,7 +14,7 @@
     {#{% include "theme::partials/navbar" %}#}
     {#{% include "theme::partials/header" %}#}
 
-    <py-layout id="app">
+    <py-lay id="app">
         <template #header-toolbar>
             {% block header_toolbar %}
                 <py-toolbar-title v-if="!layout.sidebar.collapsed" :width="layout.sidebar.normalWidth" title="CRVS" link="{{ url('admin') }}"></py-toolbar-title>
@@ -129,7 +129,7 @@
                 {{ menu('admin_footer').pyroAdmin()|raw }}
             {% endblock %}
         </template>
-    </py-layout>
+    </py-lay>
 {% endblock %}
 
 

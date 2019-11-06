@@ -1,0 +1,24 @@
+@import "~@pyro/platform/lib/styling/base";
+@import "colors";
+@import "colors_classes";
+@import "colors_placeholders";
+@import "variables";
+@import "mixins";
+@import "~font-awesome/scss/variables";
+@import "~font-awesome/scss/mixins";
+@import "~element-ui-theme/src/main";
+@import "~accelerant-theme/resources/scss/theme/variables";
+@import "~accelerant-theme/resources/scss/theme/mixins";
+
+
+//
+//// Bootstrap
+//@import "~mdbootstrap/scss/core/bootstrap/functions";
+//@import "~mdbootstrap/scss/core/bootstrap/variables";
+//
+//// CORE
+//@import "~mdbootstrap/scss/core/mixins";
+//// Your custom variables
+//@import "~mdbootstrap/scss/custom-variables";
+//@import "~mdbootstrap/scss/core/colors";
+//@import "~mdbootstrap/scss/core/variables";

@@ -1,9 +1,11 @@
 @import "~@pyro/platform/lib/styling/base";
-@import "colors";
-@import "colors_classes";
-@import "colors_placeholders";
-@import "variables";
-@import "mixins";
+
+@import "base/colors";
+@import "base/colors_classes";
+@import "base/colors_placeholders";
+@import "base/variables";
+@import "base/mixins";
+
 @import "~font-awesome/scss/variables";
 @import "~font-awesome/scss/mixins";
 @import "~element-ui-theme/src/main";

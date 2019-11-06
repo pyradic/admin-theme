@@ -10,24 +10,33 @@ $secondary-light                : #E2F1F8;
 $secondary-dark                 : #808E95;
 $secondary-text                 : #ECEFF1;
 
+$layout-prefix                  : #{$prefix}-layout !default;
+$shortcut-prefix                : #{$prefix}-shortcut !default;
+$toolbar-prefix                 : #{$prefix}-toolbar !default;
+$menu-prefix                    : #{$prefix}-menu !default;
+$client-prefix                  : #{$prefix}-menu !default;
 
-$layout-prefix                  : #{$prefix}-layout;
-$layout-header-height           : 50px;
-$layout-header-background       : $blue-grey-800; //#475861;
-$layout-header-hover-background : lighten($layout-header-background, 10);
-$layout-header-font-color       : #BBB6B6;
-$layout-header-hover-font-color : darken($layout-header-font-color, 10);
-$layout-header-border-bottom    : 1px solid #4A626F;
-$layout-footer-height           : 61px;
+$layout-header-height           : 50px !default;
 
-$layout-sidebar-background      : #333333;
-$layout-sidebar-width           : 200px;
-$layout-sidebar-collapse-width  : 64px;
+$layout-header-font-color       : #BBB6B6 !default;
+//$layout-header-background       : $blue-grey-800 !default;
+$layout-header-background       : $grey-500 !default;
+$layout-header-hover-font-color : darken($layout-header-font-color, 10) !default;
+$layout-header-hover-background : lighten($layout-header-background, 10) !default;
+$layout-header-border-bottom    : 1px solid #4A626F !default;
 
-$shortcut-prefix                : #{$prefix}-shortcut;
-$toolbar-prefix                 : #{$prefix}-toolbar;
-$menu-prefix                    : #{$prefix}-menu;
-$client-prefix                    : #{$prefix}-menu;
+$layout-footer-height           : 50px !default;
+$layout-footer-font-color       : #BBB6B6 !default;
+$layout-footer-background       : $blue-grey-800 !default;
+$layout-footer-hover-font-color : darken($layout-footer-font-color, 10) !default;
+$layout-footer-hover-background : lighten($layout-footer-background, 10) !default;
+$layout-footer-border-top       : 1px solid #4A626F !default;
+
+$layout-sidebar-width           : 200px !default;
+$layout-sidebar-collapse-width  : 64px !default;
+
+$layout-sidebar-background      : #333333 !default;
+$layout-sidebar-font-color      : #BBB6B6 !default;
 
 
 //$fa-font-path                  : '../fonts/font-awesome';

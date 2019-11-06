@@ -3,8 +3,6 @@
         <el-menu
                 :default-active="activeMenuItem"
                 :class="menuClasses"
-                background-color="#333"
-                text-color="#ffffff"
                 :collapse-transition="false"
                 unique-opened
                 :collapse="layout.sidebar.collapsed"
@@ -15,6 +13,8 @@
     </el-aside>
 </template>
 <script lang="ts">
+    // background-color="#333"
+    // text-color="#ffffff"
     import Vue from 'vue';
     import { component, inject, prop } from '@pyro/platform';
     import Layout from './Layout.vue';
