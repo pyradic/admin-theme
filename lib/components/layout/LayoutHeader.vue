@@ -1,8 +1,6 @@
 <template>
     <header :class="classes" :style="styles">
-        <a href="javascript:void(0)" class="py-layout__header-sidebar-toggle" @click="handleTitleClick">
-            <i class="fa fa-bars"></i>
-        </a>
+        <!--<a href="javascript:void(0)" class="py-layout__header-sidebar-toggle" @click="handleTitleClick"><i class="fa fa-bars"></i></a>-->
         <slot></slot>
     </header>
 </template>
@@ -19,7 +17,6 @@
         get classes() {
             return {
                 [ this.classPrefix ]: true,
-                [ `el-header` ]: true,
             }
         }
         get styles():Styles {return {}}

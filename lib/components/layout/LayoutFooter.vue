@@ -16,7 +16,6 @@
         get classes() {
             return {
                 [ this.classPrefix ]: true,
-                [ `el-footer` ]: true,
             }
         }
         get styles():Styles {return {}}

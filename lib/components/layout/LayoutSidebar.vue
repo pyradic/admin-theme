@@ -1,5 +1,5 @@
 <template>
-    <el-aside :class="classes" :width="layout.sidebar.width || '200px'">
+    <div :class="classes">
         <el-menu
                 :default-active="activeMenuItem"
                 :class="menuClasses"
@@ -10,7 +10,7 @@
         >
             <slot></slot>
         </el-menu>
-    </el-aside>
+    </div>
 </template>
 <script lang="ts">
     // background-color="#333"
@@ -32,13 +32,13 @@
         get classes() {
             return {
                 [ this.classPrefix ]               : true,
-                [ `${this.classPrefix}--collapse` ]: this.layout.sidebar.collapsed
+                [ `is-collapsed` ]: this.layout.sidebar.collapsed
             }
         }
 
         get styles() {
             return {
-                background: this.layout.styleVars[ 'layout-sidebar-background' ]
+                //background: this.layout.styleVars[ 'layout-sidebar-background' ]
             }
         }
 
@@ -64,7 +64,7 @@
 
         get activeMenuItem() {
             let namespace = this.$py.data.get('module.namespace').replace(/\./g, '_')
-            let slug      = this.$py.data.get('section.slug')
+            let slug      = this.$py.data.get('cp.section.slug')
             return `${namespace}.${slug}`
         }
 

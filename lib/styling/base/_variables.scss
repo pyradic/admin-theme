@@ -19,8 +19,7 @@ $client-prefix                  : #{$prefix}-menu !default;
 $layout-header-height           : 50px !default;
 
 $layout-header-font-color       : #BBB6B6 !default;
-//$layout-header-background       : $blue-grey-800 !default;
-$layout-header-background       : $grey-500 !default;
+$layout-header-background       : $blue-grey-800 !default;
 $layout-header-hover-font-color : darken($layout-header-font-color, 10) !default;
 $layout-header-hover-background : lighten($layout-header-background, 10) !default;
 $layout-header-border-bottom    : 1px solid #4A626F !default;
@@ -35,8 +34,10 @@ $layout-footer-border-top       : 1px solid #4A626F !default;
 $layout-sidebar-width           : 200px !default;
 $layout-sidebar-collapse-width  : 64px !default;
 
-$layout-sidebar-background      : #333333 !default;
 $layout-sidebar-font-color      : #BBB6B6 !default;
+$layout-sidebar-background      : #333333 !default;
+$layout-sidebar-hover-font-color : darken($layout-sidebar-font-color, 10) !default;
+$layout-sidebar-hover-background : lighten($layout-sidebar-background, 10) !default;
 
 
 //$fa-font-path                  : '../fonts/font-awesome';
