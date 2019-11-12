@@ -4,6 +4,9 @@
     "description": "PyroCMS admin theme",
     "keywords": ["pyrocms"],
     "license": "MIT",
+    "require": {
+        "tightenco/ziggy": "~0.6"
+    },
     "autoload": {
         "psr-4": {
             "Pyro\\AdminTheme\\": "src/"

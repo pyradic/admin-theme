@@ -65,7 +65,7 @@
                 </template>
 
                 <div class="py-layout__inner">
-                <slot></slot>
+                    <slot></slot>
                 </div>
             </div>
 
@@ -115,7 +115,6 @@
     })
     export default class Layout extends Vue {
         @prop.classPrefix('layout') classPrefix: string
-
 
         get classes() {
             return {

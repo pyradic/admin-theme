@@ -6,18 +6,37 @@ use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Laradic\Support\Wrap;
+use Pyro\AdminTheme\Command\GetControlPanelNavigation;
 use Pyro\AdminTheme\Ui\Command\AddCPNavToTemplate;
 use Pyro\Platform\Command\GetClassArray;
 use Pyro\Platform\Platform;
+use Tightenco\Ziggy\ZiggyServiceProvider;
 
 class AdminThemeServiceProvider extends AddonServiceProvider
 {
+
     public function register(Platform $platform)
     {
+        $this->app->register(ZiggyServiceProvider::class);
 //        $platform->addAddon($this->addon);
         $this->dispatchNow(new AddCPNavToTemplate());
         LoginFormBuilder::when('make', function () use ($platform) {
             $platform->preventBootstrap();
+        });
+        $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
+            /** @var \Laradic\Support\Dot $nav */
+            $nav         = $this->dispatchNow(new GetControlPanelNavigation());
+            $moduleLinks = [];
+            foreach ($nav as $navigationKey => $navigation) {
+                $moduleLinks[ $navigationKey ] = $navigation;
+                foreach (data_get($navigation[ 'sections' ], []) as $sectionKey=>$section) {
+                    $moduleLinks[ $navigationKey . '::' . $sectionKey ] = $section;
+                    foreach (data_get($section[ 'buttons' ], []) as $buttonKey => $button) {
+                        $moduleLinks[ $navigationKey . '::' . $sectionKey . '.' . $buttonKey ] = $button;
+                    }
+                }
+            }
+            $moduleLinks;
         });
         $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
 
@@ -29,9 +48,6 @@ class AdminThemeServiceProvider extends AddonServiceProvider
             /** @var \Pyro\Platform\Addon\Theme\Theme $theme */
             $theme = $template->get('theme');
             if ($theme->getNamespace() === 'pyro.theme.admin') {
-//                $this->app->platform->addPublicScript('assets/js/pyro__admin_theme.js');
-//                $this->app->platform->addPublicStyle('assets/css/pyro__admin_theme.css');
-//                $this->app->platform->addProvider('pyro.pyro__admin_theme.AdminThemeServiceProvider');
                 $platform->addWebpackEntry('@pyro/admin-theme');
             }
 
@@ -54,15 +70,6 @@ class AdminThemeServiceProvider extends AddonServiceProvider
                     return [ trans($title) => $url ];
                 })->toArray();
             }
-
-//            $cpdata = array_replace(
-//                $this->dispatchNow(new GetClassArray($cp)),
-//                [
-//                    'navigation' => $this->getClassArray($cp->getNavigation()),
-//                    'buttons'    => $this->getClassArray($cp->getButtons()),
-//                    'shortcuts'  => $this->getClassArray($cp->getShortcuts()),
-//                ]
-//            );
             $user = null;
             if (auth()->check()) {
                 $user     = Wrap::dot(auth()->user()->toArrayWithRelations())->map('roles', function ($role) {

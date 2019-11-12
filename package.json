@@ -8,8 +8,14 @@
     "pyro": {
         "srcPath": "lib",
         "entrypoints": [
-            {"path": "index.ts", "provider": "AdminThemeServiceProvider"},
-            {"path": "index.ts", "provider": "AdminThemeServiceProvider"}
+            {
+                "path": "index.ts",
+                "provider": "AdminThemeServiceProvider"
+            },
+            {
+                "path": "index.ts",
+                "provider": "AdminThemeServiceProvider"
+            }
         ]
     },
     "dependencies": {

@@ -23,6 +23,7 @@
     type IMenu = Menu & {
         items: { [ index: string ]: MenuItem }
     }
+
     @component()
     export default class LayoutSidebar extends Vue {
         $refs: { menu: IMenu }
@@ -31,8 +32,8 @@
 
         get classes() {
             return {
-                [ this.classPrefix ]               : true,
-                [ `is-collapsed` ]: this.layout.sidebar.collapsed
+                [ this.classPrefix ]: true,
+                [ `is-collapsed` ]  : this.layout.sidebar.collapsed
             }
         }
 

@@ -91,7 +91,9 @@
         }
 
         get style(): Styles {
-            let style: Styles = {}
+            let style: Styles = {
+                cursor: 'pointer'
+            }
             return style;
         }
 

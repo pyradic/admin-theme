@@ -4,8 +4,8 @@ import { styleVars } from './styling/export';
 
 
 export class AdminThemeServiceProvider extends ServiceProvider {
-    providers = [
-    ]
+    providers = []
+
     public register() {
         this.app.extendRoot({
             data() {
@@ -22,9 +22,9 @@ export class AdminThemeServiceProvider extends ServiceProvider {
         this.vuePlugin(AdminThemeVuePlugin);
     }
 
-    public boot(){
-        if(this.app.isBound('styling')) {
-            let styling = this.app.get<Config<Record<string,string>>>('styling')
+    public boot() {
+        if ( this.app.isBound('styling') ) {
+            let styling = this.app.get<Config<Record<string, string>>>('styling')
             styling.merge(styleVars.raw())
         }
     }
