@@ -62,10 +62,10 @@ class AdminThemeServiceProvider extends AddonServiceProvider
                 }
                 $platform->set('cp.shortcuts', $shortcuts = $cp->getShortcuts()->toArray());
             }
-            if ($cpnav = $template[ 'cp_nav' ]) {
+            if ($cpnav = $template->get( 'cp_nav' )) {
                 $platform[ 'cp.nav' ] = $cpnav->toArray();
             }
-            if ($breadcrumbs = $template[ 'breadcrumbs' ]) {
+            if ($breadcrumbs = $template->get('breadcrumbs')) {
                 $platform[ 'breadcrumbs' ] = $breadcrumbs->mapWithKeys(function ($url, $title) {
                     return [ trans($title) => $url ];
                 })->toArray();
