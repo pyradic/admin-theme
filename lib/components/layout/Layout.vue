@@ -106,12 +106,14 @@
     import { styleVars } from '../../styling/export';
     import { strEnsureRight } from '@pyro/platform/lib/utils/general';
 
+    const noDelimiter = {replace: function(){}};
     @component({
         provide() {
             return {
                 layout: this
             }
-        }
+        },
+
     })
     export default class Layout extends Vue {
         @prop.classPrefix('layout') classPrefix: string
