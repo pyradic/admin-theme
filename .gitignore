@@ -9,3 +9,4 @@ package-lock.json
 /coverage
 /node_modules
 /lib/_vue_completion.ts
+/lib/components/menu3/
