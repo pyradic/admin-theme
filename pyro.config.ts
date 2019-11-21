@@ -1,4 +1,4 @@
-import { PyroBuilder } from '@pyro/build-tools/src';
+import { PyroBuilder } from '@pyro/webpack';
 import { join, resolve } from 'path';
 import { plugins } from '@radic/webpacker';
 
