@@ -1,3 +1,4 @@
+{# @var \Anomaly\Streams\Platform\View\ViewTemplate template #}
 <!doctype html>
 
 <html>
@@ -64,32 +65,29 @@
         </template>
         <template #sidebar>
             {% block sidebar %}
-                {% for key, navigation in template.cp_nav %}
-                    {% set slug = navigation.slug|replace({'.':'_'}) %}
+                {% for navigation in template.structure.collect %}
                     {% if navigation.children.isNotEmpty() %}
-                        <el-submenu index="{{ slug }}" data-slug="{{ slug }}" popper-class="py-layout__sidebar-menu-popper">
+                        <el-submenu index="{{ navigation.key }}" data-slug="{{ navigation.key }}" data-key="{{ navigation.key }}" popper-class="py-layout__sidebar-menu-popper">
                             <template slot="title">
                                 {% if navigation.icon %}
                                     {{ icon(navigation.icon) }}
                                 {% endif %}
                                 <span>{{ trans(navigation.title) }}</span>
                             </template>
-                            {% for childKey, child in navigation.children %}
-                                {% set slug = navigation.slug|replace({'.':'_'}) ~ '.' ~ child.slug  %}
+                            {% for section in navigation.children %}
                                 <el-menu-item tag="a"
-                                              index="{{ slug }}"
-                                              data-slug="{{ slug }}"
-                                              href="{{ child.href }}" {{ html_attributes(child.attributes) }}>
-                                    <span>{{ trans(child.title) }}</span>
-
+                                              index="{{ section.key }}"
+                                              data-slug="{{ section.slug }}"
+                                              href="{{ section.href }}" {{ html_attributes(section.attributes) }}>
+                                    <span>{{ trans(section.title) }}</span>
                                 </el-menu-item>
                             {% endfor %}
                         </el-submenu>
                     {% else %}
                         <el-menu-item tag="a"
-                                      index="{{ slug }}"
+                                      index="{{ navigation.slug }}"
                                       href="{{ navigation.href }}"
-                                      slug="{{ slug }}"
+                                      slug="{{ navigation.slug }}"
                                 {{ html_attributes(navigation.attributes) }}
                         >
                             {% if navigation.icon %}

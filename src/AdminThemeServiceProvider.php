@@ -6,8 +6,10 @@ use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Laradic\Support\Wrap;
-use Pyro\AdminTheme\Command\GetControlPanelNavigation;
+use Pyro\AdminTheme\Command\GetControlPanelStructure;
 use Pyro\AdminTheme\Ui\Command\AddCPNavToTemplate;
+use Pyro\MenusModule\Link\Contract\LinkRepositoryInterface;
+use Pyro\MenusModule\Seeder\MenuModuleSeederHelper;
 use Pyro\Platform\Command\GetClassArray;
 use Pyro\Platform\Platform;
 use Tightenco\Ziggy\ZiggyServiceProvider;
@@ -25,18 +27,11 @@ class AdminThemeServiceProvider extends AddonServiceProvider
         });
         $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
             /** @var \Laradic\Support\Dot $nav */
-            $nav         = $this->dispatchNow(new GetControlPanelNavigation());
+            $nav         = $this->dispatchNow(new GetControlPanelStructure());
             $moduleLinks = [];
-            foreach ($nav as $navigationKey => $navigation) {
-                $moduleLinks[ $navigationKey ] = $navigation;
-                foreach (data_get($navigation[ 'sections' ], []) as $sectionKey=>$section) {
-                    $moduleLinks[ $navigationKey . '::' . $sectionKey ] = $section;
-                    foreach (data_get($section[ 'buttons' ], []) as $buttonKey => $button) {
-                        $moduleLinks[ $navigationKey . '::' . $sectionKey . '.' . $buttonKey ] = $button;
-                    }
-                }
-            }
-            $moduleLinks;
+            $links       = [];
+
+
         });
         $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
 
@@ -62,7 +57,7 @@ class AdminThemeServiceProvider extends AddonServiceProvider
                 }
                 $platform->set('cp.shortcuts', $shortcuts = $cp->getShortcuts()->toArray());
             }
-            if ($cpnav = $template->get( 'cp_nav' )) {
+            if ($cpnav = $template->get('cp_nav')) {
                 $platform[ 'cp.nav' ] = $cpnav->toArray();
             }
             if ($breadcrumbs = $template->get('breadcrumbs')) {
