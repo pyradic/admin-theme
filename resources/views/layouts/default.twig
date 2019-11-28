@@ -4,7 +4,10 @@
 <html lang="{{ locale() }}">
 
 <head>
+
+    {% include "platform::before_metadata" %}
     {% include "theme::partials/metadata" %}
+    {% include "platform::after_metadata" %}
 </head>
 
 <body class="{{ locale().isRtl() ? ' rtl' }}">

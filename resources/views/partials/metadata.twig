@@ -1,11 +1,3 @@
-<meta name="csrf-token" content="{{ csrf_token() }}"/>
-{{ asset_add('theme.js', 'node_modules::debug/dist/debug.js') }}
-{{ asset_add("vue.js", "node_modules::vue/dist/vue.js") }}
-{{ asset_add("vue.js", "node_modules::vue-class-component/dist/vue-class-component.js") }}
-{{ asset_add("vue.js", "node_modules::vue-property-decorator/lib/vue-property-decorator.umd.js") }}
-{#{% include "original/pyrocms.theme.accelerant::partials.metadata" %}#}
-
-
 <!-- Meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -74,12 +66,3 @@
 {{ constants() }}
 
 {{ asset_script("theme.js") }}
-{{ asset_script("vue.js") }}
-
-
-<script>
-    // The event handlers are lost because Vue replaces the elements that they're bound to.
-    // You can use $.holdReady to delay the $(document).ready until the component is mounted.
-    $.holdReady(true);
-
-</script>
