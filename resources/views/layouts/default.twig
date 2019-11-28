@@ -1,71 +1,27 @@
 {# @var \Anomaly\Streams\Platform\View\ViewTemplate template #}
 <!doctype html>
 
-<html>
+<html lang="{{ locale() }}">
 
 <head>
     {% include "theme::partials/metadata" %}
 </head>
 
-<body class="variant-{{ random(8) }}{{ locale().isRtl() ? ' rtl' }} theme-compact"
-      data-variants="8">
+<body class="{{ locale().isRtl() ? ' rtl' }}">
 {% block body %}
-    {#{% include "theme::partials/push" %}#}
-    {#{% include "theme::partials/brand" %}#}
-    {#{% include "theme::partials/navbar" %}#}
-    {#{% include "theme::partials/header" %}#}
-
     <py-layout id="app">
         <template #header-toolbar>
             {% block header_toolbar %}
                 <py-toolbar-title v-if="!layout.sidebar.collapsed" :width="layout.sidebar.normalWidth" title="CRVS" link="{{ url('admin') }}"></py-toolbar-title>
                 <py-toolbar-toggle></py-toolbar-toggle>
                 <py-toolbar-item>
-{#                    <py-demo-menu :menu="menus.admin_header"></py-demo-menu>#}
                     {{ menu_json('admin_header')|raw }}
                 </py-toolbar-item>
-                {#
-                <py-toolbar-item spacer></py-toolbar-item>
-                <py-shortcut-info></py-shortcut-info>
-                {% for shortcut in template.cp.shortcuts %}
-                    <py-shortcut
-                            :attributes="{{ shortcut.attributes|json_encode }}"
-                            :highlighted="{{ shortcut.highlighted ? 'true':'false' }}"
-                            slug="{{ shortcut.slug }}"
-                            icon="{{ shortcut.icon }}"
-                            href="{{ shortcut.href }}"
-                            title="{{ trans(shortcut.title) }}"
-                            label="{{ trans(shortcut.label) }}"
-                            class="{{ shortcut.class }}"
-                    >
-                    </py-shortcut>
-                {% endfor %}
-
-                <div class="py-toolbar__item dropdown">
-                    <a href="javascript:void(0);" data-toggle="dropdown">
-                        <img src="{{ user().gravatar.path }}" width="36" class="rounded-circle">
-                    </a>
-                    <ul class="dropdown-menu-right dropdown-menu">
-                        <li class="dropdown-item">
-                            <a href="/" target="_blank">
-                                <i class="fa fa-external-link"></i>
-                                {{ trans('pyrocms.theme.accelerant::control_panel.view_site') }}
-                            </a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="/admin/logout">
-                                <i class="fa fa-power-off"></i>
-                                {{ trans('pyrocms.theme.accelerant::control_panel.logout') }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                #}
             {% endblock %}
         </template>
         <template #sidebar>
             {% block sidebar %}
-                {% for navigation in template.structure.collect %}
+                {% for navigation in template.structure %}
                     {% if navigation.children.isNotEmpty() %}
                         <el-submenu index="{{ navigation.key }}" data-slug="{{ navigation.key }}" data-key="{{ navigation.key }}" popper-class="py-layout__sidebar-menu-popper">
                             <template slot="title">
@@ -75,12 +31,14 @@
                                 <span>{{ trans(navigation.title) }}</span>
                             </template>
                             {% for section in navigation.children %}
-                                <el-menu-item tag="a"
-                                              index="{{ section.key }}"
-                                              data-slug="{{ section.slug }}"
-                                              href="{{ section.href }}" {{ html_attributes(section.attributes) }}>
-                                    <span>{{ trans(section.title) }}</span>
-                                </el-menu-item>
+                                {% if not section.subSection %}
+                                    <el-menu-item tag="a"
+                                                  index="{{ section.key }}"
+                                                  data-slug="{{ section.key }}"
+                                                  href="{{ section.href }}" {{ html_attributes(section.attributes) }}>
+                                        <span>{{ trans(section.title) }}</span>
+                                    </el-menu-item>
+                                {% endif %}
                             {% endfor %}
                         </el-submenu>
                     {% else %}
@@ -118,9 +76,6 @@
         <template #default>
             {% block content %}{% endblock %}
         </template>
-
-        {% block main %}{% endblock %}
-
 
         <template #footer>
             {% block footer %}

@@ -64,9 +64,10 @@
         }
 
         get activeMenuItem() {
-            let namespace = this.$py.data.get('module.namespace').replace(/\./g, '_')
-            let slug      = this.$py.data.get('cp.section.slug')
-            return `${namespace}.${slug}`
+            // let namespace = this.$py.data.get('module.namespace').replace(/\./g, '_')
+            // let slug      = this.$py.data.get('cp.section.slug')
+            // return `${namespace}.${slug}`
+            return this.$py.data.get('cp.section.key')
         }
 
         get menu(): IMenu {

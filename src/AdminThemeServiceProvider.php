@@ -6,10 +6,6 @@ use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Laradic\Support\Wrap;
-use Pyro\AdminTheme\Command\GetControlPanelStructure;
-use Pyro\AdminTheme\Ui\Command\AddCPNavToTemplate;
-use Pyro\MenusModule\Link\Contract\LinkRepositoryInterface;
-use Pyro\MenusModule\Seeder\MenuModuleSeederHelper;
 use Pyro\Platform\Command\GetClassArray;
 use Pyro\Platform\Platform;
 use Tightenco\Ziggy\ZiggyServiceProvider;
@@ -20,18 +16,8 @@ class AdminThemeServiceProvider extends AddonServiceProvider
     public function register(Platform $platform)
     {
         $this->app->register(ZiggyServiceProvider::class);
-//        $platform->addAddon($this->addon);
-        $this->dispatchNow(new AddCPNavToTemplate());
         LoginFormBuilder::when('make', function () use ($platform) {
             $platform->preventBootstrap();
-        });
-        $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
-            /** @var \Laradic\Support\Dot $nav */
-            $nav         = $this->dispatchNow(new GetControlPanelStructure());
-            $moduleLinks = [];
-            $links       = [];
-
-
         });
         $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
 
@@ -49,17 +35,17 @@ class AdminThemeServiceProvider extends AddonServiceProvider
             if ($module) {
                 $platform[ 'module' ] = $module->toArray();
             }
-            if ($cp) {
-                $section = $cp->getSections()->active();
-                if ($section) {
-                    $platform[ 'cp.section.title' ] = trans($section->getTitle());
-                    $platform[ 'cp.section.slug' ]  = $section->getSlug();
-                }
-                $platform->set('cp.shortcuts', $shortcuts = $cp->getShortcuts()->toArray());
-            }
-            if ($cpnav = $template->get('cp_nav')) {
-                $platform[ 'cp.nav' ] = $cpnav->toArray();
-            }
+//            if ($cp) {
+//                $section = $cp->getSections()->active();
+//                if ($section) {
+//                    $platform[ 'cp.section.title' ] = trans($section->getTitle());
+//                    $platform[ 'cp.section.slug' ]  = $section->getSlug();
+//                }
+//                $platform->set('cp.shortcuts', $shortcuts = $cp->getShortcuts()->toArray());
+//            }
+//            if ($cpnav = $template->get('cp_nav')) {
+//                $platform[ 'cp.nav' ] = $cpnav->toArray();
+//            }
             if ($breadcrumbs = $template->get('breadcrumbs')) {
                 $platform[ 'breadcrumbs' ] = $breadcrumbs->mapWithKeys(function ($url, $title) {
                     return [ trans($title) => $url ];
@@ -82,12 +68,4 @@ class AdminThemeServiceProvider extends AddonServiceProvider
             return;
         });
     }
-
-    protected function getClassArray(Collection $collection)
-    {
-        return $collection->map(function ($item) {
-            return $this->dispatchNow(new GetClassArray($item));
-        });
-    }
-
 }
