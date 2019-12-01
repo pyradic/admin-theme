@@ -12,6 +12,10 @@
                     <slot name="header-toolbar"></slot>
                     <slot name="header-shortcuts">
                         <py-toolbar-item spacer></py-toolbar-item>
+                        <py-toolbar-item>
+                        </py-toolbar-item>
+                        <py-toolbar-item spacer></py-toolbar-item>
+
                         <py-shortcut-info></py-shortcut-info>
                         <py-shortcut
                                 v-for="(shortcut, ishortcut) in $root.cp.shortcuts"
@@ -51,9 +55,10 @@
 
         </py-layout-header>
         <div class="py-layout__main">
-            <py-layout-sidebar>
-                <slot name="sidebar"></slot>
-            </py-layout-sidebar>
+            <div class="py-layout__sidebar">
+                <py-menu-demo />
+            </div>
+<!--            <py-layout-sidebar><slot name="sidebar" /></py-layout-sidebar>-->
 
             <div class="py-layout__content">
                 <slot name="breadcrumb"></slot>
@@ -73,31 +78,6 @@
         <py-layout-footer>
             <slot name="footer"></slot>
         </py-layout-footer>
-        <!--
-        <el-container>
-            <py-layout-sidebar>
-                <slot name="sidebar"></slot>
-            </py-layout-sidebar>
-            <el-container>
-                <el-main class="py-layout__main">
-                    <slot name="main">
-                        <slot name="breadcrumb"></slot>
-
-                        <template v-if="$slots['messages']">
-                            <div class="container-fluid mb-1">
-                                <slot name="messages"></slot>
-                            </div>
-                        </template>
-
-                        <slot></slot>
-                    </slot>
-                </el-main>
-                <el-footer class="py-layout__footer">
-                    <slot name="footer"></slot>
-                </el-footer>
-            </el-container>
-        </el-container>
-        -->
     </div>
 </template>
 <script lang="ts">
@@ -105,6 +85,7 @@
     import { component, prop, Styles } from '@pyro/platform';
     import { styleVars } from '../../styling/export';
     import { strEnsureRight } from '@pyro/platform/lib/utils/general';
+    import MenuDemo from './MenuDemo.vue';
 
     const noDelimiter = {replace: function(){}};
     @component({
@@ -113,7 +94,9 @@
                 layout: this
             }
         },
-
+        component: {
+            'py-menu-demo':MenuDemo
+        }
     })
     export default class Layout extends Vue {
         @prop.classPrefix('layout') classPrefix: string

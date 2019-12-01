@@ -8,8 +8,9 @@
             "../../../../node_modules/@types"
         ],
         "paths": {
-            "@pyro/platform": ["../../../../packages/pyro/platform/lib"]}
+            "@radic/tree": ["../../../../node_modules/@radic/tree/src"]
+        }
     },
     "include": ["lib","webpack.config.ts"],
-    "exclude": [ "node_modules","../../../../packages/pyro/platform/lib"]
+    "exclude": [ "node_modules"]
 }

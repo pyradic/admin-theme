@@ -1,11 +1,10 @@
-<script lang="ts">
-import { Component, component, prop, Styles } from '@pyro/platform';
+import { component, prop, Styles } from '@pyro/platform';
 import 'vue-tsx-support/enable-check'
+import * as tsx from 'vue-tsx-support'
 import classNames from 'classnames'
 import { MenuNode } from './MenuNode';
 import { MenuItem } from './MenuItem';
 import './menu.scss'
-import { CreateElement } from 'vue';
 
 
 @component({
@@ -16,13 +15,13 @@ import { CreateElement } from 'vue';
         }
     }
 })
-export default class Menu extends Component {
+export class Menu extends tsx.Component<{}> {
     @prop.classPrefix('menu') classPrefix: string
     @prop.string('div') tag;
-    @prop.boolean(false) collapsed;
-    @prop.boolean(false) horizontal;
-    @prop.boolean(false) inline;
-    @prop.boolean(false) dropdown;
+    @prop.boolean(false) collapsed  ;
+    @prop.boolean(false) horizontal ;
+    @prop.boolean(false) inline     ;
+    @prop.boolean(false) dropdown   ;
 
     node: MenuNode
     items: MenuItem[]
@@ -32,7 +31,6 @@ export default class Menu extends Component {
             [ this.classPrefix ]                 : true,
             [ `${this.classPrefix}--collapsed` ] : this.collapsed,
             [ `${this.classPrefix}--horizontal` ]: this.horizontal,
-            [ `${this.classPrefix}--vertical` ]  : !this.horizontal,
             [ `${this.classPrefix}--inline` ]    : this.inline,
             [ `${this.classPrefix}--dropdown` ]  : this.dropdown
         })
@@ -51,15 +49,12 @@ export default class Menu extends Component {
         return node;
     }
 
-    render(h: CreateElement) {
-        return h(
-            this.tag,
-            {
-                class: this.classes,
-                style: this.style
-            },
-            this.$slots.default
+    render(h) {
+        const { classes, style, tag: Tag } = this
+        return (
+            <Tag class={classes} style={style}>
+                {this.$slots.default}
+            </Tag>
         )
     }
 }
-</script>

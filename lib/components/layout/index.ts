@@ -12,5 +12,6 @@ export {
     Layout,
     LayoutHeader,
     LayoutFooter,
-    LayoutSidebar
+    LayoutSidebar,
 }
+

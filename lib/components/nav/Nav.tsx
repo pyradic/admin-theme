@@ -4,8 +4,8 @@ import { IMenu, IMenuItem } from '@pyro/menus-module/lib/interfaces';
 import 'vue-tsx-support/enable-check'
 import * as tsx from 'vue-tsx-support'
 @component()
-export default class Menu extends tsx.Component<{}> {
-    @prop.classPrefix('menu') classPrefix: string
+export default class Nav extends tsx.Component<{}> {
+    @prop.classPrefix('nav') classPrefix: string
     @prop.object() menu: IMenu
     @prop.boolean() horizontal: boolean;
 

@@ -1,9 +1,338 @@
 @import "../../styling/base";
+//noinspection CssInvalidFunction
+$menu-prefix              : #{$prefix}-menu !default;
+$menu-item-prefix         : #{$menu-prefix}-item !default;
+$menu-submenu-prefix      : #{$menu-prefix}-submenu !default;
 
+//$namespace             : 'smu' !default;
+$element-separator        : '__' !default;
+$modifier-separator       : '--' !default;
+$state-prefix             : 'is-' !default;
+
+
+$fa-font-path             : "~font-awesome/fonts";
+
+$font-size-root           : 14px;
+$font-family-base         : Arial;
+$dropdown-border-width    : 1px;
+$dropdown-border-color    : #333333;
+
+// Dimensions
+$menu-item-text-shadow    : 1px 1px 0px #000000 !default;
+$menu-item-font-size      : $font-size-root !default;
+$menu-item-font-weight    : 400 !default;
+$menu-item-icon-font-size : $font-size-root !default;
+$menu-item-icon-width     : 25px !default;
+$menu-item-indent         : $menu-item-icon-width + 10px !default;
+$menu-item-padding-y      : 9px !default; // top / bottom
+$menu-submenu-padding-y   : 0px !default;
+
+
+
+@mixin menu-indent-levels($depth, $current: 1) {
+    .#{$menu-submenu-prefix} {
+        .#{$menu-item-prefix}__content {
+            padding-left : $menu-item-indent * $current;
+        }
+        &.has-no-icons {
+            .#{$menu-item-prefix}__content {
+                padding-left : ($menu-item-indent * $current) + 5px;
+            }
+        }
+
+        @if ($depth > 0) {
+            @include menu-indent-levels($depth - 1, $current + 1)
+        }
+    }
+}
+
+
+//@include b($menu-prefix) {
 .#{$menu-prefix} {
-    &--horizontal {
-        .el-menu .el-menu-item {
-            display : block;
+    display        : flex;
+    flex-direction : column;
+    margin         : 0;
+    padding        : 0;
+    list-style     : none;
+}
+
+.#{$menu-prefix}--collapsed {
+    > .#{$menu-item-prefix} {
+        min-height : 40px;
+        > .#{$menu-item-prefix}__content {
+            justify-content : center;
+            padding-right   : 5px;
+            padding-left    : 0;
+            $self           : &;
+
+            > .#{$menu-item-prefix}__icon {
+                margin-right : 0;
+            }
+
+            > .#{$menu-item-prefix}__title {
+                display : none;
+            }
+
+            > .#{$menu-item-prefix}__arrow {
+                width  : 0;
+                margin : 0;
+
+                i {
+                    display : none;
+                }
+            }
+        }
+    }
+}
+
+.#{$menu-prefix}--vertical {
+
+}
+.#{$menu-prefix}--horizontal {
+    flex-direction : row;
+    width      : inherit;
+    height         : inherit;
+
+    > .#{$menu-item-prefix} {
+        flex-grow   : 0;
+        flex-shrink : 1;
+        height      : inherit;
+        $self       : &;
+
+        > .#{$menu-item-prefix}__content {
+            flex-direction : row;
+            flex-grow      : unset;
+            height         : inherit;
+            padding-top    : 0;
+            padding-bottom : 0;
+            border-left    : none;
+
+            > .#{$menu-item-prefix}__arrow {
+                i {
+                    transform : rotate(90deg);
+                }
+            }
+        }
+
+        &.is-expanded {
+            > .#{$menu-item-prefix}__content {
+                > .#{$menu-item-prefix}__arrow {
+                    i {
+                        transform : rotate(90deg);
+                    }
+                }
+            }
+
+        }
+    }
+
+}
+
+.#{$menu-prefix}--inline {
+    .#{$menu-item-prefix} {
+        @include menu-indent-levels(4);
+    }
+}
+
+.#{$menu-prefix}--dropdown {
+
+    .#{$menu-item-prefix} {
+        .#{$menu-submenu-prefix} {
+            position   : absolute;
+            z-index    : $zindex-dropdown;
+            min-width  : 150px;
+            background : black;
+        }
+    }
+
+}
+
+
+.#{$menu-item-prefix} {
+
+    position       : relative;
+    display        : flex;
+    float          : none;
+    flex-direction : column;
+    flex-grow      : 1;
+    margin         : 0;
+    padding        : 0;
+
+    $self          : &;
+
+    // states
+    &.is-hidden {
+        display : none;
+    }
+
+    &.is-hovered {
+        > #{$self}__content { border-left-color : #1A237E; }
+    }
+
+    &.is-expanded {
+        > #{$self}__content {
+            > #{$self}__arrow i { transform : rotate(90deg); }
+
+        }
+
+        > .#{$menu-submenu-prefix} {
+            display : flex;
+        }
+
+    }
+
+    &.is-selected {
+        > #{$self}__content { border-right : 5px solid #1471A1; }
+    }
+
+    &.is-focused {
+        > #{$self}__content { border-left : 2px solid #0D47A1; }
+    }
+
+    &.has-children {
+        > #{$self}__content > #{$self}__arrow {display : flex; }
+    }
+}
+
+.#{$menu-item-prefix}__content {
+    //@include e(content) {
+    position        : relative;
+    display         : flex;
+    align-items     : stretch;
+    flex-grow       : 1;
+    padding         : $menu-item-padding-y 20px $menu-item-padding-y 5px;
+    text-decoration : none;
+    border-left     : 5px solid transparent;;
+    outline         : 0;
+
+    &:hover, &:focus, &:active {
+        text-decoration : none;
+        outline         : 0;
+    }
+
+    &:hover {
+        text-decoration : none;
+    }
+}
+
+.#{$menu-item-prefix}__icon {
+    font-size       : $menu-item-icon-font-size;
+    display         : flex;
+    align-items     : center;
+    flex            : 0 0 $menu-item-icon-width;
+    justify-content : center;
+    margin-right    : 10px;
+    text-align      : center;
+}
+
+.#{$menu-item-prefix}__title {
+    font-size    : $menu-item-font-size;
+    font-weight  : $menu-item-font-weight;
+    display      : flex;
+    align-items  : center;
+    margin-right : 30px;
+    padding      : 0;
+    white-space  : nowrap;
+    text-shadow  : $menu-item-text-shadow;
+    flex-grow    : 1;
+}
+
+.#{$menu-item-prefix}__arrow {
+    font-size       : 9px;
+    line-height     : 0;
+    display         : none;
+    align-items     : center;
+    flex            : 0; // 0 20px;
+    justify-content : center;
+    width           : 20px;
+    margin          : 0 5px;
+
+    i {
+        transition : all 0.2s linear;
+        @include fa-icon();
+
+        &:before {
+            content : $fa-var-chevron-right
+        }
+    }
+}
+
+.#{$menu-item-prefix}__tooltip {
+    font-size        : 14px;
+    position         : absolute;
+    z-index          : 99999999;
+    display          : none;
+    box-sizing       : border-box;
+    max-width        : 400px;
+    padding          : 3px 10px;
+    white-space      : pre;
+    color            : #FFFFFF;
+    background-color : black;
+    box-shadow       : 0 1px 8px rgba(0, 0, 0, 0.5);
+
+    &--right {
+        top       : 50%;
+        left      : 100%;
+        transform : translate(0, -50%);
+    }
+
+    &--bottom {
+        top       : 100%;
+        left      : 50%;
+        transform : translate(-50%, 0);
+    }
+
+    &--left {
+        top       : 50%;
+        right     : 100%;
+        transform : translate(-5px, -50%);
+    }
+
+    &--top {
+        top       : -100%;
+        left      : -50%;
+        transform : translate(0, 50%);
+    }
+}
+
+.#{$menu-item-prefix}.is-hovered .#{$menu-item-prefix}__tooltip {
+    display : block;
+}
+
+
+.#{$menu-submenu-prefix} {
+    display        : none;
+    float          : none;
+    flex-direction : column;
+    flex-grow      : 1;
+    min-width      : 100%;
+    margin         : 0;
+    padding        : $menu-submenu-padding-y 0;
+    list-style     : none;
+
+    &.has-no-icons {
+        > .#{$menu-item-prefix} > .#{$menu-item-prefix}__content .#{$menu-item-prefix}__icon {
+            display: none;
+        }
+    }
+}
+
+.#{$menu-prefix}.has-lines {
+    .#{$menu-item-prefix} {
+        $self : &;
+
+        &:not(:last-child) {
+            .#{$menu-item-prefix}__content {
+                &::before {
+                    position    : absolute;
+                    top         : 0;
+                    width       : 1px;
+                    height      : calc(100% - 15px);
+                    margin      : 12px 0 0 -17px;
+                    content     : ' ';
+                    border-left : 1px dashed #353535;
+                }
+            }
         }
     }
 }

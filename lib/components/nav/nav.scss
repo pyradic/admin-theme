@@ -1,0 +1,9 @@
+@import "../../styling/base";
+
+.py-nav {
+    &--horizontal {
+        .el-menu .el-menu-item {
+            display : block;
+        }
+    }
+}

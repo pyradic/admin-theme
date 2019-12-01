@@ -26,7 +26,11 @@
             {% block sidebar %}
                 {% for navigation in template.structure %}
                     {% if navigation.children.isNotEmpty() %}
-                        <el-submenu index="{{ navigation.key }}" data-slug="{{ navigation.key }}" data-key="{{ navigation.key }}" popper-class="py-layout__sidebar-menu-popper">
+                        <el-submenu index="{{ navigation.key }}"
+                                    data-slug="{{ navigation.key }}"
+                                    data-key="{{ navigation.key }}"
+                                    popper-class="py-layout__sidebar-menu-popper"
+                        >
                             <template slot="title">
                                 {% if navigation.icon %}
                                     {{ icon(navigation.icon) }}
@@ -38,7 +42,9 @@
                                     <el-menu-item tag="a"
                                                   index="{{ section.key }}"
                                                   data-slug="{{ section.key }}"
-                                                  href="{{ section.href }}" {{ html_attributes(section.attributes) }}>
+                                                  href="{{ section.url }}"
+                                            {{ html_attributes(section.attributes) }}
+                                    >
                                         <span>{{ trans(section.title) }}</span>
                                     </el-menu-item>
                                 {% endif %}
@@ -47,7 +53,7 @@
                     {% else %}
                         <el-menu-item tag="a"
                                       index="{{ navigation.slug }}"
-                                      href="{{ navigation.href }}"
+                                      href="{{ navigation.url }}"
                                       slug="{{ navigation.slug }}"
                                 {{ html_attributes(navigation.attributes) }}
                         >

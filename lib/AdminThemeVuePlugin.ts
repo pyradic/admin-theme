@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { prefixAndRegisterComponents, registerElementComponents } from '@pyro/platform';
+import { app, prefixAndRegisterComponents, registerElementComponents } from '@pyro/platform';
 // noinspection ES6UnusedImports
 import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Row, Tag } from 'element-ui' //
 import Menu from './components/el-menu/menu.vue'
@@ -7,6 +7,7 @@ import MenuItem from './components/el-menu/menu-item.vue'
 import MenuItemGroup from './components/el-menu/menu-item-group.vue'
 import Submenu from './components/el-menu/submenu.vue'
 import vuescroll from 'vuescroll'
+import bem from 'vue-bem-cn';
 
 import * as components from './components';
 import * as directives from './directives';
@@ -20,6 +21,21 @@ export class AdminThemeVuePlugin {
             return;
         }
         this.__installed = true
+
+        _Vue.use(bem, {
+            delimiters: {
+                ns: app().config.prefix,
+                el: '__',
+                mod: '--'
+            },
+        } as {
+            delimiters?: {
+                ns?: string
+                el?: string
+                mod?: string
+                modVal?: string
+            }
+        });
 
         prefixAndRegisterComponents(_Vue, components)
 
