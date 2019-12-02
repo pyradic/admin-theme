@@ -1,6 +1,6 @@
 <template>
     <div :class="classes" :style="style">
-        <a href="#">
+        <a href="#" v-if="icon">
             <i v-if="icon" :icon="icon"></i>
         </a>
         <slot></slot>

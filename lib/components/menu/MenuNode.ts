@@ -4,13 +4,16 @@ import { MenuItemNodeArray } from './MenuItemNodeArray';
 import { RootNode } from '@radic/tree';
 import { MenuConfig, MenuItemState } from './interfaces';
 import { MenuItem } from './MenuItem';
-import  Menu  from './Menu.vue';
+
+import { Menu } from './Menu';
 import { bindEventEmitter } from '@pyro/platform';
 
 export interface MenuNode extends EventEmitter2 {
     constructor: typeof MenuNode
 
     on(event: string | string[], listener: Listener): this;
+
+    on(event: 'item:click', listener: (node?: MenuItemNode, eventName?: string, event?:MouseEvent, state?: MenuItemState) => any): this
 
     on(event: 'item:focused', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
 
@@ -75,7 +78,7 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
     config: MenuConfig;
 
 
-    constructor(public readonly menu:typeof Menu.prototype, config: Partial<MenuConfig> = {}) {
+    constructor(public readonly menu:Menu, config: Partial<MenuConfig> = {}) {
         super();
         this.events = new (EventEmitter as any)({
             delimiter   : ':',

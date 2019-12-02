@@ -13,7 +13,7 @@
 <body class="{{ locale().isRtl() ? ' rtl' }}">
 {% block body %}
     <py-layout id="app">
-        <template #header-toolbar>
+{#        <template #header-toolbar>
             {% block header_toolbar %}
                 <py-toolbar-title v-if="!layout.sidebar.collapsed" :width="layout.sidebar.normalWidth" title="CRVS" link="{{ url('admin') }}"></py-toolbar-title>
                 <py-toolbar-toggle></py-toolbar-toggle>
@@ -22,8 +22,11 @@
                 </py-toolbar-item>
             {% endblock %}
         </template>
+        #}
+
+{#
         <template #sidebar>
-            {% block sidebar %}
+         {% block sidebar %}
                 {% for navigation in template.structure %}
                     {% if navigation.children.isNotEmpty() %}
                         <el-submenu index="{{ navigation.key }}"
@@ -66,7 +69,7 @@
                 {% endfor %}
             {% endblock %}
         </template>
-
+ #}
         <template #breadcrumb>
             {% include "theme::partials/buttons" %}
             {% block breadcrumb %}
@@ -88,7 +91,7 @@
 
         <template #footer>
             {% block footer %}
-                {{ menu('admin_footer').pyroAdmin()|raw }}
+{#                {{ menu('admin_footer').pyroAdmin()|raw }}#}
             {% endblock %}
         </template>
     </py-layout>

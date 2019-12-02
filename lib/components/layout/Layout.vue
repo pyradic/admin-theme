@@ -9,14 +9,25 @@
                         title="CRVS"
                         @toggle-click="toggleSidebarCollapse"
                 >
-                    <slot name="header-toolbar"></slot>
-                    <slot name="header-shortcuts">
-                        <py-toolbar-item spacer></py-toolbar-item>
-                        <py-toolbar-item>
-                        </py-toolbar-item>
-                        <py-toolbar-item spacer></py-toolbar-item>
+                    <!--                    <slot name="header-toolbar"></slot>-->
 
-                        <py-shortcut-info></py-shortcut-info>
+                    <py-toolbar-title v-if="!sidebar.collapsed" :width="sidebar.normalWidth" title="CRVS" link="/admin" />
+                    <py-toolbar-toggle />
+                    <py-toolbar-item spacer/>
+                    <py-toolbar-item>
+                        <py-menu-demo
+                                v-if="menus.header && menus.header.children "
+                                :items="menus.header.children"
+                                :options="{
+                                      dropdown:true,
+                                      horizontal:true,
+                                      slug:'header'
+                                  }"/>
+                    </py-toolbar-item>
+                    <py-toolbar-item spacer/>
+
+                    <slot name="header-shortcuts">
+                        <py-shortcut-info/>
                         <py-shortcut
                                 v-for="(shortcut, ishortcut) in $root.cp.shortcuts"
                                 :key="ishortcut"
@@ -39,12 +50,12 @@
                             <ul class="dropdown-menu-right dropdown-menu">
                                 <li class="dropdown-item">
                                     <a href="/" target="_blank">
-                                        <i class="fa fa-external-link"></i> Site
+                                        <i class="fa fa-external-link"/> Site
                                     </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a href="/admin/logout">
-                                        <i class="fa fa-power-off"></i> Logout
+                                        <i class="fa fa-power-off"/> Logout
                                     </a>
                                 </li>
                             </ul>
@@ -55,85 +66,98 @@
 
         </py-layout-header>
         <div class="py-layout__main">
-            <div class="py-layout__sidebar">
-                <py-menu-demo />
-            </div>
-<!--            <py-layout-sidebar><slot name="sidebar" /></py-layout-sidebar>-->
+            <py-layout-sidebar>
+                <py-menu-demo
+                        v-if="menus.sidebar"
+                        :items="menus.sidebar"
+                        :options="{
+                              horizontal:false,
+                              collapsed: sidebar.collapsed,
+                              slug:'sidebar'
+                          }"
+                />
+            </py-layout-sidebar>]>
+            <!--            <py-layout-sidebar><slot name="sidebar" /></py-layout-sidebar>-->
 
             <div class="py-layout__content">
-                <slot name="breadcrumb"></slot>
+                <slot name="breadcrumb"/>
 
                 <template v-if="$slots['messages']">
                     <div class="container-fluid mb-1">
-                        <slot name="messages"></slot>
+                        <slot name="messages"/>
                     </div>
                 </template>
 
                 <div class="py-layout__inner">
-                    <slot></slot>
+                    <slot/>
                 </div>
             </div>
 
         </div>
         <py-layout-footer>
-            <slot name="footer"></slot>
+            <slot name="footer"/>
         </py-layout-footer>
     </div>
 </template>
 <script lang="ts">
-    import Vue from 'vue';
-    import { component, prop, Styles } from '@pyro/platform';
-    import { styleVars } from '../../styling/export';
-    import { strEnsureRight } from '@pyro/platform/lib/utils/general';
-    import MenuDemo from './MenuDemo.vue';
+import Vue from 'vue';
+import { component, prop, Styles } from '@pyro/platform';
+import { styleVars } from '../../styling/export';
+import { strEnsureRight } from '@pyro/platform/lib/utils/general';
 
-    const noDelimiter = {replace: function(){}};
-    @component({
-        provide() {
-            return {
-                layout: this
-            }
-        },
-        component: {
-            'py-menu-demo':MenuDemo
+const noDelimiter = { replace: function () {} };
+@component({
+    provide() {
+        return {
+            layout: this
         }
-    })
-    export default class Layout extends Vue {
-        @prop.classPrefix('layout') classPrefix: string
+    },
+    component: {}
+})
+export default class Layout extends Vue {
+    @prop.classPrefix('layout') classPrefix: string
 
-        get classes() {
-            return {
-                [ this.classPrefix ]: true
-            }
-        }
-
-        get style(): Styles {
-            return {}
-        }
-
-        sidebar   = {
-            collapsed     : false,
-            collapsedWidth: styleVars.get('layout-sidebar-collapse-width'),
-            normalWidth   : styleVars.get('layout-sidebar-width'),
-            get width() {
-                return strEnsureRight((this.collapsed ? this.collapsedWidth : this.normalWidth), 'px');
-            }
-        }
-        styleVars = styleVars; //ssssssss{ ...styleVars.raw() }
-
-        created() {
-            this.$py.instance('layout', this);
-            this.$root[ 'setLayout' ](this);
-            this.sidebar.collapsed = this.$py.cookies.has('layout.sidebar.collapsed');
-        }
-
-        toggleSidebarCollapse() {
-            this.sidebar.collapsed = !this.sidebar.collapsed
-            if ( this.sidebar.collapsed ) {
-                this.$py.cookies.set('layout.sidebar.collapsed', this.sidebar.collapsed)
-            } else {
-                this.$py.cookies.unset('layout.sidebar.collapsed')
-            }
+    get classes() {
+        return {
+            [ this.classPrefix ]: true
         }
     }
+
+    get style(): Styles {
+        return {}
+    }
+
+    sidebar   = {
+        collapsed     : false,
+        collapsedWidth: styleVars.get('layout-sidebar-collapse-width'),
+        normalWidth   : styleVars.get('layout-sidebar-width'),
+        get width() {
+            return strEnsureRight((this.collapsed ? this.collapsedWidth : this.normalWidth), 'px');
+        }
+    }
+    styleVars = styleVars; //ssssssss{ ...styleVars.raw() }
+
+    created() {
+        this.$py.instance('layout', this);
+        this.$root[ 'setLayout' ](this);
+        this.sidebar.collapsed = this.$py.cookies.has('layout.sidebar.collapsed');
+    }
+
+    get menus(){
+        return {
+            sidebar: Object.values(this.$py.data.cp.structure),
+            header : this.$py.data?.menus?.admin_header,
+            footer : this.$py.data?.menus?.admin_footer
+        }
+    }
+
+    toggleSidebarCollapse() {
+        this.sidebar.collapsed = !this.sidebar.collapsed
+        if ( this.sidebar.collapsed ) {
+            this.$py.cookies.set('layout.sidebar.collapsed', this.sidebar.collapsed)
+        } else {
+            this.$py.cookies.unset('layout.sidebar.collapsed')
+        }
+    }
+}
 </script>

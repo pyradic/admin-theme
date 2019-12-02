@@ -1,3 +1,1118 @@
+import { TsxComponentAttrs } from 'vue-tsx-support/types/base';
+
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            "el-pagination"?: TsxComponentAttrs<{
+                'pageSize'?: number
+                'small'?: boolean
+                'total'?: number
+                'pageCount'?: number
+                'pagerCount'?: number
+                'currentPage'?: number
+                'layout'?: any
+                'pageSizes'?: Array<any>
+                'popperClass'?: string
+                'prevText'?: string
+                'nextText'?: string
+                'background'?: boolean
+                'disabled'?: boolean
+                'hideOnSinglePage'?: boolean
+            }>
+            "el-dialog"?: TsxComponentAttrs<{
+                'visible'?: boolean
+                'openDelay'?: any
+                'closeDelay'?: any
+                'zIndex'?: any
+                'modal'?: boolean
+                'modalFade'?: boolean
+                'modalClass'?: any
+                'modalAppendToBody'?: boolean
+                'lockScroll'?: boolean
+                'closeOnPressEscape'?: boolean
+                'closeOnClickModal'?: boolean
+                'title'?: string
+                'appendToBody'?: boolean
+                'showClose'?: boolean
+                'width'?: string
+                'fullscreen'?: boolean
+                'customClass'?: string
+                'top'?: string
+                'beforeClose'?: Function
+                'center'?: boolean
+                'destroyOnClose'?: boolean
+            }>
+            "el-autocomplete"?: TsxComponentAttrs<{
+                'valueKey'?: string
+                'popperClass'?: string
+                'popperOptions'?: object
+                'placeholder'?: string
+                'clearable'?: boolean
+                'disabled'?: boolean
+                'name'?: string
+                'size'?: string
+                'value'?: string
+                'maxlength'?: number
+                'minlength'?: number
+                'autofocus'?: boolean
+                'fetchSuggestions'?: Function
+                'triggerOnFocus'?: boolean
+                'customItem'?: string
+                'selectWhenUnmatched'?: boolean
+                'prefixIcon'?: string
+                'suffixIcon'?: string
+                'label'?: string
+                'debounce'?: number
+                'placement'?: string
+                'hideLoading'?: boolean
+                'popperAppendToBody'?: boolean
+                'highlightFirstItem'?: boolean
+            }>
+            "el-dropdown"?: TsxComponentAttrs<{
+                'trigger'?: string
+                'type'?: string
+                'size'?: string
+                'splitButton'?: boolean
+                'hideOnClick'?: boolean
+                'placement'?: string
+                'visibleArrow'?: any
+                'showTimeout'?: number
+                'hideTimeout'?: number
+                'tabindex'?: number
+            }>
+            "el-dropdown-menu"?: TsxComponentAttrs<{
+                'transformOrigin'?: any
+                'placement'?: string
+                'boundariesPadding'?: number
+                'reference'?: any
+                'popper'?: any
+                'offset'?: any
+                'value'?: boolean
+                'visibleArrow'?: boolean
+                'arrowOffset'?: number
+                'appendToBody'?: boolean
+                'popperOptions'?: object
+            }>
+            "el-dropdown-item"?: TsxComponentAttrs<{
+                'command'?: any
+                'disabled'?: boolean
+                'divided'?: boolean
+                'icon'?: string
+            }>
+            "el-menu"?: TsxComponentAttrs<{
+                'tag'?: string
+                'mode'?: string
+                'defaultActive'?: string
+                'defaultOpeneds'?: Array<any>
+                'uniqueOpened'?: boolean
+                'router'?: boolean
+                'menuTrigger'?: string
+                'collapse'?: boolean
+                'backgroundColor'?: string
+                'textColor'?: string
+                'activeTextColor'?: string
+                'collapseTransition'?: boolean
+            }>
+            "el-submenu"?: TsxComponentAttrs<{
+                'transformOrigin'?: any
+                'offset'?: any
+                'boundariesPadding'?: number
+                'popperOptions'?: object
+                'index'?: string
+                'showTimeout'?: number
+                'hideTimeout'?: number
+                'popperClass'?: string
+                'disabled'?: boolean
+                'popperAppendToBody'?: boolean
+                'tag'?: string
+            }>
+            "el-menu-item"?: TsxComponentAttrs<{
+                'tag'?: string
+                'index'?: any
+                'route'?: any
+                'disabled'?: boolean
+            }>
+            "el-menu-item-group"?: TsxComponentAttrs<{
+                'title'?: string
+            }>
+            "el-input"?: TsxComponentAttrs<{
+                'value'?: any
+                'size'?: string
+                'resize'?: string
+                'form'?: string
+                'disabled'?: boolean
+                'readonly'?: boolean
+                'type'?: string
+                'autosize'?: any
+                'autocomplete'?: string
+                'autoComplete'?: string
+                'validateEvent'?: boolean
+                'suffixIcon'?: string
+                'prefixIcon'?: string
+                'label'?: string
+                'clearable'?: boolean
+                'showPassword'?: boolean
+                'showWordLimit'?: boolean
+                'tabindex'?: string
+            }>
+            "el-input-number"?: TsxComponentAttrs<{
+                'step'?: number
+                'stepStrictly'?: boolean
+                'max'?: number
+                'min'?: number
+                'value'?: any
+                'disabled'?: boolean
+                'size'?: string
+                'controls'?: boolean
+                'controlsPosition'?: string
+                'name'?: string
+                'label'?: string
+                'placeholder'?: string
+                'precision'?: number
+            }>
+            "el-radio"?: TsxComponentAttrs<{
+                'value'?: any
+                'label'?: any
+                'disabled'?: boolean
+                'name'?: string
+                'border'?: boolean
+                'size'?: string
+            }>
+            "el-radio-group"?: TsxComponentAttrs<{
+                'value'?: any
+                'size'?: string
+                'fill'?: string
+                'textColor'?: string
+                'disabled'?: boolean
+            }>
+            "el-radio-button"?: TsxComponentAttrs<{
+                'label'?: any
+                'disabled'?: boolean
+                'name'?: string
+            }>
+            "el-checkbox"?: TsxComponentAttrs<{
+                'value'?: any
+                'label'?: any
+                'indeterminate'?: boolean
+                'disabled'?: boolean
+                'checked'?: boolean
+                'name'?: string
+                'trueLabel'?: any
+                'falseLabel'?: any
+                'id'?: string
+                'controls'?: string
+                'border'?: boolean
+                'size'?: string
+            }>
+            "el-checkbox-button"?: TsxComponentAttrs<{
+                'value'?: any
+                'label'?: any
+                'disabled'?: boolean
+                'checked'?: boolean
+                'name'?: string
+                'trueLabel'?: any
+                'falseLabel'?: any
+            }>
+            "el-checkbox-group"?: TsxComponentAttrs<{
+                'value'?: any
+                'disabled'?: boolean
+                'min'?: number
+                'max'?: number
+                'size'?: string
+                'fill'?: string
+                'textColor'?: string
+            }>
+            "el-switch"?: TsxComponentAttrs<{
+                'value'?: any
+                'disabled'?: boolean
+                'width'?: number
+                'activeIconClass'?: string
+                'inactiveIconClass'?: string
+                'activeText'?: string
+                'inactiveText'?: string
+                'activeColor'?: string
+                'inactiveColor'?: string
+                'activeValue'?: any
+                'inactiveValue'?: any
+                'name'?: string
+                'validateEvent'?: boolean
+                'id'?: string
+            }>
+            "el-select"?: TsxComponentAttrs<{
+                'name'?: string
+                'id'?: string
+                'value'?: any
+                'autocomplete'?: string
+                'autoComplete'?: string
+                'automaticDropdown'?: boolean
+                'size'?: string
+                'disabled'?: boolean
+                'clearable'?: boolean
+                'filterable'?: boolean
+                'allowCreate'?: boolean
+                'loading'?: boolean
+                'popperClass'?: string
+                'remote'?: boolean
+                'loadingText'?: string
+                'noMatchText'?: string
+                'noDataText'?: string
+                'remoteMethod'?: Function
+                'filterMethod'?: Function
+                'multiple'?: boolean
+                'multipleLimit'?: number
+                'placeholder'?: string
+                'defaultFirstOption'?: boolean
+                'reserveKeyword'?: boolean
+                'valueKey'?: string
+                'collapseTags'?: boolean
+                'popperAppendToBody'?: boolean
+            }>
+            "el-option"?: TsxComponentAttrs<{
+                'value'?: any
+                'label'?: any
+                'created'?: boolean
+                'disabled'?: boolean
+            }>
+            "el-option-group"?: TsxComponentAttrs<{
+                'label'?: string
+                'disabled'?: boolean
+            }>
+            "el-button"?: TsxComponentAttrs<{
+                'type'?: string
+                'size'?: string
+                'icon'?: string
+                'nativeType'?: string
+                'loading'?: boolean
+                'disabled'?: boolean
+                'plain'?: boolean
+                'autofocus'?: boolean
+                'round'?: boolean
+                'circle'?: boolean
+            }>
+            "el-button-group"?: TsxComponentAttrs<{
+
+            }>
+            "el-table"?: TsxComponentAttrs<{
+                'data'?: Array<any>
+                'size'?: string
+                'width'?: any
+                'height'?: any
+                'maxHeight'?: any
+                'fit'?: boolean
+                'stripe'?: boolean
+                'border'?: boolean
+                'rowKey'?: any
+                'context'?: any
+                'showHeader'?: boolean
+                'showSummary'?: boolean
+                'sumText'?: string
+                'summaryMethod'?: Function
+                'rowClassName'?: any
+                'rowStyle'?: any
+                'cellClassName'?: any
+                'cellStyle'?: any
+                'headerRowClassName'?: any
+                'headerRowStyle'?: any
+                'headerCellClassName'?: any
+                'headerCellStyle'?: any
+                'highlightCurrentRow'?: boolean
+                'currentRowKey'?: any
+                'emptyText'?: string
+                'expandRowKeys'?: Array<any>
+                'defaultExpandAll'?: boolean
+                'defaultSort'?: object
+                'tooltipEffect'?: string
+                'spanMethod'?: Function
+                'selectOnIndeterminate'?: boolean
+                'indent'?: number
+                'treeProps'?: object
+                'lazy'?: boolean
+                'load'?: Function
+            }>
+            "el-table-column"?: TsxComponentAttrs<{
+                'type'?: string
+                'label'?: string
+                'className'?: string
+                'labelClassName'?: string
+                'property'?: string
+                'prop'?: string
+                'width'?: any
+                'minWidth'?: any
+                'renderHeader'?: Function
+                'sortable'?: any
+                'sortMethod'?: Function
+                'sortBy'?: any
+                'resizable'?: boolean
+                'columnKey'?: string
+                'align'?: string
+                'headerAlign'?: string
+                'showTooltipWhenOverflow'?: boolean
+                'showOverflowTooltip'?: boolean
+                'fixed'?: any
+                'formatter'?: Function
+                'selectable'?: Function
+                'reserveSelection'?: boolean
+                'filterMethod'?: Function
+                'filteredValue'?: Array<any>
+                'filters'?: Array<any>
+                'filterPlacement'?: string
+                'filterMultiple'?: boolean
+                'index'?: any
+                'sortOrders'?: Array<any>
+            }>
+            "el-date-picker"?: TsxComponentAttrs<{
+                'appendToBody'?: boolean
+                'offset'?: any
+                'boundariesPadding'?: number
+                'arrowOffset'?: number
+                'size'?: string
+                'format'?: string
+                'valueFormat'?: string
+                'readonly'?: boolean
+                'placeholder'?: string
+                'startPlaceholder'?: string
+                'endPlaceholder'?: string
+                'prefixIcon'?: string
+                'clearIcon'?: string
+                'name'?: any
+                'disabled'?: boolean
+                'clearable'?: boolean
+                'id'?: any
+                'popperClass'?: string
+                'editable'?: boolean
+                'align'?: string
+                'value'?: any
+                'defaultValue'?: any
+                'defaultTime'?: any
+                'rangeSeparator'?: any
+                'pickerOptions'?: any
+                'unlinkPanels'?: boolean
+                'validateEvent'?: boolean
+                'type'?: string
+                'timeArrowControl'?: boolean
+            }>
+            "el-time-select"?: TsxComponentAttrs<{
+                'appendToBody'?: boolean
+                'offset'?: any
+                'boundariesPadding'?: number
+                'arrowOffset'?: number
+                'size'?: string
+                'format'?: string
+                'valueFormat'?: string
+                'readonly'?: boolean
+                'placeholder'?: string
+                'startPlaceholder'?: string
+                'endPlaceholder'?: string
+                'prefixIcon'?: string
+                'clearIcon'?: string
+                'name'?: any
+                'disabled'?: boolean
+                'clearable'?: boolean
+                'id'?: any
+                'popperClass'?: string
+                'editable'?: boolean
+                'align'?: string
+                'value'?: any
+                'defaultValue'?: any
+                'defaultTime'?: any
+                'rangeSeparator'?: any
+                'pickerOptions'?: any
+                'unlinkPanels'?: boolean
+                'validateEvent'?: boolean
+                'type'?: string
+            }>
+            "el-time-picker"?: TsxComponentAttrs<{
+                'appendToBody'?: boolean
+                'offset'?: any
+                'boundariesPadding'?: number
+                'arrowOffset'?: number
+                'size'?: string
+                'format'?: string
+                'valueFormat'?: string
+                'readonly'?: boolean
+                'placeholder'?: string
+                'startPlaceholder'?: string
+                'endPlaceholder'?: string
+                'prefixIcon'?: string
+                'clearIcon'?: string
+                'name'?: any
+                'disabled'?: boolean
+                'clearable'?: boolean
+                'id'?: any
+                'popperClass'?: string
+                'editable'?: boolean
+                'align'?: string
+                'value'?: any
+                'defaultValue'?: any
+                'defaultTime'?: any
+                'rangeSeparator'?: any
+                'pickerOptions'?: any
+                'unlinkPanels'?: boolean
+                'validateEvent'?: boolean
+                'isRange'?: boolean
+                'arrowControl'?: boolean
+            }>
+            "el-popover"?: TsxComponentAttrs<{
+                'transformOrigin'?: any
+                'placement'?: string
+                'boundariesPadding'?: number
+                'reference'?: any
+                'popper'?: any
+                'offset'?: any
+                'value'?: boolean
+                'visibleArrow'?: any
+                'arrowOffset'?: number
+                'appendToBody'?: boolean
+                'popperOptions'?: object
+                'trigger'?: string
+                'openDelay'?: number
+                'closeDelay'?: number
+                'title'?: string
+                'disabled'?: boolean
+                'content'?: string
+                'popperClass'?: string
+                'width'?: any
+                'transition'?: string
+                'tabindex'?: number
+            }>
+            "el-tooltip"?: TsxComponentAttrs<{
+                'transformOrigin'?: any
+                'placement'?: string
+                'boundariesPadding'?: number
+                'reference'?: any
+                'popper'?: any
+                'offset'?: any
+                'value'?: boolean
+                'visibleArrow'?: any
+                'arrowOffset'?: number
+                'appendToBody'?: boolean
+                'popperOptions'?: any
+                'openDelay'?: number
+                'disabled'?: boolean
+                'manual'?: boolean
+                'effect'?: string
+                'popperClass'?: string
+                'content'?: string
+                'transition'?: string
+                'enterable'?: boolean
+                'hideAfter'?: number
+                'tabindex'?: number
+            }>
+            "el-breadcrumb"?: TsxComponentAttrs<{
+                'separator'?: string
+                'separatorClass'?: string
+            }>
+            "el-breadcrumb-item"?: TsxComponentAttrs<{
+                'to'?: any
+                'replace'?: boolean
+            }>
+            "el-form"?: TsxComponentAttrs<{
+                'model'?: object
+                'rules'?: object
+                'labelPosition'?: string
+                'labelWidth'?: string
+                'labelSuffix'?: string
+                'inline'?: boolean
+                'inlineMessage'?: boolean
+                'statusIcon'?: boolean
+                'showMessage'?: boolean
+                'size'?: string
+                'disabled'?: boolean
+                'validateOnRuleChange'?: boolean
+                'hideRequiredAsterisk'?: boolean
+            }>
+            "el-form-item"?: TsxComponentAttrs<{
+                'label'?: string
+                'labelWidth'?: string
+                'prop'?: string
+                'required'?: boolean
+                'rules'?: any
+                'error'?: string
+                'validateStatus'?: string
+                'for'?: string
+                'inlineMessage'?: any
+                'showMessage'?: boolean
+                'size'?: string
+            }>
+            "el-tabs"?: TsxComponentAttrs<{
+                'type'?: string
+                'activeName'?: string
+                'closable'?: boolean
+                'addable'?: boolean
+                'value'?: any
+                'editable'?: boolean
+                'tabPosition'?: string
+                'beforeLeave'?: Function
+                'stretch'?: boolean
+            }>
+            "el-tab-pane"?: TsxComponentAttrs<{
+                'label'?: string
+                'labelContent'?: Function
+                'name'?: string
+                'closable'?: boolean
+                'disabled'?: boolean
+                'lazy'?: boolean
+            }>
+            "el-tag"?: TsxComponentAttrs<{
+                'text'?: string
+                'closable'?: boolean
+                'type'?: string
+                'hit'?: boolean
+                'disableTransitions'?: boolean
+                'color'?: string
+                'size'?: string
+                'effect'?: string
+            }>
+            "el-tree"?: TsxComponentAttrs<{
+                'data'?: Array<any>
+                'emptyText'?: string
+                'renderAfterExpand'?: boolean
+                'nodeKey'?: string
+                'checkStrictly'?: boolean
+                'defaultExpandAll'?: boolean
+                'expandOnClickNode'?: boolean
+                'checkOnClickNode'?: boolean
+                'checkDescendants'?: boolean
+                'autoExpandParent'?: boolean
+                'defaultCheckedKeys'?: Array<any>
+                'defaultExpandedKeys'?: Array<any>
+                'currentNodeKey'?: any
+                'renderContent'?: Function
+                'showCheckbox'?: boolean
+                'draggable'?: boolean
+                'allowDrag'?: Function
+                'allowDrop'?: Function
+                'props'?: any
+                'lazy'?: boolean
+                'highlightCurrent'?: boolean
+                'load'?: Function
+                'filterNodeMethod'?: Function
+                'accordion'?: boolean
+                'indent'?: number
+                'iconClass'?: string
+            }>
+            "el-alert"?: TsxComponentAttrs<{
+                'title'?: string
+                'description'?: string
+                'type'?: string
+                'closable'?: boolean
+                'closeText'?: string
+                'showIcon'?: boolean
+                'center'?: boolean
+                'effect'?: string
+            }>
+            "el-slider"?: TsxComponentAttrs<{
+                'min'?: number
+                'max'?: number
+                'step'?: number
+                'value'?: any
+                'showInput'?: boolean
+                'showInputControls'?: boolean
+                'inputSize'?: string
+                'showStops'?: boolean
+                'showTooltip'?: boolean
+                'formatTooltip'?: Function
+                'disabled'?: boolean
+                'range'?: boolean
+                'vertical'?: boolean
+                'height'?: string
+                'debounce'?: number
+                'label'?: string
+                'tooltipClass'?: string
+                'marks'?: object
+            }>
+            "el-icon"?: TsxComponentAttrs<{
+                'name'?: string
+            }>
+            "el-row"?: TsxComponentAttrs<{
+                'tag'?: string
+                'gutter'?: number
+                'type'?: string
+                'justify'?: string
+                'align'?: string
+            }>
+            "el-col"?: TsxComponentAttrs<{
+                'span'?: number
+                'tag'?: string
+                'offset'?: number
+                'pull'?: number
+                'push'?: number
+                'xs'?: any
+                'sm'?: any
+                'md'?: any
+                'lg'?: any
+                'xl'?: any
+            }>
+            "el-upload"?: TsxComponentAttrs<{
+                'action'?: string
+                'headers'?: object
+                'data'?: object
+                'multiple'?: boolean
+                'name'?: string
+                'drag'?: boolean
+                'dragger'?: boolean
+                'withCredentials'?: boolean
+                'showFileList'?: boolean
+                'accept'?: string
+                'type'?: string
+                'beforeUpload'?: Function
+                'beforeRemove'?: Function
+                'onRemove'?: Function
+                'onChange'?: Function
+                'onPreview'?: Function
+                'onSuccess'?: Function
+                'onProgress'?: Function
+                'onError'?: Function
+                'fileList'?: Array<any>
+                'autoUpload'?: boolean
+                'listType'?: string
+                'httpRequest'?: Function
+                'disabled'?: boolean
+                'limit'?: number
+                'onExceed'?: Function
+            }>
+            "el-progress"?: TsxComponentAttrs<{
+                'type'?: string
+                'percentage'?: number
+                'status'?: string
+                'strokeWidth'?: number
+                'textInside'?: boolean
+                'width'?: number
+                'showText'?: boolean
+                'color'?: any
+                'format'?: Function
+            }>
+            "el-spinner"?: TsxComponentAttrs<{
+                'type'?: string
+                'radius'?: number
+                'strokeWidth'?: number
+                'strokeColor'?: string
+            }>
+            "el-badge"?: TsxComponentAttrs<{
+                'value'?: any
+                'max'?: number
+                'isDot'?: boolean
+                'hidden'?: boolean
+                'type'?: string
+            }>
+            "el-card"?: TsxComponentAttrs<{
+                'header'?: any
+                'bodyStyle'?: any
+                'shadow'?: string
+            }>
+            "el-rate"?: TsxComponentAttrs<{
+                'value'?: number
+                'lowThreshold'?: number
+                'highThreshold'?: number
+                'max'?: number
+                'colors'?: any
+                'voidColor'?: string
+                'disabledVoidColor'?: string
+                'iconClasses'?: any
+                'voidIconClass'?: string
+                'disabledVoidIconClass'?: string
+                'disabled'?: boolean
+                'allowHalf'?: boolean
+                'showText'?: boolean
+                'showScore'?: boolean
+                'textColor'?: string
+                'texts'?: Array<any>
+                'scoreTemplate'?: string
+            }>
+            "el-steps"?: TsxComponentAttrs<{
+                'space'?: any
+                'active'?: number
+                'direction'?: string
+                'alignCenter'?: boolean
+                'simple'?: boolean
+                'finishStatus'?: string
+                'processStatus'?: string
+            }>
+            "el-step"?: TsxComponentAttrs<{
+                'title'?: string
+                'icon'?: string
+                'description'?: string
+                'status'?: string
+            }>
+            "el-carousel"?: TsxComponentAttrs<{
+                'initialIndex'?: number
+                'height'?: string
+                'trigger'?: string
+                'autoplay'?: boolean
+                'interval'?: number
+                'indicatorPosition'?: string
+                'indicator'?: boolean
+                'arrow'?: string
+                'type'?: string
+                'loop'?: boolean
+                'direction'?: string
+            }>
+            "el-scrollbar"?: TsxComponentAttrs<{
+                'native'?: boolean
+                'wrapStyle'?: any
+                'wrapClass'?: any
+                'viewClass'?: any
+                'viewStyle'?: any
+                'noresize'?: boolean
+                'tag'?: string
+            }>
+            "el-carousel-item"?: TsxComponentAttrs<{
+                'name'?: string
+                'label'?: any
+            }>
+            "el-collapse"?: TsxComponentAttrs<{
+                'accordion'?: boolean
+                'value'?: any
+            }>
+            "el-collapse-item"?: TsxComponentAttrs<{
+                'title'?: string
+                'name'?: any
+                'disabled'?: boolean
+            }>
+            "el-cascader"?: TsxComponentAttrs<{
+                'placement'?: string
+                'appendToBody'?: boolean
+                'visibleArrow'?: boolean
+                'arrowOffset'?: number
+                'offset'?: any
+                'boundariesPadding'?: number
+                'popperOptions'?: object
+                'value'?: any
+                'options'?: Array<any>
+                'props'?: object
+                'size'?: string
+                'placeholder'?: string
+                'disabled'?: boolean
+                'clearable'?: boolean
+                'filterable'?: boolean
+                'filterMethod'?: Function
+                'separator'?: string
+                'showAllLevels'?: boolean
+                'collapseTags'?: boolean
+                'debounce'?: number
+                'beforeFilter'?: Function
+                'popperClass'?: string
+            }>
+            "el-color-picker"?: TsxComponentAttrs<{
+                'value'?: string
+                'showAlpha'?: boolean
+                'colorFormat'?: string
+                'disabled'?: boolean
+                'size'?: string
+                'popperClass'?: string
+                'predefine'?: Array<any>
+            }>
+            "el-transfer"?: TsxComponentAttrs<{
+                'data'?: Array<any>
+                'titles'?: Array<any>
+                'buttonTexts'?: Array<any>
+                'filterPlaceholder'?: string
+                'filterMethod'?: Function
+                'leftDefaultChecked'?: Array<any>
+                'rightDefaultChecked'?: Array<any>
+                'renderContent'?: Function
+                'value'?: Array<any>
+                'format'?: object
+                'filterable'?: boolean
+                'props'?: object
+                'targetOrder'?: string
+            }>
+            "el-container"?: TsxComponentAttrs<{
+                'direction'?: string
+            }>
+            "el-header"?: TsxComponentAttrs<{
+                'height'?: string
+            }>
+            "el-aside"?: TsxComponentAttrs<{
+                'width'?: string
+            }>
+            "el-main"?: TsxComponentAttrs<{
+
+            }>
+            "el-footer"?: TsxComponentAttrs<{
+                'height'?: string
+            }>
+            "el-timeline"?: TsxComponentAttrs<{
+                'reverse'?: boolean
+            }>
+            "el-timeline-item"?: TsxComponentAttrs<{
+                'timestamp'?: string
+                'hideTimestamp'?: boolean
+                'placement'?: string
+                'type'?: string
+                'color'?: string
+                'size'?: string
+                'icon'?: string
+            }>
+            "el-link"?: TsxComponentAttrs<{
+                'type'?: string
+                'underline'?: boolean
+                'disabled'?: boolean
+                'href'?: string
+                'icon'?: string
+            }>
+            "el-divider"?: TsxComponentAttrs<{
+                'direction'?: string
+                'contentPosition'?: string
+            }>
+            "el-image"?: TsxComponentAttrs<{
+                'src'?: string
+                'fit'?: string
+                'lazy'?: boolean
+                'scrollContainer'?: any
+                'previewSrcList'?: Array<any>
+                'zIndex'?: number
+            }>
+            "el-calendar"?: TsxComponentAttrs<{
+                'value'?: any
+                'range'?: Array<any>
+                'firstDayOfWeek'?: number
+            }>
+            "el-backtop"?: TsxComponentAttrs<{
+                'visibilityHeight'?: number
+                'target'?: any
+                'right'?: number
+                'bottom'?: number
+            }>
+            "el-page-header"?: TsxComponentAttrs<{
+                'title'?: string
+                'content'?: string
+            }>
+            "el-cascader-panel"?: TsxComponentAttrs<{
+                'value'?: any
+                'options'?: Array<any>
+                'props'?: object
+                'border'?: boolean
+                'renderLabel'?: Function
+            }>
+            "el-avatar"?: TsxComponentAttrs<{
+                'size'?: any
+                'shape'?: string
+                'icon'?: string
+                'src'?: string
+                'alt'?: string
+                'srcSet'?: string
+                'error'?: Function
+                'fit'?: string
+            }>
+            "el-drawer"?: TsxComponentAttrs<{
+                'visible'?: boolean
+                'openDelay'?: any
+                'closeDelay'?: any
+                'zIndex'?: any
+                'modal'?: boolean
+                'modalFade'?: boolean
+                'modalClass'?: any
+                'modalAppendToBody'?: boolean
+                'lockScroll'?: boolean
+                'closeOnPressEscape'?: boolean
+                'closeOnClickModal'?: boolean
+                'appendToBody'?: boolean
+                'beforeClose'?: Function
+                'customClass'?: string
+                'destroyOnClose'?: boolean
+                'direction'?: string
+                'showClose'?: boolean
+                'size'?: string
+                'title'?: string
+                'wrapperClosable'?: boolean
+            }>
+            "el-collapse-transition"?: TsxComponentAttrs<{
+
+            }>
+            "py-form"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+            }>
+            "py-lay"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+            }>
+            "py-layout"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+            }>
+            "py-layout-header"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+            }>
+            "py-layout-footer"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+            }>
+            "py-layout-sidebar"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+            }>
+            "py-nav"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'menu'?: object
+                'horizontal'?: boolean
+            }>
+            "py-nav-item"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'item'?: object
+            }>
+            "py-shortcut"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'label'?: string
+                'title'?: string
+                'href'?: string
+                'slug'?: string
+                'icon'?: string
+                'highlighted'?: boolean
+                'children'?: Array<any>
+                'attributes'?: object
+            }>
+            "py-shortcut-info"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+            }>
+            "py-toolbar"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'title'?: string
+                'titleWidth'?: any
+                'titleLink'?: string
+                'showTitle'?: boolean
+                'showToggle'?: boolean
+                'justify'?: string
+            }>
+            "py-toolbar-item"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'clickable'?: boolean
+                'separator'?: boolean
+                'spacer'?: boolean
+                'icon'?: string
+            }>
+            "py-toolbar-title"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'link'?: string
+                'width'?: any
+                'title'?: string
+            }>
+            "py-toolbar-toggle"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'tag'?: string
+            }>
+            "py-expand-transition"?: TsxComponentAttrs<{
+                'show'?: any
+                'enabled'?: any
+            }>
+            "py-menu-demo"?: TsxComponentAttrs<{
+                'items'?: Array<any>
+                'maxDepth'?: number
+                'options'?: object
+            }>
+            "py-menu"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'tag'?: string
+                'theme'?: string
+                'slug'?: string
+                'collapsed'?: boolean
+                'horizontal'?: boolean
+                'inline'?: boolean
+                'dropdown'?: boolean
+            }>
+            "py-menu-item"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'tag'?: string
+                'title'?: string
+                'slug'?: string
+                'url'?: string
+                'icon'?: string
+                'active'?: boolean
+            }>
+            "py-menu-submenu"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+            }>
+            "py-menu-node"?: TsxComponentAttrs<{
+
+            }>
+            "py-menu-item-node"?: TsxComponentAttrs<{
+
+            }>
+            "py-menu-item-node-array"?: TsxComponentAttrs<{
+
+            }>
+            "py-ui-table"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'uiTable'?: object
+            }>
+            "py-scroll"?: TsxComponentAttrs<{
+
+            }>
+            "py-menu-editor-view"?: TsxComponentAttrs<{
+
+            }>
+            "py-menu-editor-type-list"?: TsxComponentAttrs<{
+
+            }>
+            "py-menu-editor"?: TsxComponentAttrs<{
+
+            }>
+            "py-menu-editor-form"?: TsxComponentAttrs<{
+
+            }>
+            "py-department-picker"?: TsxComponentAttrs<{
+                'classPrefix'?: string
+                'modal'?: boolean
+                'showDeselect'?: boolean
+                'departments'?: Array<any>
+                'current'?: number
+                'selectUrl'?: string
+                'deselectUrl'?: string
+                'headerText'?: string
+            }>
+            "draggable"?: TsxComponentAttrs<{
+                'options'?: object
+                'list'?: Array<any>
+                'value'?: Array<any>
+                'noTransitionOnDrag'?: boolean
+                'clone'?: Function
+                'element'?: string
+                'tag'?: string
+                'move'?: Function
+                'componentData'?: object
+            }>
+            "keep-alive"?: TsxComponentAttrs<{
+                'include'?: any
+                'exclude'?: any
+                'max'?: any
+            }>
+            "transition"?: TsxComponentAttrs<{
+                'name'?: string
+                'appear'?: boolean
+                'css'?: boolean
+                'mode'?: string
+                'type'?: string
+                'enterClass'?: string
+                'leaveClass'?: string
+                'enterToClass'?: string
+                'leaveToClass'?: string
+                'enterActiveClass'?: string
+                'leaveActiveClass'?: string
+                'appearClass'?: string
+                'appearActiveClass'?: string
+                'appearToClass'?: string
+                'duration'?: any
+            }>
+            "transition-group"?: TsxComponentAttrs<{
+                'tag'?: any
+                'moveClass'?: any
+                'name'?: any
+                'appear'?: any
+                'css'?: any
+                'type'?: any
+                'enterClass'?: any
+                'leaveClass'?: any
+                'enterToClass'?: any
+                'leaveToClass'?: any
+                'enterActiveClass'?: any
+                'leaveActiveClass'?: any
+                'appearClass'?: any
+                'appearActiveClass'?: any
+                'appearToClass'?: any
+                'duration'?: any
+            }>
+        }
+    }
+}
+
+
+
 // import Vue, { VNode } from 'vue';
 // import { WatchOptions } from 'vue'
 // import * as CSS from 'csstype'

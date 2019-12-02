@@ -1,10 +1,11 @@
-import { component, inject, prop, Styles, TsxComponent } from '@pyro/platform';
+import { component, inject, prop, slot, styles, Styles, StylesProp, TsxComponent, when } from '@pyro/platform';
 import 'vue-tsx-support/enable-check'
 import classNames from 'classnames'
-import Menu from './Menu.vue';
+import { Menu } from './Menu';
 import { MenuItemNode } from './MenuItemNode';
 import { mapNodeStateObservableToTarget } from './utils';
 import { RenderMenuIcon } from './interfaces';
+
 
 @component({
     provide() {
@@ -15,15 +16,23 @@ import { RenderMenuIcon } from './interfaces';
     block: '-menu-item'
 })
 export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
-    @inject() menu: typeof Menu.prototype
-    @inject() parent: typeof Menu.prototype | MenuItem
+    $refs: { root: HTMLElement, content: HTMLAnchorElement, icon: HTMLSpanElement, title: HTMLSpanElement, spacing: HTMLSpanElement, arrow: HTMLSpanElement }
+
+    @inject() menu: Menu
+    @inject() parent: Menu | MenuItem
 
     @prop.classPrefix('menu-item') classPrefix: string
     @prop.string('div') tag;
+    @prop.string() title: string
     @prop.string() slug: string
     @prop.string() url: string
     @prop.string() icon: string;
     @prop.boolean() active: boolean;
+    @prop.object() attributes: any;
+
+    @styles<MenuItem>(({ util, theme, self }) => ({
+        sdf: {}
+    })) styles: StylesProp
 
 
     isHidden: boolean   = false;
@@ -32,6 +41,7 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
     isSelected: boolean = false;
     isFocused: boolean  = false;
     isActive: boolean   = false;
+    isDropdown: boolean   = true;
 
     node: MenuItemNode
 
@@ -50,7 +60,7 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
 
     get style(): Styles { return {} }
 
-    get hasChildren() {return this.$slots.submenu || this.node.hasChildren()}
+    get hasChildren() {return this.$slots.submenu != null || this.node.hasChildren()}
 
     get href() {
         if ( this.hasChildren ) {
@@ -59,13 +69,13 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
         if ( this.url ) {
             return this.url
         }
+        if ( this?.attributes?.href ) {
+            return this.attributes.href
+        }
         if ( this.$attrs.href ) {
             return this.$attrs.href
         }
-    }
 
-    beforeMount() {
-        this.$watch('active', value => value ? this.node.activate() : this.node.deactivate(), { immediate: true })
     }
 
     created() {
@@ -80,9 +90,14 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
         });
     }
 
+    beforeMount() {
+        this.$watch('active', value => value ? this.node.activate() : this.node.deactivate(), { immediate: true })
+    }
+
     handleClick(event: MouseEvent) {
         console.log('MenuItem.handleClick', { event, me: this });
-        event.stopPropagation();
+        event.preventDefault();
+        // event.stopPropagation();
         if ( this.hasChildren ) {
             event.preventDefault();
             this.node.toggle();
@@ -93,30 +108,44 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
 
     handleMouseLeave(event: MouseEvent) {this.node.hovered() && this.node.unhover(); }
 
-    // handleClickOutside(event: MouseEvent) {if ( this.hasSubmenu && this.node.expanded() && this.menu.dropdown ) {            this.node.collapse();        }    }
-
-
     render(h) {
-        const { classes, style, tag: Tag } = this
-        const renderMenuIcon               = this.$py.get<RenderMenuIcon>('menu.icon.render');
+        const { classes, style, tag: Tag, attributes } = this
+        const renderMenuIcon                           = this.$py.get<RenderMenuIcon>('menu.icon.render');
+        const contentExtras                            = { attrs: { ...attributes } }
         return (
-            <Tag class={classes} style={style} ref="root" onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>
-                <a class={this.b('content')} href={this.href} onClick={this.handleClick as any}>
+            <Tag ref="root"
+                 class={classes}
+                 style={style}
+                 onMouseOver={this.handleMouseOver}
+                 onMouseLeave={this.handleMouseLeave}
+                 data-slug={this.slug}
+            >
+                <a ref="content"
+                   {...contentExtras}
+                   class={this.b('content')}
+                   href={this.href}
+                   onClick={this.handleClick as any}
+                >
                     <span class={this.b('icon')} ref="icon">
-                        <slot name="icon">
-                            {this.icon ? renderMenuIcon(h, this.icon) : null}
-                        </slot>
+                        {slot(this, 'icon', when(this.icon, renderMenuIcon(h, this.icon)))}
                     </span>
                     <span class={this.b('title')} ref="title">
-                        {this.$slots.default}
+                        {slot(this, 'default', this.title)}
                     </span>
+                    <span class={this.b('spacing')} ref="spacing"/>
                     <span class={this.b('arrow')} ref="arrow">
-                        <slot name="arrow">
-                            <i/>
-                        </slot>
+                        {slot(this, 'arrow', <i/>)}
                     </span>
                 </a>
-                {this.$slots.submenu ? <py-menu-submenu>{this.$slots.submenu}</py-menu-submenu> : null}
+
+                {when(this.$slots.submenu, (
+                    <py-expand-transition enabled={this.isDropdown} show={this.isExpanded}>
+                        <py-menu-submenu v-show={this.isExpanded}>
+                            {this.$slots.submenu}
+                        </py-menu-submenu>
+                    </py-expand-transition>
+                ))}
+                {/*{this.$slots.submenu ? <py-menu-submenu>{this.$slots.submenu}</py-menu-submenu> : null}*/}
             </Tag>
         )
     }

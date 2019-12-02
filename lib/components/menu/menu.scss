@@ -28,12 +28,12 @@ $menu-item-padding-y      : 9px !default; // top / bottom
 $menu-submenu-padding-y   : 0px !default;
 
 
-
 @mixin menu-indent-levels($depth, $current: 1) {
     .#{$menu-submenu-prefix} {
         .#{$menu-item-prefix}__content {
             padding-left : $menu-item-indent * $current;
         }
+
         &.has-no-icons {
             .#{$menu-item-prefix}__content {
                 padding-left : ($menu-item-indent * $current) + 5px;
@@ -59,6 +59,7 @@ $menu-submenu-padding-y   : 0px !default;
 .#{$menu-prefix}--collapsed {
     > .#{$menu-item-prefix} {
         min-height : 40px;
+
         > .#{$menu-item-prefix}__content {
             justify-content : center;
             padding-right   : 5px;
@@ -87,10 +88,19 @@ $menu-submenu-padding-y   : 0px !default;
 
 .#{$menu-prefix}--vertical {
 
+    .#{$menu-item-prefix}__spacing {
+        display : block;
+    }
+
+    .#{$menu-item-prefix}__title {
+        margin-right : 0;
+        flex-grow    : 0;
+    }
 }
+
 .#{$menu-prefix}--horizontal {
     flex-direction : row;
-    width      : inherit;
+    width          : inherit;
     height         : inherit;
 
     > .#{$menu-item-prefix} {
@@ -160,6 +170,17 @@ $menu-submenu-padding-y   : 0px !default;
 
     $self          : &;
 
+    & .expand-enter-active,
+    & .expand-leave-active {
+        transition : height 0.35s ease;
+        overflow   : hidden;
+    }
+
+    & .expand-enter,
+    & .expand-leave-to {
+        height : 0 !important;
+    }
+
     // states
     &.is-hidden {
         display : none;
@@ -174,11 +195,6 @@ $menu-submenu-padding-y   : 0px !default;
             > #{$self}__arrow i { transform : rotate(90deg); }
 
         }
-
-        > .#{$menu-submenu-prefix} {
-            display : flex;
-        }
-
     }
 
     &.is-selected {
@@ -194,6 +210,7 @@ $menu-submenu-padding-y   : 0px !default;
     }
 }
 
+// > __content
 .#{$menu-item-prefix}__content {
     //@include e(content) {
     position        : relative;
@@ -204,17 +221,21 @@ $menu-submenu-padding-y   : 0px !default;
     text-decoration : none;
     border-left     : 5px solid transparent;;
     outline         : 0;
+    color           : inherit;
 
     &:hover, &:focus, &:active {
         text-decoration : none;
         outline         : 0;
+        color           : inherit;
     }
 
     &:hover {
         text-decoration : none;
+        color           : inherit;
     }
 }
 
+// > __content > 1: __icon
 .#{$menu-item-prefix}__icon {
     font-size       : $menu-item-icon-font-size;
     display         : flex;
@@ -225,6 +246,7 @@ $menu-submenu-padding-y   : 0px !default;
     text-align      : center;
 }
 
+// > __content > 2: __title
 .#{$menu-item-prefix}__title {
     font-size    : $menu-item-font-size;
     font-weight  : $menu-item-font-weight;
@@ -237,6 +259,13 @@ $menu-submenu-padding-y   : 0px !default;
     flex-grow    : 1;
 }
 
+// > __content > 3: __spacing
+.#{$menu-item-prefix}__spacing {
+    flex-grow : 1;
+    display   : none; // --vertical
+}
+
+// > __content > 4: __icon
 .#{$menu-item-prefix}__arrow {
     font-size       : 9px;
     line-height     : 0;
@@ -301,7 +330,8 @@ $menu-submenu-padding-y   : 0px !default;
 
 
 .#{$menu-submenu-prefix} {
-    display        : none;
+    //display        : none; is controlled by vue
+    display        : flex;
     float          : none;
     flex-direction : column;
     flex-grow      : 1;
@@ -312,7 +342,7 @@ $menu-submenu-padding-y   : 0px !default;
 
     &.has-no-icons {
         > .#{$menu-item-prefix} > .#{$menu-item-prefix}__content .#{$menu-item-prefix}__icon {
-            display: none;
+            display : none;
         }
     }
 }

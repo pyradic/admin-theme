@@ -1,15 +1,14 @@
-import { component, inject, prop, Styles } from '@pyro/platform';
+import { component, inject, prop, Styles, TsxComponent } from '@pyro/platform';
 import 'vue-tsx-support/enable-check'
-import * as tsx from 'vue-tsx-support'
 import classNames from 'classnames'
-import Menu from './Menu.vue';
+import { Menu } from './Menu';
 import { MenuItem } from './MenuItem';
 
 @component({})
-export class MenuSubmenu extends tsx.Component<{}> {
+export class MenuSubmenu extends TsxComponent {
     @prop.classPrefix('menu-submenu') classPrefix: string
-    @inject() menu: typeof Menu.prototype
-    @inject() parent: typeof Menu.prototype | MenuItem
+    @inject() menu: Menu
+    @inject() parent: Menu | MenuItem
 
     get classes() {
         return classNames({

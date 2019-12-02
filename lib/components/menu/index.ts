@@ -1,7 +1,7 @@
 import './menu.scss'
 // @ts-ignore
-import  MenuDemo  from './MenuDemo';
-import  Menu  from './Menu.vue';
+import MenuDemo from './MenuDemo';
+import { Menu } from './Menu';
 import { MenuItem } from './MenuItem';
 import { MenuSubmenu } from './MenuSubmenu';
 import { MenuNode } from './MenuNode';

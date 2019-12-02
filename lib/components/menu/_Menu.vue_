@@ -1,0 +1,75 @@
+<script lang="ts">
+import { Component, component, prop, Styles, styles, StylesProp } from '@pyro/platform';
+import 'vue-tsx-support/enable-check'
+import classNames from 'classnames'
+import { MenuNode } from './MenuNode';
+import { MenuItem } from './MenuItem';
+import './menu.scss'
+import { CreateElement } from 'vue';
+
+
+@component({
+    provide() {
+        return {
+            menu  : this,
+            parent: this
+        }
+    }
+})
+export default class Menu extends Component {
+    @prop.classPrefix('menu') classPrefix: string
+    @prop.string('div') tag;
+    @prop.string('default') theme;
+    @prop.boolean(false) collapsed;
+    @prop.boolean(false) horizontal;
+    @prop.boolean(false) inline;
+    @prop.boolean(false) dropdown;
+    @styles<Menu>(({self,theme,util}) => ({
+        collapsed: {
+            background: 'blue'
+        }
+    })) styles: StylesProp
+
+    node: MenuNode
+    items: MenuItem[]
+
+    get classes() {
+        return classNames({
+            [ this.classPrefix ]                 : true,
+            [ `${this.classPrefix}--collapsed` ] : this.collapsed,
+            [ `${this.classPrefix}--horizontal` ]: this.horizontal,
+            [ `${this.classPrefix}--vertical` ]  : !this.horizontal,
+            [ `${this.classPrefix}--inline` ]    : this.inline,
+            [ `${this.classPrefix}--dropdown` ]  : this.dropdown
+        })
+    }
+
+    get style(): Styles {return {} }
+
+    created() {
+        this.node  = new MenuNode(this)
+        this.items = []
+    }
+
+    mounted(){
+        this.$log('styles', this.styles)
+    }
+
+    registerItem(item: MenuItem) {
+        let node = this.node.createMenuItemNode(item);
+        item.parent.node.addChild(node);
+        return node;
+    }
+
+    render(h: CreateElement) {
+        return h(
+            this.tag,
+            {
+                class: this.classes,
+                style: this.style
+            },
+            this.$slots.default
+        )
+    }
+}
+</script>
