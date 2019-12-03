@@ -1,17 +1,18 @@
-import { MenuItemNode } from './MenuItemNode';
-import { Grows }        from './interfaces';
+import Popper from 'popper.js';
 
-export function mapNodeStateObservableToTarget<NODE extends MenuItemNode,
-    TARGET extends any>(node: NODE, component: TARGET, map: Partial<Record<keyof NODE['_state'], keyof TARGET>>) {
-    return node.observe(change => {
-        let name = change.name.toString();
-        if ( name in map ) {
-            component[ map[ name ] ] = change.newValue;
-        }
-    });
-}
-export const grows: Grows = {
-    'auto':['auto','auto'],
+export type PopDir =
+    | 'up-then-left'
+    | 'up-then-right'
+    | 'down-then-left'
+    | 'down-then-right'
+    | 'left-then-up'
+    | 'left-then-down'
+    | 'right-then-up'
+    | 'right-then-down'
+
+export type PopDirs = Record<PopDir, [ Popper.Position, Popper.Placement ]>
+
+export const placements: PopDirs = {
     'up'             : [ 'top', 'auto' ],
     'up-then-left'   : [ 'top', 'left-end' ],
     'up-then-right'  : [ 'top', 'right-end' ],

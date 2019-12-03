@@ -11,18 +11,20 @@
                 >
                     <!--                    <slot name="header-toolbar"></slot>-->
 
-                    <py-toolbar-title v-if="!sidebar.collapsed" :width="sidebar.normalWidth" title="CRVS" link="/admin" />
-                    <py-toolbar-toggle />
+                    <py-toolbar-title v-if="!sidebar.collapsed" :width="sidebar.normalWidth" title="CRVS" link="/admin"/>
+                    <py-toolbar-toggle/>
                     <py-toolbar-item spacer/>
                     <py-toolbar-item>
                         <py-menu-demo
+                                ref="headerMenuDemo"
+                                :max-depth="20"
                                 v-if="menus.header && menus.header.children "
                                 :items="menus.header.children"
                                 :options="{
-                                      dropdown:true,
-                                      horizontal:true,
-                                      slug:'header'
-                                  }"/>
+                                         dropdown:true,
+                                         horizontal:true,
+                                         slug:'header'
+                                     }"/>
                     </py-toolbar-item>
                     <py-toolbar-item spacer/>
 
@@ -68,15 +70,16 @@
         <div class="py-layout__main">
             <py-layout-sidebar>
                 <py-menu-demo
+                        ref="sidebarMenuDemo"
                         v-if="menus.sidebar"
                         :items="menus.sidebar"
                         :options="{
-                              horizontal:false,
-                              collapsed: sidebar.collapsed,
-                              slug:'sidebar'
-                          }"
+                                 horizontal:false,
+                                 collapsed: sidebar.collapsed,
+                                 slug:'sidebar'
+                             }"
                 />
-            </py-layout-sidebar>]>
+            </py-layout-sidebar>
             <!--            <py-layout-sidebar><slot name="sidebar" /></py-layout-sidebar>-->
 
             <div class="py-layout__content">
@@ -88,7 +91,8 @@
                     </div>
                 </template>
 
-                <div class="py-layout__inner">
+                <py-test-view v-if="showTestView" />
+                <div class="py-layout__inner" v-else>
                     <slot/>
                 </div>
             </div>
@@ -101,9 +105,9 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { component, prop, Styles } from '@pyro/platform';
+import { component, prop, strEnsureRight, Styles } from '@pyro/platform';
 import { styleVars } from '../../styling/export';
-import { strEnsureRight } from '@pyro/platform/lib/utils/general';
+import { MenuDemo } from '../menu';
 
 const noDelimiter = { replace: function () {} };
 @component({
@@ -116,6 +120,7 @@ const noDelimiter = { replace: function () {} };
 })
 export default class Layout extends Vue {
     @prop.classPrefix('layout') classPrefix: string
+    $refs: { headerMenuDemo: MenuDemo, sidebarMenuDemo: MenuDemo }
 
     get classes() {
         return {
@@ -125,6 +130,9 @@ export default class Layout extends Vue {
 
     get style(): Styles {
         return {}
+    }
+    get showTestView(){
+        return location.search === '?test'
     }
 
     sidebar   = {
@@ -143,7 +151,14 @@ export default class Layout extends Vue {
         this.sidebar.collapsed = this.$py.cookies.has('layout.sidebar.collapsed');
     }
 
-    get menus(){
+    mounted() {
+        this.$log('mounted', 'sidebar menu', this?.$refs?.sidebarMenuDemo?.menu)
+
+        this.$py.menus.setupDefaultMenuBehaviour(this.$refs.sidebarMenuDemo.menu)
+        this.$py.menus.setupDefaultMenuBehaviour(this.$refs.headerMenuDemo.menu)
+    }
+
+    get menus() {
         return {
             sidebar: Object.values(this.$py.data.cp.structure),
             header : this.$py.data?.menus?.admin_header,

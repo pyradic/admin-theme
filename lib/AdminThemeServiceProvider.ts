@@ -13,7 +13,7 @@ export class AdminThemeServiceProvider extends ServiceProvider {
         this.app.singleton('menus',MenuManager);
 
         this.app.addBindingGetter('menus');
-        this.app.factory('menu.icon.render', (h: CreateElement, icon: string, data: VNodeData = {}) => {
+        this.app.factory('menus.icon.renderer', (h: CreateElement, icon: string, data: VNodeData = {}) => {
             if ( !icon ) {return null}
             data.class = data.class || {};
             if ( !icon.startsWith('fa ') ) {

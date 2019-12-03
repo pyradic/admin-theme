@@ -57,3 +57,25 @@ export function isMenuNode(value): value is IMenuNode {
 }
 
 export type RenderMenuIcon = (h: CreateElement, icon: string, data?: VNodeData) => VNode
+
+import Popper from 'popper.js';
+
+export type Grow =
+    | 'auto'
+    | 'up'
+    | 'up-then-left'
+    | 'up-then-right'
+    | 'down'
+    | 'down-then-left'
+    | 'down-then-right'
+    | 'left'
+    | 'left-then-up'
+    | 'left-then-down'
+    | 'right'
+    | 'right-then-up'
+    | 'right-then-down'
+
+export type GrowPosition = Popper.Position | 'auto'
+export type GrowPlacement = Popper.Placement
+
+export type Grows = Record<Grow, [ GrowPosition, GrowPlacement ]>

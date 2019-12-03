@@ -1,39 +1,70 @@
-import { component, inject, prop, slot, styles, Styles, StylesProp, TsxComponent, when } from '@pyro/platform';
-import 'vue-tsx-support/enable-check'
-import classNames from 'classnames'
-import { Menu } from './Menu';
-import { MenuItemNode } from './MenuItemNode';
-import { mapNodeStateObservableToTarget } from './utils';
-import { RenderMenuIcon } from './interfaces';
+import { component, copy, inject, inject$, prop, slot, styles, StylesProp, TsxComponent, when } from '@pyro/platform';
+import 'vue-tsx-support/enable-check';
+import classNames                                                                               from 'classnames';
+import { Menu }                                                                                 from './Menu';
+import { MenuItemNode }                                                                         from './MenuItemNode';
+import { grows, mapNodeStateObservableToTarget }                                                from './utils';
+import { RenderMenuIcon }                                                                       from './interfaces';
 
+import { mixin as clickaway }    from 'vue-clickaway';
+import Popper, { PopperOptions } from 'popper.js';
+import { MenuSubmenu }           from './MenuSubmenu';
+
+export interface VuePopperProps {
+    'disabled'?: boolean // 	false
+    'delay-on-mouse-over'?: number // 	10	delay in ms before showing popper during a mouse over
+    'delay-on-mouse-out'?: number // 	10	delay in ms before hiding popper during a mouse out
+    'append-to-body'?: boolean // 	false
+    'visible-arrow'?: boolean // 	true
+    'force-show'?: boolean // 	false
+    'trigger'?: string // 	hover	optional value:
+    'content'?: string // 	null
+    'enter-active-class'?: string // 	null
+    'leave-active-class'?: string // 	null
+    'boundaries-selector'?: string // 	null
+    'transition'?: string // 	empty
+    'options'?: PopperOptions // 	{ placement: 'bottom', gpuacceleration: false }	popper.js options
+    'data-value'?: any // 	null	data of popper
+    'stop-propagation'?: boolean // 	false
+    'prevent-default'?: boolean // 	false
+}
 
 @component({
     provide() {
         return {
-            parent: this
-        }
+            parent: this,
+        };
     },
-    block: '-menu-item'
+    components: {
+        // 'popper': Popper
+    },
+    mixins    : [ clickaway ],
+    block     : '-menu-item',
 })
 export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
-    $refs: { root: HTMLElement, content: HTMLAnchorElement, icon: HTMLSpanElement, title: HTMLSpanElement, spacing: HTMLSpanElement, arrow: HTMLSpanElement }
+    $refs: {
+        root: HTMLElement, content: HTMLAnchorElement, icon: HTMLSpanElement, title: HTMLSpanElement, spacing: HTMLSpanElement, arrow: HTMLSpanElement,
+        submenu: MenuSubmenu
+    };
+    @inject$('menus.icon.renderer') renderMenuIcon;
+    @inject() menu: Menu;
+    @inject() parent: Menu | MenuItem;
 
-    @inject() menu: Menu
-    @inject() parent: Menu | MenuItem
-
-    @prop.classPrefix('menu-item') classPrefix: string
+    @prop.classPrefix('menu-item') classPrefix: string;
     @prop.string('div') tag;
-    @prop.string() title: string
-    @prop.string() slug: string
-    @prop.string() url: string
+    @prop.string() title: string;
+    @prop.string() slug: string;
+    @prop.string() url: string;
     @prop.string() icon: string;
     @prop.boolean() active: boolean;
     @prop.object() attributes: any;
 
     @styles<MenuItem>(({ util, theme, self }) => ({
-        sdf: {}
-    })) styles: StylesProp
+        sdf: {},
+    })) styles: StylesProp;
 
+    node: MenuItemNode;
+    popper: Popper;
 
     isHidden: boolean   = false;
     isHovered: boolean  = false;
@@ -41,9 +72,25 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
     isSelected: boolean = false;
     isFocused: boolean  = false;
     isActive: boolean   = false;
-    isDropdown: boolean   = true;
 
-    node: MenuItemNode
+    popperOptions: PopperOptions = {
+        placement      : 'bottom',
+        modifiers      : {
+            offset: {
+                offset : 0,
+                enabled: true,
+            },
+        },
+        gpuAcceleration: false,
+    };
+
+    get isDropdown(): boolean {return this.menu.dropdown;}
+
+    get isSlide(): boolean {return this.menu.slide;}
+
+    get isHorizontal(): boolean {return this.menu.horizontal;}
+
+    get hasChildren() {return this.$slots.submenu != null || this.node.hasChildren();}
 
     get classes() {
         return classNames({
@@ -54,49 +101,42 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
             'is-selected'       : this.isSelected,
             'is-focused'        : this.isFocused,
             'is-active'         : this.isActive,
-            'has-children'      : this.hasChildren
-        })
+            'has-children'      : this.hasChildren,
+        });
     }
 
-    get style(): Styles { return {} }
-
-    get hasChildren() {return this.$slots.submenu != null || this.node.hasChildren()}
-
     get href() {
-        if ( this.hasChildren ) {
-            return 'javascript:void(0);'
+        switch(true){//formatter:off
+            case this.hasChildren: return 'javascript:void(0);';
+            case !!this.url: return this.url // case this.url != null: return this.url
+            case this?.attributes?.href: return this.attributes.href
+            case !!this.$attrs.href: return this.$attrs.href
+            default:
+                return null;//formatter:on
         }
-        if ( this.url ) {
-            return this.url
-        }
-        if ( this?.attributes?.href ) {
-            return this.attributes.href
-        }
-        if ( this.$attrs.href ) {
-            return this.$attrs.href
-        }
-
     }
 
     created() {
-        this.node = this.menu.registerItem(this)
+        this.node = this.menu.registerItem(this);
         mapNodeStateObservableToTarget(this.node, this, {
             hidden  : 'isHidden',
             focused : 'isFocused',
             expanded: 'isExpanded',
             hovered : 'isHovered',
             active  : 'isActive',
-            selected: 'isSelected'
+            selected: 'isSelected',
         });
     }
 
     beforeMount() {
-        this.$watch('active', value => value ? this.node.activate() : this.node.deactivate(), { immediate: true })
+        this.$watch('active', value => value ? this.node.activate() : this.node.deactivate(), { immediate: true });
+        this.$watch('isExpanded', value => value ? this.handleExpand() : this.handleCollapse());
     }
 
     handleClick(event: MouseEvent) {
         console.log('MenuItem.handleClick', { event, me: this });
-        event.preventDefault();
+        this.$emit('click', event);
+        // event.preventDefault();
         // event.stopPropagation();
         if ( this.hasChildren ) {
             event.preventDefault();
@@ -108,45 +148,134 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
 
     handleMouseLeave(event: MouseEvent) {this.node.hovered() && this.node.unhover(); }
 
+    handleClickAway(event) {
+        if ( this.isDropdown && this.node.expanded() ) {
+            this.$log('clickaway', { event });
+            this.node.collapse();
+        }
+    }
+
+    handleExpand() {
+        if ( this.usePopper ) {
+            this.createPopper();
+        }
+    }
+
+    handleCollapse() {
+        if ( this.usePopper ) {
+            this.destroyPopper();
+        }
+    }
+
+    get usePopper() {
+        return this.isDropdown;
+    }
+
+    getParentPoppers() {
+        let parent            = this.parent;
+        let poppers: Popper[] = [];
+        while ( parent ) {
+            if ( parent && parent[ 'popper' ] !== undefined ) {
+                poppers.push(parent[ 'popper' ]);
+            }
+            parent = parent[ 'popper' ];
+        }
+        return poppers;
+    }
+
+    popperPlacement(): Popper.Placement {
+        let horizontal: 'left' | 'right' = 'right';
+        let vertical: 'start' | 'end'    = 'start';
+        const { x, y }                   = this.$el.getBoundingClientRect() as DOMRect;
+        let verticalFraction             = (window.innerHeight / 4);
+        let horizontalFraction           = (window.innerWidth / 4);
+        let points                       = {
+            horizontal: { a: horizontalFraction, b: horizontalFraction * 3 },
+            vertical  : { a: verticalFraction, b: verticalFraction * 3 },
+        };
+
+        if ( y < points.vertical.a ) {
+            vertical = 'start';
+        } else if ( y > points.vertical.b ) {
+            vertical = 'end';
+        }
+        if ( x < points.horizontal.a ) {
+            horizontal = 'right';
+        } else if ( x > points.horizontal.b ) {
+            horizontal = 'left';
+        }
+
+        return `${horizontal}-${vertical}` as any;
+    }
+
+
+    createPopper() {
+        let options                 = copy(this.popperOptions);
+        let grow                    = this.menu.grow;
+        let [ position, placement ] = grows[ grow ];
+
+        if ( this.getParentPoppers().length === 0 ) {
+            options.placement = position;
+        } else {
+            if ( placement === 'auto' ) {
+                placement = this.popperPlacement();
+            }
+            options.placement = placement;
+        }
+        this.popper           = new Popper(this.$refs.content, this.$refs.submenu.$el, options);
+        this.node.data.popper = this.popper;
+    }
+
+    destroyPopper() {
+        if ( this.popper ) {
+            this.popper.destroy();
+        }
+    }
+
     render(h) {
-        const { classes, style, tag: Tag, attributes } = this
-        const renderMenuIcon                           = this.$py.get<RenderMenuIcon>('menu.icon.render');
-        const contentExtras                            = { attrs: { ...attributes } }
+        const { classes, tag: Tag, attributes, usePopper, popperOptions } = this;
+        const renderMenuIcon                                              = this.$py.get<RenderMenuIcon>('menus.icon.renderer');
+        const contentExtras                                               = { attrs: { ...attributes } };
+        const content                                                     = (
+            <a ref="content"
+               {...contentExtras}
+               slot={usePopper ? 'reference' : null}
+               class={this.b('content')}
+               href={this.href}
+               onclick={this.handleClick as any}
+            >
+                <span class={this.b('icon')} ref="icon">
+                    {slot(this, 'icon', when(this.icon, this.renderMenuIcon(h, this.icon)))}
+                </span>
+                <span class={this.b('title')} ref="title">
+                    {slot(this, 'default', this.title)}
+                </span>
+                <span class={this.b('spacing')} ref="spacing"/>
+                <span class={this.b('arrow')} ref="arrow">
+                    {slot(this, 'arrow', <i/>)}
+                </span>
+            </a>
+        );
+        const submenu                                                     = (
+            <py-expand-transition enabled={this.menu.slide} show={this.isExpanded}>
+                <py-menu-submenu ref="submenu" class={classNames({})} v-show={this.isExpanded}>
+                    {this.$slots.submenu}
+                </py-menu-submenu>
+            </py-expand-transition>
+        );
+
         return (
             <Tag ref="root"
                  class={classes}
-                 style={style}
                  onMouseOver={this.handleMouseOver}
                  onMouseLeave={this.handleMouseLeave}
                  data-slug={this.slug}
+                 vOnClickaway={this.handleClickAway}
             >
-                <a ref="content"
-                   {...contentExtras}
-                   class={this.b('content')}
-                   href={this.href}
-                   onClick={this.handleClick as any}
-                >
-                    <span class={this.b('icon')} ref="icon">
-                        {slot(this, 'icon', when(this.icon, renderMenuIcon(h, this.icon)))}
-                    </span>
-                    <span class={this.b('title')} ref="title">
-                        {slot(this, 'default', this.title)}
-                    </span>
-                    <span class={this.b('spacing')} ref="spacing"/>
-                    <span class={this.b('arrow')} ref="arrow">
-                        {slot(this, 'arrow', <i/>)}
-                    </span>
-                </a>
-
-                {when(this.$slots.submenu, (
-                    <py-expand-transition enabled={this.isDropdown} show={this.isExpanded}>
-                        <py-menu-submenu v-show={this.isExpanded}>
-                            {this.$slots.submenu}
-                        </py-menu-submenu>
-                    </py-expand-transition>
-                ))}
-                {/*{this.$slots.submenu ? <py-menu-submenu>{this.$slots.submenu}</py-menu-submenu> : null}*/}
+                {content}
+                {when(this.$slots.submenu, submenu)}
             </Tag>
-        )
+        );
     }
+
 }

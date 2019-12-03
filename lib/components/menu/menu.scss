@@ -18,10 +18,12 @@ $dropdown-border-width    : 1px;
 $dropdown-border-color    : #333333;
 
 // Dimensions
+$menu-font-size           : $font-size-root !default;
+$menu-line-height         : 20px !default;
 $menu-item-text-shadow    : 1px 1px 0px #000000 !default;
-$menu-item-font-size      : $font-size-root !default;
+$menu-item-font-size      : $menu-font-size !default;
 $menu-item-font-weight    : 400 !default;
-$menu-item-icon-font-size : $font-size-root !default;
+$menu-item-icon-font-size : $menu-font-size !default;
 $menu-item-icon-width     : 25px !default;
 $menu-item-indent         : $menu-item-icon-width + 10px !default;
 $menu-item-padding-y      : 9px !default; // top / bottom
@@ -54,6 +56,8 @@ $menu-submenu-padding-y   : 0px !default;
     margin         : 0;
     padding        : 0;
     list-style     : none;
+    font-size      : $menu-font-size;
+    line-height    : $menu-line-height;
 }
 
 .#{$menu-prefix}--collapsed {
@@ -155,8 +159,34 @@ $menu-submenu-padding-y   : 0px !default;
         }
     }
 
+    > .#{$menu-item-prefix} {
+        .#{$menu-submenu-prefix} {
+            .#{$menu-item-prefix} {
+                &__content {
+                    padding : 4px 20px 4px 5px;
+                }
+            }
+        }
+    }
+
 }
 
+.#{$menu-prefix}--slide {
+    .#{$menu-item-prefix} {
+        & .expand-enter-active,
+        & .expand-leave-active {
+            transition : height 0.35s ease;
+            overflow   : hidden;
+        }
+
+        & .expand-enter,
+        & .expand-leave-to {
+            height : 0 !important;
+        }
+
+    }
+
+}
 
 .#{$menu-item-prefix} {
 
@@ -169,17 +199,6 @@ $menu-submenu-padding-y   : 0px !default;
     padding        : 0;
 
     $self          : &;
-
-    & .expand-enter-active,
-    & .expand-leave-active {
-        transition : height 0.35s ease;
-        overflow   : hidden;
-    }
-
-    & .expand-enter,
-    & .expand-leave-to {
-        height : 0 !important;
-    }
 
     // states
     &.is-hidden {

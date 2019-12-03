@@ -34,6 +34,9 @@
         "sass-ignis": "^1.0.3",
         "typestyle": "^2.0.4",
         "vue-bem-cn": "^1.1.1",
+        "vue-popperjs": "^2.2.0",
+        "popper.js": "^1.16.0",
+        "@types/popper.js": "^1.11.0",
         "vue-clickaway": "^2.2.2",
         "vuescroll": "^4.14.4"
     },

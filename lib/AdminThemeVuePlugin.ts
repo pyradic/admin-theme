@@ -24,7 +24,7 @@ export class AdminThemeVuePlugin {
 
         _Vue.use(bem, {
             delimiters: {
-                ns: app().config.prefix,
+                ns: app.config.prefix,
                 el: '__',
                 mod: '--'
             },

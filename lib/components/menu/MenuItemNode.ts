@@ -1,15 +1,18 @@
-import { Node as BaseNode } from '@radic/tree';
-import { MenuNode } from './MenuNode';
-import { MenuItemState } from './interfaces';
-import { MenuItemNodeArray } from './MenuItemNodeArray';
+import { Node as BaseNode }                                                   from '@radic/tree';
+import { MenuNode }                                                           from './MenuNode';
+import { MenuItemState }                                                      from './interfaces';
+import { MenuItemNodeArray }                                                  from './MenuItemNodeArray';
 import { observable, observe, ObserverChangedFunction, ObserverSubscription } from '@radic/observable';
-import { MenuItem } from './MenuItem';
+import { MenuItem }                                                           from './MenuItem';
+import { Config }                                                             from '@pyro/platform';
 
+
+export interface MenuItemNodeData extends Record<string, any>{}
 export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
-    collectionClass = MenuItemNodeArray;
+    collectionClass                         = MenuItemNodeArray;
     _state: MenuItemState;
-    attributes: any = {};
-    data: any       = {};
+    attributes                              = Config.proxied({});
+    data: Config<MenuItemNodeData> & MenuItemNodeData = Config.proxied({});
 
 
     constructor(public readonly item: MenuItem, public readonly _menu: MenuNode) {
@@ -84,7 +87,7 @@ export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
 
     toggleFocus(): this {return this.focused() ? this.blur() : this.focus();}
 
-    setFocused(value: boolean): this {return value ? this.focus() : this.blur() }
+    setFocused(value: boolean): this {return value ? this.focus() : this.blur(); }
 
 
     activate(): this {return this.set('active', true, 'activate');}
@@ -95,7 +98,7 @@ export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
 
     toggleActive(): this {return this.active() ? this.deactivate() : this.activate();}
 
-    setActive(value: boolean): this {return value ? this.activate() : this.deactivate() }
+    setActive(value: boolean): this {return value ? this.activate() : this.deactivate(); }
 
 
     show(): this {return this.set('hidden', false, 'show');}
@@ -108,7 +111,7 @@ export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
 
     toggleHidden(): this {return this.hidden() ? this.show() : this.hide();}
 
-    setHidden(value: boolean): this {return value ? this.hide() : this.show() }
+    setHidden(value: boolean): this {return value ? this.hide() : this.show(); }
 
 
     expand(): this {return this.set('expanded', true, 'expand');}
@@ -123,7 +126,7 @@ export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
 
     toggleCollapse(): this {return this.collapsed() ? this.expand() : this.collapse();}
 
-    setExpanded(value: boolean): this {return value ? this.expand() : this.collapse() }
+    setExpanded(value: boolean): this {return value ? this.expand() : this.collapse(); }
 
 
     select(): this {return this.set('selected', true, 'select');}
@@ -134,7 +137,7 @@ export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
 
     toggleSelect(): this {return this.selected() ? this.deselect() : this.select();}
 
-    setSelected(value: boolean): this {return value ? this.select() : this.deselect() }
+    setSelected(value: boolean): this {return value ? this.select() : this.deselect(); }
 
 
     hover(): this {return this.set('hovered', true, 'hover');}
@@ -145,7 +148,7 @@ export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
 
     toggleHover(): this {return this.hovered() ? this.unhover() : this.hover();}
 
-    setHover(value: boolean): this {return value ? this.hover() : this.unhover() }
+    setHover(value: boolean): this {return value ? this.hover() : this.unhover(); }
 
     slug(): string | null
     slug(slug: string): this

@@ -5,8 +5,8 @@ import { RootNode } from '@radic/tree';
 import { MenuConfig, MenuItemState } from './interfaces';
 import { MenuItem } from './MenuItem';
 
-import { Menu } from './Menu';
-import { bindEventEmitter } from '@pyro/platform';
+import { Menu }                     from './Menu';
+import { bindEventEmitter, Config } from '@pyro/platform';
 
 export interface MenuNode extends EventEmitter2 {
     constructor: typeof MenuNode
@@ -72,6 +72,7 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
         active : false,
     };
 
+    data            = Config.proxied({});
     nodeClass       = MenuItemNode;
     collectionClass = MenuItemNodeArray;
     events: EventEmitter2;
