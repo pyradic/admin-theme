@@ -23,7 +23,7 @@
                                 :options="{
                                          dropdown:true,
                                          horizontal:true,
-                                         slug:'header'
+                                         slug:'header',
                                      }"/>
                     </py-toolbar-item>
                     <py-toolbar-item spacer/>
@@ -173,6 +173,7 @@ export default class Layout extends Vue {
         } else {
             this.$py.cookies.unset('layout.sidebar.collapsed')
         }
+        this.$py.events.emit('layout:sidebar:toggle')
     }
 }
 </script>

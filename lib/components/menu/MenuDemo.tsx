@@ -1,7 +1,8 @@
-import { component, Platform, prop, ref, TsxComponent } from '@pyro/platform';
-import { CreateElement } from 'vue';
+import { component, Platform, prop, ref, streams, TsxComponent } from '@pyro/platform';
+import { CreateElement }                                         from 'vue';
 import { Menu } from './Menu';
 import StructureNavigtion = Platform.StructureNavigtion;
+import MenusLinks = streams.menus_links.MenusLinks;
 
 export interface MenuProps {
     tag?: string;
@@ -19,6 +20,7 @@ export default class MenuDemo extends TsxComponent {
     @prop.array.required() items: StructureNavigtion[]
     @prop.object.required() options: MenuProps
     @prop.number(2) maxDepth: number
+    @prop.string() active: string
     @ref() menu: Menu;
 
     render(h) {
@@ -33,9 +35,9 @@ export default class MenuDemo extends TsxComponent {
         // )
     }
 
-    renderItem(h: CreateElement, item: StructureNavigtion, depth: number = 1) {
-        const { title, active, attributes, children, icon, key, url } = item
-        this.$log('renderItem:' + depth, title, key, item);
+    renderItem(h: CreateElement, item: StructureNavigtion|MenusLinks, depth: number = 1) {
+        const { title, active, attributes, children, icon, key, url, type } = item
+        // this.$log('renderItem:' + depth, title, key, item);
         let childNodes: any[] = [
             title
         ]
@@ -44,7 +46,7 @@ export default class MenuDemo extends TsxComponent {
         }
         return h('py-menu-item', {
 
-            props: { attributes, title, active, children, icon, slug: key, url },
+            props: { attributes, title, active, children, icon, slug: key, url,type },
             attrs: {}
         }, childNodes);
 

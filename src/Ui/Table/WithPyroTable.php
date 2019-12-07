@@ -14,7 +14,7 @@ trait WithPyroTable
         parent::__construct($table);
         $this->on('ready', function (TableBuilder $builder) {
             $builder->setOption('table_view', 'theme::table/pyro/table');
-            $builder->setOption('class', $builder->getOption('class', ''));
+            $builder->setOption('class', $builder->getOption('class', 'table'));
 
             if ($builder->getOption('filters_dropdown')) {
                 $builder->addView('search', [

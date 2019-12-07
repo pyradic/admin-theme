@@ -1,14 +1,17 @@
-import { component, copy, inject, inject$, prop, slot, styles, StylesProp, TsxComponent, when } from '@pyro/platform';
+import { component, copy, inject, inject$, prop, slot, TsxComponent, when } from '@pyro/platform';
 import 'vue-tsx-support/enable-check';
-import classNames                                                                               from 'classnames';
-import { Menu }                                                                                 from './Menu';
-import { MenuItemNode }                                                                         from './MenuItemNode';
-import { grows, mapNodeStateObservableToTarget }                                                from './utils';
-import { RenderMenuIcon }                                                                       from './interfaces';
+import classNames                                                           from 'classnames';
+import { Menu }                                                             from './Menu';
+import { MenuItemNode }                                                     from './MenuItemNode';
+import { grows, mapNodeStateObservableToTarget }                            from './utils';
+import { RenderMenuIcon }                                                   from './interfaces';
 
 import { mixin as clickaway }    from 'vue-clickaway';
 import Popper, { PopperOptions } from 'popper.js';
 import { MenuSubmenu }           from './MenuSubmenu';
+import { MenuItemType }          from './MenuItemType';
+import { VNodeData }             from 'vue';
+import { styles }                from './styling';
 
 export interface VuePopperProps {
     'disabled'?: boolean // 	false
@@ -43,7 +46,10 @@ export interface VuePopperProps {
 })
 export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
     $refs: {
-        root: HTMLElement, content: HTMLAnchorElement, icon: HTMLSpanElement, title: HTMLSpanElement, spacing: HTMLSpanElement, arrow: HTMLSpanElement,
+        root: HTMLElement,
+        content: HTMLAnchorElement,
+        type: MenuItemType,
+        icon: HTMLSpanElement, title: HTMLSpanElement, spacing: HTMLSpanElement, arrow: HTMLSpanElement,
         submenu: MenuSubmenu
     };
     @inject$('menus.icon.renderer') renderMenuIcon;
@@ -56,12 +62,13 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
     @prop.string() slug: string;
     @prop.string() url: string;
     @prop.string() icon: string;
+    @prop.string('default') type: string;
     @prop.boolean() active: boolean;
     @prop.object() attributes: any;
 
-    @styles<MenuItem>(({ util, theme, self }) => ({
-        sdf: {},
-    })) styles: StylesProp;
+    // @styles<MenuItem>(({ util, theme, ctx }) => ({
+    //     sdf: {},
+    // })) styles: StylesProp;
 
     node: MenuItemNode;
     popper: Popper;
@@ -94,14 +101,24 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
 
     get classes() {
         return classNames({
-            [ this.classPrefix ]: true,
-            'is-hidden'         : this.isHidden,
-            'is-hovered'        : this.isHovered,
-            'is-expanded'       : this.isExpanded,
-            'is-selected'       : this.isSelected,
-            'is-focused'        : this.isFocused,
-            'is-active'         : this.isActive,
-            'has-children'      : this.hasChildren,
+            // [ styles.class('item') ]             : true,
+            // [ styles.class('item_is-hidden') ]   : this.isHidden,
+            // [ styles.class('item_is-hovered') ]  : this.isHovered,
+            // [ styles.class('item_is-expanded') ] : this.isExpanded,
+            // [ styles.class('item_is-selected') ] : this.isSelected,
+            // [ styles.class('item_is-focused') ]  : this.isFocused,
+            // [ styles.class('item_is-active') ]   : this.isActive,
+            // [ styles.class('item_has-children') ]: this.hasChildren,
+
+            [ this.classPrefix ]                                         : true,
+            [ `${this.classPrefix}--${this.type.replace(/\./gmi, '_')}` ]: true,
+            'is-hidden'                                                  : this.isHidden,
+            'is-hovered'                                                 : this.isHovered,
+            'is-expanded'                                                : this.isExpanded,
+            'is-selected'                                                : this.isSelected,
+            'is-focused'                                                 : this.isFocused,
+            'is-active'                                                  : this.isActive,
+            'has-children'                                               : this.hasChildren,
         });
     }
 
@@ -126,6 +143,9 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
             active  : 'isActive',
             selected: 'isSelected',
         });
+        if ( this.active && this.hasChildren ) {
+            this.node.expand();
+        }
     }
 
     beforeMount() {
@@ -222,7 +242,7 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
             }
             options.placement = placement;
         }
-        this.popper           = new Popper(this.$refs.content, this.$refs.submenu.$el, options);
+        this.popper           = new Popper(this.$refs.type.$refs.component.$el, this.$refs.submenu.$el, options);
         this.node.data.popper = this.popper;
     }
 
@@ -256,7 +276,26 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
                 </span>
             </a>
         );
-        const submenu                                                     = (
+        let a: VNodeData;
+
+        // @ts-ignore
+        const cont    = (
+            <py-menu-item-type
+                ref="type"
+                menu-item={this}
+                attributes={attributes}
+                type={this.type}
+                slot={usePopper ? 'reference' : null}
+                class={this.b('content')}
+                {...{
+                    nativeOn: {
+                        mouseover : this.handleMouseOver,
+                        mouseleave: this.handleMouseLeave,
+                    },
+                }}
+            />
+        );
+        const submenu = (
             <py-expand-transition enabled={this.menu.slide} show={this.isExpanded}>
                 <py-menu-submenu ref="submenu" class={classNames({})} v-show={this.isExpanded}>
                     {this.$slots.submenu}
@@ -272,7 +311,7 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
                  data-slug={this.slug}
                  vOnClickaway={this.handleClickAway}
             >
-                {content}
+                {cont}
                 {when(this.$slots.submenu, submenu)}
             </Tag>
         );

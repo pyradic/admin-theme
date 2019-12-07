@@ -1,10 +1,11 @@
-import { component, prop, Styles, styles, StylesProp, TsxComponent, uniqueId } from '@pyro/platform';
+import { component, prop, Styles, StylesProp, TsxComponent, uniqueId } from '@pyro/platform';
 import 'vue-tsx-support/enable-check';
 import classNames                                                              from 'classnames';
 import { MenuNode }                                                            from './MenuNode';
 import { MenuItem }                                                            from './MenuItem';
 import './menu.scss';
 import { CreateElement }                                                       from 'vue';
+import { styles } from './styling';
 
 
 @component({
@@ -25,11 +26,11 @@ export class Menu extends TsxComponent {
     @prop.boolean(false) horizontal: boolean;
     @prop.boolean(false) inline: boolean;
     @prop.boolean(false) dropdown: boolean;
-    @styles<Menu>(({ self, theme, util }) => ({
-        collapsed: {
-            background: 'blue',
-        },
-    })) styles: StylesProp;
+    // @styles<Menu>(({ self, theme, util }) => ({
+    //     collapsed: {
+    //         background: 'blue',
+    //     },
+    // })) styles: StylesProp;
 
     get vertical() {return !this.horizontal;}
 
@@ -40,6 +41,7 @@ export class Menu extends TsxComponent {
 
     get classes() {
         return classNames({
+            // [ styles.class('menu') ]                 : true,
             [ this.classPrefix ]                 : true,
             [ `${this.classPrefix}--collapsed` ] : this.collapsed,
             [ `${this.classPrefix}--horizontal` ]: this.horizontal,
@@ -51,7 +53,6 @@ export class Menu extends TsxComponent {
     }
 
     get style(): Styles {return {}; }
-
     created() {
         this.node  = new MenuNode(this);
         this.items = [];

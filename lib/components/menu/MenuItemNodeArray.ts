@@ -9,77 +9,77 @@ export class MenuItemNodeArray extends NodeArray<MenuItemNode> {
 
     menu(): MenuNode {return this._menu;}
 
-    findBySlug(slug: string) {return this.find(item => item.slug() === slug);}
+    findBySlug(slug: string) {return this.find(node => node.item.slug === slug);}
 
-    call<K extends keyof MenuItemNode>(name: K, type: 'each' | 'filter' | 'map' = 'each', ...params: any[]) {return this[ type ](item => item[ name ](...params));}
+    call<K extends keyof MenuItemNode>(name: K, type: 'each' | 'filter' | 'map' = 'each', ...params: any[]) {return this[ type ](node => node[ name ](...params));}
 
-    filterCall<K extends keyof MenuItemNode>(name: K) {return this.call(name, 'filter'); } // filterCall<K extends keyof MenuItemNode>(name: K) {return this.filter(item => item[ name ]());}
+    filterCall<K extends keyof MenuItemNode>(name: K) {return this.call(name, 'filter'); } // filterCall<K extends keyof MenuItemNode>(name: K) {return this.filter(node => node[ name ]());}
 
-    filterState<K extends keyof MenuItemState>(key: K) {return this.filter(item => item.state(key));}
+    filterState<K extends keyof MenuItemState>(key: K) {return this.filter(node => node.state(key));}
 
-    set<K extends keyof MenuItemState>(key: K, value: MenuItemState[K], fire?: string): this {return this.each(item => item.set(key, value, fire)); }
-
-
-    focused() {return this.filter(item => item.focused()); }
-
-    focus() {return this.each(item => item.focus()); }
-
-    blur() {return this.each(item => item.blur()); }
-
-    setFocused(value: boolean) {return this.filter(item => item.setFocused(value)); }
+    set<K extends keyof MenuItemState>(key: K, value: MenuItemState[K], fire?: string): this {return this.each(node => node.set(key, value, fire)); }
 
 
-    active() {return this.filter(item => item.active()); }
+    focused() {return this.filter(node => node.focused()); }
 
-    activate() {return this.each(item => item.activate()); }
+    focus() {return this.each(node => node.focus()); }
 
-    deactivate() {return this.each(item => item.deactivate()); }
+    blur() {return this.each(node => node.blur()); }
 
-    setActive(value: boolean) {return this.filter(item => item.setActive(value)); }
-
-
-    selected() {return this.filter(item => item.selected()); }
-
-    select() {return this.each(item => item.select()); }
-
-    deselect() {return this.each(item => item.deselect()); }
-
-    setSelected(value: boolean) {return this.filter(item => item.setSelected(value)); }
+    setFocused(value: boolean) {return this.filter(node => node.setFocused(value)); }
 
 
-    expanded() {return this.filter(item => item.expanded()); }
+    active() {return this.filter(node => node.active()); }
 
-    collapsed() {return this.filter(item => item.collapsed()); }
+    activate() {return this.each(node => node.activate()); }
 
-    expand() {return this.each(item => item.expand()); }
+    deactivate() {return this.each(node => node.deactivate()); }
 
-    collapse() {return this.each(item => item.collapse()); }
-
-    toggle() {return this.each(item => item.toggle()); }
-
-    setExpanded(value: boolean) {return this.filter(item => item.setExpanded(value)); }
+    setActive(value: boolean) {return this.filter(node => node.setActive(value)); }
 
 
-    show() {return this.filter(item => item.show()); }
+    selected() {return this.filter(node => node.selected()); }
 
-    hide() {return this.each(item => item.hide()); }
+    select() {return this.each(node => node.select()); }
 
-    hidden() {return this.each(item => item.hidden()); }
+    deselect() {return this.each(node => node.deselect()); }
 
-    visible() {return this.each(item => item.visible()); }
+    setSelected(value: boolean) {return this.filter(node => node.setSelected(value)); }
 
-    setHidden(value: boolean) {return this.filter(item => item.setHidden(value)); }
+
+    expanded() {return this.filter(node => node.expanded()); }
+
+    collapsed() {return this.filter(node => node.collapsed()); }
+
+    expand() {return this.each(node => node.expand()); }
+
+    collapse() {return this.each(node => node.collapse()); }
+
+    toggle() {return this.each(node => node.toggle()); }
+
+    setExpanded(value: boolean) {return this.filter(node => node.setExpanded(value)); }
+
+
+    show() {return this.filter(node => node.show()); }
+
+    hide() {return this.each(node => node.hide()); }
+
+    hidden() {return this.each(node => node.hidden()); }
+
+    visible() {return this.each(node => node.visible()); }
+
+    setHidden(value: boolean) {return this.filter(node => node.setHidden(value)); }
 
 
     hover() {return this.set('hovered', true);}
 
     unhover() {return this.set('hovered', false);}
 
-    hovered() {return this.filter(item => item.state('hovered')); }
+    hovered() {return this.filter(node => node.state('hovered')); }
 
-    unhovered() {return this.filter(item => !item.state('hovered')); }
+    unhovered() {return this.filter(node => !node.state('hovered')); }
 
-    setHover(value: boolean) {return this.filter(item => item.setHover(value)); }
+    setHover(value: boolean) {return this.filter(node => node.setHover(value)); }
 
 
     children(parent: MenuItemNode) { return parent.getChildren();}
