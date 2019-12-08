@@ -1,4 +1,5 @@
 export * from './dev'
+export * from './dialog'
 export * from './form'
 export * from './layout'
 export * from './nav'

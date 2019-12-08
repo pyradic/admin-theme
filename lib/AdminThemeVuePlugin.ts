@@ -39,7 +39,7 @@ export class AdminThemeVuePlugin {
             Row, Col, Aside, Header, Footer, Container, Main,
             Divider, Alert, Tag, Button, Link,
             // Menu, MenuItem, MenuItemGroup, Submenu
-            // DropdownMenu, DropdownItem, Dropdown
+            DropdownMenu, DropdownItem, Dropdown
         });
 
         // _Vue.component(Menu.name, Menu)

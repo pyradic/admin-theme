@@ -109,7 +109,8 @@
         order      : 0;
         background : $layout-sidebar-background;
         color      : $layout-sidebar-font-color;
-        height     : 100%;
+        //height     : 100%;
+        height     : auto;
         overflow-x : hidden !important;
 
         &.is-collapsed {

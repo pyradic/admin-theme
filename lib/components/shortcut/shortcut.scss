@@ -15,14 +15,18 @@ $shortcut-hover-background  : rgba(white, 0.1); //$shortcut-background !default;
 .#{$shortcut-prefix} {
     $self: &;
     min-height  : inherit;
-    display     : flex;
-    align-items : center;
-    padding     : 10px 15px;
-    background  : $shortcut-background;
 
     &:hover, &:focus, &:active {
         outline         : 0;
         text-decoration : none;
+    }
+
+    &__inner {
+        display     : flex;
+        align-items : center;
+        background  : $shortcut-background;
+        padding     : 10px 15px;
+        min-height  : inherit;
     }
 
     &__icon {

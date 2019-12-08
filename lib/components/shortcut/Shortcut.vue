@@ -1,9 +1,3 @@
-<template2>
-    <a :class="classes" :title="title" :href="href">
-        <slot><i :class="icon" v-if="icon"></i></slot>
-        <slot name="label"><span v-if="label">{{label}}</span></slot>
-    </a>
-</template2>
 <template>
 
     <component
@@ -12,15 +6,16 @@
             :style="style"
             :title="title"
             :data-slug="slug"
-            v-bind="computedAttributes"
-            @mouseenter="handleMouseEnter"
-            @mouseleave="handleMouseOut">
+            v-bind="computedAttributes">
+        <div class="py-shortcut__inner"
+             @click="handleClick"
+             @mouseenter="handleMouseEnter"
+             @mouseleave="handleMouseOut">
         <slot><i v-if="icon" :icon="icon" :class="classNames.icon"/></slot>
         <span v-if="label" :class="classNames.label">{{label}}</span>
-
-
+        </div>
         <template v-if="isDropdown">
-            <el-dropdown-menu class="py-shortcut__dropdown-menu" slot="dropdown" size="small">
+            <el-dropdown-menu class="py-shortcut__dropdown-menu" slot="dropdown">
                 <el-dropdown-item class="py-shortcut__dropdown-item" v-for="(child,ichild) in children" :key="ichild">
                     <a :href="child.href">{{child.label || child.title }}</a>
                 </el-dropdown-item>
@@ -35,9 +30,6 @@
 
     @component({
         components: {
-            [ Dropdown.name ]    : Dropdown,
-            [ DropdownItem.name ]: DropdownItem,
-            [ DropdownMenu.name ]: DropdownMenu
         }
     })
     export default class Shortcut extends Vue {
@@ -59,12 +51,12 @@
             if(this.isDropdown){
                 let attrs:Partial<Dropdown> = {
                     trigger: 'click',
-                    size: 'mini',
+                    size: 'small',
 
                 }
 
                 attributes.trigger = 'click';
-                attributes.size = 'mini'
+                attributes.size = 'small'
             }
             return attributes;
         }
@@ -100,11 +92,17 @@
         get isDropdown() {return this.children && this.children.length}
 
         handleMouseEnter(event: MouseEvent) {
+            this.$log('handleMouseEnter','shortcut-info:set', this.title,event)
             this.$py.events.emit('shortcut-info:set', this.title)
         }
 
         handleMouseOut(event: MouseEvent) {
+            this.$log('handleMouseOut','shortcut-info:unset',event)
             this.$py.events.emit('shortcut-info:unset')
+        }
+        handleClick(event: MouseEvent) {
+            this.$log('handleClick',event)
+            this.$emit('click',event);
         }
     }
 </script>
