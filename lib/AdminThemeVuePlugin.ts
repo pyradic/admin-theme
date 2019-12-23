@@ -2,6 +2,8 @@ import Vue                                                                      
 import { app, prefixAndRegisterComponents, registerElementComponents }                                                               from '@pyro/platform';
 // noinspection ES6UnusedImports
 import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Row, Tag } from 'element-ui'; //
+import lang from 'element-ui/lib/locale/lang/nl'
+import locale from 'element-ui/lib/locale'
 import vuescroll                                                                                                                     from 'vuescroll';
 import bem                                                                                                                           from 'vue-bem-cn';
 
@@ -32,6 +34,9 @@ export class AdminThemeVuePlugin {
                 modVal?: string
             }
         });
+
+
+        locale.use(lang)
 
         prefixAndRegisterComponents(_Vue, components);
 
