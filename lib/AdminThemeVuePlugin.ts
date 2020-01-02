@@ -1,11 +1,12 @@
-import Vue                                                                                                                           from 'vue';
 import { app, prefixAndRegisterComponents, registerElementComponents }                                                               from '@pyro/platform';
-// noinspection ES6UnusedImports
-import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Row, Tag } from 'element-ui'; //
-import lang from 'element-ui/lib/locale/lang/nl'
-import locale from 'element-ui/lib/locale'
-import vuescroll                                                                                                                     from 'vuescroll';
-import bem                                                                                                                           from 'vue-bem-cn';
+import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Row, Tag } from 'element-ui';
+
+import Vue       from 'vue';
+import ElIcon    from './components/el-icon/icon.vue';
+import lang      from 'element-ui/lib/locale/lang/nl';
+import locale    from 'element-ui/lib/locale';
+import vuescroll from 'vuescroll';
+import bem       from 'vue-bem-cn';
 
 import * as components from './components';
 import * as directives from './directives';
@@ -36,16 +37,22 @@ export class AdminThemeVuePlugin {
         });
 
 
-        locale.use(lang)
+        locale.use(lang);
 
         prefixAndRegisterComponents(_Vue, components);
 
+        registerElementComponents(_Vue, {            ElIcon })
         registerElementComponents(_Vue, {
             Row, Col, Aside, Header, Footer, Container, Main,
             Divider, Alert, Tag, Button, Link,
             // Menu, MenuItem, MenuItemGroup, Submenu
-            DropdownMenu, DropdownItem, Dropdown
+            DropdownMenu, DropdownItem, Dropdown,
+            ElIcon,
         });
+
+        app.hooks.start.tap('AdminThemeVuePlugin', Vue => {
+            Vue.component(ElIcon.name, ElIcon);
+        })
 
         // _Vue.component(Menu.name, Menu)
         // _Vue.component(MenuItem.name, MenuItem)

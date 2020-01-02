@@ -21,7 +21,7 @@
         </div>
     </transition>
 </template>
-<script>
+<script lang="ts">
 import {Dialog} from 'element-ui'
 export default {
     extends: Dialog

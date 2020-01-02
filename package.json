@@ -24,6 +24,8 @@
         "@radic/tree": "^1.0.0",
         "@types/classnames": "^2.2.9",
         "@types/popper.js": "^1.11.0",
+        "@mdi/font": "^4.7.95",
+        "@mdi/svg": "^4.7.95",
         "bootstrap": "^4.3.1",
         "classnames": "^2.2.6",
         "csstip": "^0.0.0",

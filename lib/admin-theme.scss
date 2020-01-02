@@ -1,4 +1,5 @@
 @import "styling/base";
+@import "~@mdi/font/scss/materialdesignicons";
 
 @include color-classes(fg-, bg-);
 
@@ -32,4 +33,15 @@
     .btn {
         @extend %btn-xs;
     }
+}
+
+.el-message-box__wrapper > .el-message-box {
+    border-radius: 0;
+    &__header {}
+    &__title {}
+    &__headerbtn {}
+    &__close {}
+    &__content {}
+    &__btns {}
+    &__ {}
 }

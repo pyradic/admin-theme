@@ -42,6 +42,7 @@
                                 v-for="(shortcut, ishortcut) in $root.cp.shortcuts"
                                 :key="ishortcut"
                                 :highlighted="shortcut.highlighted"
+                                :type="shortcut.type || shortcut.attributes.type"
                                 :slug="shortcut.slug"
                                 :icon="shortcut.icon"
                                 :href="shortcut.href"

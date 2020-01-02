@@ -53,8 +53,12 @@
         background  : $layout-header-background;
         color       : $layout-header-font-color;
         height      : $layout-header-height;
-        line-height : $layout-header-height;
 
+        &-item {
+            padding     : 0 10px;
+            height      : $layout-header-height;
+            line-height : $layout-header-height;
+        }
         a {
             color : $layout-header-font-color;
 
