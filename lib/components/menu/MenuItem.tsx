@@ -42,7 +42,7 @@ export interface VuePopperProps {
         // 'popper': Popper
     },
     mixins    : [ clickaway ],
-    block     : '-menu-item',
+    block     : 'menu-item',
 })
 export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
     $refs: {
@@ -260,18 +260,18 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
             <a ref="content"
                {...contentExtras}
                slot={usePopper ? 'reference' : null}
-               class={this.b('content')}
+               class={this.E('content')}
                href={this.href}
                onclick={this.handleClick as any}
             >
-                <span class={this.b('icon')} ref="icon">
+                <span class={this.E('icon')} ref="icon">
                     {slot(this, 'icon', when(this.icon, this.renderMenuIcon(h, this.icon)))}
                 </span>
-                <span class={this.b('title')} ref="title">
+                <span class={this.E('title')} ref="title">
                     {slot(this, 'default', this.title)}
                 </span>
-                <span class={this.b('spacing')} ref="spacing"/>
-                <span class={this.b('arrow')} ref="arrow">
+                <span class={this.E('spacing')} ref="spacing"/>
+                <span class={this.E('arrow')} ref="arrow">
                     {slot(this, 'arrow', <i/>)}
                 </span>
             </a>
@@ -286,7 +286,7 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
                 attributes={attributes}
                 type={this.type}
                 slot={usePopper ? 'reference' : null}
-                class={this.b('content')}
+                class={this.E('content')}
                 {...{
                     nativeOn: {
                         mouseover : this.handleMouseOver,

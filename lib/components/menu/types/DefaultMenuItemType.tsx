@@ -4,9 +4,10 @@ import { Menu }                                              from '../Menu';
 import { MenuItem }                                          from '../MenuItem';
 
 @component({
-    block     : '-menu-item',
+    block     : 'menu-item',
 })
 export class DefaultMenuItemType extends TsxComponent {
+    @prop.classPrefix('menu-item') classPrefix: string;
     @inject() menu: Menu;
     @prop.object.required() menuItem: MenuItem;
     @prop.object() attributes: any
@@ -21,14 +22,14 @@ export class DefaultMenuItemType extends TsxComponent {
                href={href}
                onclick={handleClick as any}
             >
-                <span class={this.b('icon')} ref="icon">
+                <span class={this.E('icon')} ref="icon">
                     {slot(this, 'icon', when(icon, renderMenuIcon(h, icon)))}
                 </span>
-                <span class={this.b('title')} ref="title">
+                <span class={this.E('title')} ref="title">
                     {slot(this, 'default', title)}
                 </span>
-                <span class={this.b('spacing')} ref="spacing"/>
-                <span class={this.b('arrow')} ref="arrow">
+                <span class={this.E('spacing')} ref="spacing"/>
+                <span class={this.E('arrow')} ref="arrow">
                     {slot(this, 'arrow', <i/>)}
                 </span>
             </a>

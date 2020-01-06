@@ -6,10 +6,11 @@ import ElIcon    from './components/el-icon/icon.vue';
 import lang      from 'element-ui/lib/locale/lang/nl';
 import locale    from 'element-ui/lib/locale';
 import vuescroll from 'vuescroll';
-import bem       from 'vue-bem-cn';
+import PortalVue from 'portal-vue'
 
 import * as components from './components';
 import * as directives from './directives';
+import BEMPlugin       from './plugins/bem';
 
 export class AdminThemeVuePlugin {
 
@@ -21,27 +22,22 @@ export class AdminThemeVuePlugin {
         }
         this.__installed = true;
 
-        _Vue.use(bem, {
+        _Vue.use(BEMPlugin, {
             delimiters: {
-                ns : app.config.prefix,
-                el : '__',
-                mod: '--',
+                ns    : app.config.prefix,
+                el    : '__',
+                mod   : '--',
+                modVal: ':',
             },
-        } as {
-            delimiters?: {
-                ns?: string
-                el?: string
-                mod?: string
-                modVal?: string
-            }
         });
 
+        _Vue.use(PortalVue);
 
         locale.use(lang);
 
         prefixAndRegisterComponents(_Vue, components);
 
-        registerElementComponents(_Vue, {            ElIcon })
+        registerElementComponents(_Vue, { ElIcon });
         registerElementComponents(_Vue, {
             Row, Col, Aside, Header, Footer, Container, Main,
             Divider, Alert, Tag, Button, Link,
@@ -52,7 +48,7 @@ export class AdminThemeVuePlugin {
 
         app.hooks.start.tap('AdminThemeVuePlugin', Vue => {
             Vue.component(ElIcon.name, ElIcon);
-        })
+        });
 
         // _Vue.component(Menu.name, Menu)
         // _Vue.component(MenuItem.name, MenuItem)

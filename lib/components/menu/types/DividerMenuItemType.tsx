@@ -4,7 +4,7 @@ import { Menu }                                  from '../Menu';
 import { MenuItem }                              from '../MenuItem';
 
 @component({
-    block     : '-menu-item-type',
+    block     : 'menu-item-type',
 })
 export class DividerMenuItemType extends TsxComponent {
     @prop.classPrefix('menu-item--divider') classPrefix

@@ -14,6 +14,7 @@ import { colors }                    from './utils/colors';
 
 export * from './interfaces';
 export * from './components';
+export * from './plugins/bem';
 export {styleVars,colors}
 export { AdminThemeVuePlugin, AdminThemeServiceProvider }
 

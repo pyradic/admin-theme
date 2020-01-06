@@ -4,7 +4,7 @@ import { Menu }                                              from '../Menu';
 import { MenuItem }                                          from '../MenuItem';
 
 @component({
-    block     : '-menu-item',
+    block     : 'menu-item',
 })
 export class LabelMenuItemType extends TsxComponent {
     @prop.classPrefix('menu-item--label') classPrefix
@@ -19,17 +19,17 @@ export class LabelMenuItemType extends TsxComponent {
             <span ref="content"
                {...contentExtras}
                slot={usePopper ? 'reference' : null}
-               class={this.b('content')}
+               class={this.E('content')}
                onclick={handleClick as any}
             >
-                <span class={this.b('icon')} ref="icon">
+                <span class={this.E('icon')} ref="icon">
                     {slot(this, 'icon', when(icon, renderMenuIcon(h, icon)))}
                 </span>
-                <span class={this.b('title')} ref="title">
+                <span class={this.E('title')} ref="title">
                     {slot(this, 'default', title)}
                 </span>
-                <span class={this.b('spacing')} ref="spacing"/>
-                <span class={this.b('arrow')} ref="arrow">
+                <span class={this.E('spacing')} ref="spacing"/>
+                <span class={this.E('arrow')} ref="arrow">
                     {slot(this, 'arrow', <i/>)}
                 </span>
             </span>

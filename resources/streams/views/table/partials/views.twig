@@ -4,19 +4,47 @@
         <nav class="navbar navbar-light">
             <div class="nav navbar-nav">
                 {% for view in table.views %}
-                    <a
-                            class="nav-item nav-link {{ view.class }} {{ view.isActive() ? 'active' }}"
-                            {{ html_attributes(view.attributes) }}>
-                        {{ view.icon ? icon(view.icon)|raw }}
-                        {{ trans(view.getText()) }}
+                    {% if view.html %}
+                        {{ view.html|raw }}
+                    {% elseif view.render %}
+                        {% include view.render %}
+                    {% elseif view.dropdown %}
+                        <div class="nav-item {{ view.isActive() ? 'active' }}">
+                            <a class="nav-link {{ view.class }} {{ view.isActive() ? 'active' }}" {{ html_attributes(view.attributes) }} href="javascript:void(0);" data-toggle="dropdown">
+                                {{ view.icon ? icon(view.icon)|raw }}
+                                {{ trans(view.getText()) }}
+                                {% if view.label %}
+                                    <span class="tag tag-{{ view.context }}">
+                                        {{ trans(view.label)|raw }}
+                                    </span>
+                                {% endif %}
+                            </a>
+                            <div class="dropdown-menu">
+                                {% for item in view.dropdown %}
+                                        <a class="dropdown-item {{ item.class }}" {{ html_attributes(item.attributes) }}>
+                                            {{ item.icon ? icon(item.icon)|raw }}
+                                            {{ trans(item.text) }}
+                                        </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <a
+                                class="nav-item nav-link {{ view.class }} {{ view.isActive() ? 'active' }}"
+                                {{ html_attributes(view.attributes) }}>
+                            {{ view.icon ? icon(view.icon)|raw }}
+                            {{ trans(view.getText()) }}
 
-                        {% if view.label %}
-                            <span class="tag tag-{{ view.context }}">
-                                {{ trans(view.label)|raw }}
+                            {% if view.label %}
+                                <span class="tag tag-{{ view.context }}">
+                               {{ trans(view.label)|raw }}
                             </span>
-                        {% endif %}
+                            {% endif %}
 
-                    </a>
+                        </a>
+                        {% if view.dropdown %}
+                        {% endif %}
+                    {% endif %}
                 {% endfor %}
             </div>
         </nav>

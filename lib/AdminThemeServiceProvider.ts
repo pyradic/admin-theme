@@ -1,12 +1,13 @@
-import { Config, ServiceProvider }  from '@pyro/platform';
-import { AdminThemeVuePlugin }      from './AdminThemeVuePlugin';
-import { styleVars }                from './styling/export';
-import { CreateElement, VNodeData } from 'vue';
-import { MenuManager }              from './components/menu/MenuManager';
-import { ShortcutTypeRegistry }     from './components/shortcut';
-import DefaultShortcutType          from './components/shortcut/types/DefaultShortcutType.vue';
-import DropdownShortcutType         from './components/shortcut/types/DropdownShortcutType.vue';
-import { IconMapper }               from './interfaces';
+
+import { Config, ServiceProvider }                           from '@pyro/platform';
+import { AdminThemeVuePlugin }                               from './AdminThemeVuePlugin';
+import { styleVars }                                                        from './styling/export';
+import Vue,{ ComponentOptions, CreateElement, RenderContext, VNode, VNodeData } from 'vue';
+import { MenuManager }                                                      from './components/menu/MenuManager';
+import { ShortcutTypeRegistry }                              from './components/shortcut';
+import DefaultShortcutType                                   from './components/shortcut/types/DefaultShortcutType.vue';
+import DropdownShortcutType                                  from './components/shortcut/types/DropdownShortcutType.vue';
+import { IconMapper }                                        from './interfaces';
 
 
 export class AdminThemeServiceProvider extends ServiceProvider {

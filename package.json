@@ -13,8 +13,14 @@
                 "provider": "AdminThemeServiceProvider"
             },
             {
-                "path": "index.ts",
-                "provider": "AdminThemeServiceProvider"
+                "path": "inertia/index.ts",
+                "suffix": "inertia",
+                "provider": "AdminThemeInertiaServiceProvider"
+            },
+            {
+                "path": "livewire/index.ts",
+                "suffix": "livewire",
+                "provider": "AdminThemeLivewireServiceProvider"
             }
         ]
     },
@@ -26,6 +32,7 @@
         "@types/popper.js": "^1.11.0",
         "@mdi/font": "^4.7.95",
         "@mdi/svg": "^4.7.95",
+        "@bem/sdk.naming.entity": "^0.2.11",
         "bootstrap": "^4.3.1",
         "classnames": "^2.2.6",
         "csstip": "^0.0.0",
@@ -37,6 +44,7 @@
         "popper.js": "^1.16.0",
         "sass-ignis": "^1.0.3",
         "typestyle": "^2.0.4",
+        "portal-vue": "^2.1.7",
         "vue-avatar": "^2.1.8",
         "vue-bem-cn": "^1.1.1",
         "vue-clickaway": "^2.2.2",
