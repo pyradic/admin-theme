@@ -1,5 +1,6 @@
 @import "styling/base";
 @import "~@mdi/font/scss/materialdesignicons";
+@import "styling/components/label";
 
 @include color-classes(fg-, bg-);
 
@@ -8,7 +9,7 @@
     padding   : $spacer-x/4 $spacer-y/3;
 }
 
-.py-layout__content table td {
+.py-layout__content table.table td {
     padding   : .4rem .75rem;
     font-size : 12px;
 }
@@ -44,4 +45,16 @@
     &__content {}
     &__btns {}
     &__ {}
+}
+
+body {
+    // @todo find a better way to avoid the 'flicker' to left/right when for example:
+    //  ajax loaded content and added to page that increases height so much that a scrollbar will be displayed,
+    //  then next ajax request it removes that content again and the scrollbar will not be displayed anymore
+    overflow-y:scroll !important;
+}
+
+
+.fg1 {
+    flex-grow: 1;
 }

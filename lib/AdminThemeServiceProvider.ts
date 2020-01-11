@@ -1,22 +1,75 @@
-
-import { Config, ServiceProvider }                           from '@pyro/platform';
-import { AdminThemeVuePlugin }                               from './AdminThemeVuePlugin';
-import { styleVars }                                                        from './styling/export';
-import Vue,{ ComponentOptions, CreateElement, RenderContext, VNode, VNodeData } from 'vue';
-import { MenuManager }                                                      from './components/menu/MenuManager';
-import { ShortcutTypeRegistry }                              from './components/shortcut';
-import DefaultShortcutType                                   from './components/shortcut/types/DefaultShortcutType.vue';
-import DropdownShortcutType                                  from './components/shortcut/types/DropdownShortcutType.vue';
-import { IconMapper }                                        from './interfaces';
+import { cash, Config, ServiceProvider } from '@pyro/platform';
+import { AdminThemeVuePlugin }           from './AdminThemeVuePlugin';
+import { styleVars }                from './styling/export';
+import { CreateElement, VNodeData } from 'vue';
+import { MenuManager }              from './components/menu/MenuManager';
+import { ShortcutTypeRegistry }     from './components/shortcut';
+import DefaultShortcutType          from './components/shortcut/types/DefaultShortcutType.vue';
+import DropdownShortcutType         from './components/shortcut/types/DropdownShortcutType.vue';
+import { IconMapper }               from './interfaces';
 
 
 export class AdminThemeServiceProvider extends ServiceProvider {
     providers = [];
 
     public register() {
-        const log = this.app.createLog('admin-theme:' + this.constructor.name);
 
+        this.vuePlugin(AdminThemeVuePlugin);
+
+        this.registerShortcuts();
+        this.registerIcons();
+        this.registerMenus();
+
+        this.app.extendRoot({
+            data() {
+                return {
+                    layout: null,
+                };
+            },
+            methods: {
+                setLayout(layout) {this.layout = layout; },
+                getLayout() {return this.layout; },
+                hasLayout() {return this.layout !== null;},
+            },
+        });
+
+    }
+
+    public registerShortcuts() {
         this.app.singleton('shortcut.types', ShortcutTypeRegistry);
+    }
+
+    public registerMenus() {
+        this.app.dynamic('menus', app => {
+            let manager = this.app.resolve(MenuManager);
+            manager.registerType('default', 'py-default-menu-item-type');
+            manager.registerType('pyro.extension.label_link_type', 'py-label-menu-item-type');
+            manager.registerType('pyro.extension.header_link_type', 'py-header-menu-item-type');
+            manager.registerType('pyro.extension.divider_link_type', 'py-divider-menu-item-type');
+            manager.registerType('pyro.extension.url_link_type', 'py-default-menu-item-type');
+            manager.registerType('pyro.extension.module_link_type', 'py-default-menu-item-type');
+            manager.registerType('pyro.extension.cp_action_link_type', 'py-default-menu-item-type');
+            return manager;
+        });
+
+        this.app.addBindingGetter('menus');
+        this.app.factory('menus.icon.renderer', (h: CreateElement, icon: string, data: VNodeData = {}) => {
+            if ( !icon ) {return null;}
+            data.class = data.class || {};
+            if ( !icon.startsWith('fa ') ) {
+                if ( icon.startsWith('fa-') ) {
+                    icon = 'fa ' + icon;
+                } else {
+                    icon = 'fa fa-' + icon;
+                }
+            }
+            data.class[ icon ] = true;
+            return h('i', data);
+        });
+    }
+
+
+    public registerIcons() {
 
         this.app.instance('icon.map', {
             fa: {
@@ -61,34 +114,14 @@ export class AdminThemeServiceProvider extends ServiceProvider {
                             el.classList.add('el-icon-');
                         }
                     });
-            });
-        });
-        this.vuePlugin(AdminThemeVuePlugin);
-        this.app.dynamic('menus', app => {
-            let manager = this.app.resolve(MenuManager);
-            manager.registerType('default', 'py-default-menu-item-type');
-            manager.registerType('pyro.extension.label_link_type', 'py-label-menu-item-type');
-            manager.registerType('pyro.extension.header_link_type', 'py-header-menu-item-type');
-            manager.registerType('pyro.extension.divider_link_type', 'py-divider-menu-item-type');
-            manager.registerType('pyro.extension.url_link_type', 'py-default-menu-item-type');
-            manager.registerType('pyro.extension.module_link_type', 'py-default-menu-item-type');
-            manager.registerType('pyro.extension.cp_action_link_type', 'py-default-menu-item-type');
-            return manager;
-        });
 
-        this.app.addBindingGetter('menus');
-        this.app.factory('menus.icon.renderer', (h: CreateElement, icon: string, data: VNodeData = {}) => {
-            if ( !icon ) {return null;}
-            data.class = data.class || {};
-            if ( !icon.startsWith('fa ') ) {
-                if ( icon.startsWith('fa-') ) {
-                    icon = 'fa ' + icon;
-                } else {
-                    icon = 'fa fa-' + icon;
-                }
-            }
-            data.class[ icon ] = true;
-            return h('i', data);
+                Array.from(document.querySelectorAll('i'))
+                    .forEach(el => {
+                        if ( !el.classList.contains('mdi') &&  !el.classList.contains('el-icon-') &&  !el.classList.contains('fa')  ) {
+                            el.className = 'el-icon- mdi mdi-' + el.className;
+                        }
+                    })
+            });
         });
         // this.app['iconRenderer']=(h: CreateElement, icon: string, data: VNodeData = {}) => {
         //     console.log('icon.renderer', icon, {icon,data,h})
@@ -142,19 +175,6 @@ export class AdminThemeServiceProvider extends ServiceProvider {
             data.class[ 'el-icon-' ]    = true;
             return h(data.tag || 'i', data);
         });
-        this.app.extendRoot({
-            data() {
-                return {
-                    layout: null,
-                };
-            },
-            methods: {
-                setLayout(layout) {this.layout = layout; },
-                getLayout() {return this.layout; },
-                hasLayout() {return this.layout !== null;},
-            },
-        });
-
     }
 
     public boot() {

@@ -11,19 +11,29 @@ export class MenuManager {
     menus: Record<string, Menu> = {};
     types: Record<string, any> = {};
 
-    register(menu: Menu) {
+    register(menu: Menu, setupBehaviour=true) {
         this.hooks.register.call(menu);
         this.menus[ menu.slug ] = menu;
+        setupBehaviour && this.setupBehaviour(menu,menu.behaviour)
     }
 
     get(slug: string) {return this.menus[ slug ]; }
 
     has(slug: string) {return slug in this.menus; }
 
+    setupBehaviour(menu:Menu,behaviour:string){
+        if(behaviour === 'default'){
+            return this.setupDefaultMenuBehaviour(menu)
+        }
+        this.behaviours[behaviour](menu)
+    }
+
+    behaviours:any={}
+
     @app.inject('menus.icon.renderer')
     renderMenuIcon;
 
-    setupDefaultMenuBehaviour(menu: Menu) {
+    protected setupDefaultMenuBehaviour(menu: Menu) {
         const { node } = menu;
         node.on('item:expand', (item) => {
             console.log('demo', 'item:expand', item);
@@ -41,6 +51,7 @@ export class MenuManager {
             }
         })
     }
+
 
     registerType(slug: string, component:string) {
         this.types[slug]=component

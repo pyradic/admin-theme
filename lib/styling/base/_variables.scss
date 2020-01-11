@@ -1,5 +1,8 @@
 $fa-font-path                    : '~font-awesome/fonts';
 $mdi-font-path                   : '~@mdi/font/fonts';
+//$fa-css-prefix                   : 'el-icon-fa';
+//$mdi-css-prefix                  : 'icon-';
+
 $primary                         : #607D8B;
 $primary-light                   : #8EACBB;
 $primary-dark                    : #34515E;
@@ -16,6 +19,7 @@ $toolbar-prefix                  : #{$prefix}-toolbar !default;
 $menu-prefix                     : #{$prefix}-menu !default;
 $client-prefix                   : #{$prefix}-client !default;
 $client-view-prefix              : #{$prefix}-client-view !default;
+$table-prefix                    : #{$prefix}-table !default;
 
 $layout-header-height            : 50px !default;
 

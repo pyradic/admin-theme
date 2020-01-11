@@ -1,5 +1,5 @@
 import { app, prefixAndRegisterComponents, registerElementComponents }                                                               from '@pyro/platform';
-import { Alert, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Row, Tag } from 'element-ui';
+import { Alert,Icon, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Row, Tag } from 'element-ui';
 
 import Vue       from 'vue';
 import ElIcon    from './components/el-icon/icon.vue';
@@ -11,6 +11,7 @@ import PortalVue from 'portal-vue'
 import * as components from './components';
 import * as directives from './directives';
 import BEMPlugin       from './plugins/bem';
+import LoadingPlugin   from './plugins/loading';
 
 export class AdminThemeVuePlugin {
 
@@ -31,24 +32,27 @@ export class AdminThemeVuePlugin {
             },
         });
 
+        _Vue.use(LoadingPlugin)
+
         _Vue.use(PortalVue);
 
         locale.use(lang);
 
         prefixAndRegisterComponents(_Vue, components);
 
-        registerElementComponents(_Vue, { ElIcon });
+        // registerElementComponents(_Vue, { ElIcon });
         registerElementComponents(_Vue, {
             Row, Col, Aside, Header, Footer, Container, Main,
             Divider, Alert, Tag, Button, Link,
             // Menu, MenuItem, MenuItemGroup, Submenu
             DropdownMenu, DropdownItem, Dropdown,
-            ElIcon,
+            Icon
+            // ElIcon,
         });
 
-        app.hooks.start.tap('AdminThemeVuePlugin', Vue => {
-            Vue.component(ElIcon.name, ElIcon);
-        });
+        // app.hooks.start.tap('AdminThemeVuePlugin', Vue => {
+        //     Vue.component(ElIcon.name, ElIcon);
+        // });
 
         // _Vue.component(Menu.name, Menu)
         // _Vue.component(MenuItem.name, MenuItem)

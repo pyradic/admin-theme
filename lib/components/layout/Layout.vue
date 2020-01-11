@@ -9,8 +9,8 @@
 </style>
 <template>
     <div :class="classes" :style="style">
+        <slot name="header">
         <py-layout-header>
-            <slot name="header">
                 <py-toolbar
                         :show-title="!sidebar.collapsed"
                         :title-width="sidebar.normalWidth"
@@ -99,27 +99,19 @@
                         </div>
                     </slot>
                 </py-toolbar>
-            </slot>
-
         </py-layout-header>
+        </slot>
         <div class="py-layout__main">
-            <py-layout-sidebar>
-                <py-menu-demo
-                        ref="sidebarMenuDemo"
-                        v-if="menus.sidebar"
-                        :items="menus.sidebar"
-                        :options="{
-                                 horizontal:false,
-                                 collapsed: sidebar.collapsed,
-                                 slug:'sidebar'
-                             }"
-                />
-            </py-layout-sidebar>
-            <!--            <py-layout-sidebar><slot name="sidebar" /></py-layout-sidebar>-->
+
+            <!-- SIDEBAR-->
+            <slot name="sidebar" />
 
             <div class="py-layout__content">
+
+                <!-- BREADCRUMB -->
                 <slot name="breadcrumb"/>
 
+                <!-- MESSAGES -->
                 <template v-if="$slots['messages']">
                     <div class="container-fluid mb-1">
                         <slot name="messages"/>
@@ -127,16 +119,18 @@
                 </template>
 
                 <py-test-view v-if="showTestView"/>
+
+                <!-- DEFAULT -->
                 <div class="py-layout__inner" v-else>
                     <slot/>
                 </div>
+
             </div>
 
         </div>
 
-        <py-layout-footer>
-            <slot name="footer"/>
-        </py-layout-footer>
+        <!-- FOOTER -->
+        <slot name="footer"/>
     </div>
 </template>
 <script lang="ts">
@@ -194,10 +188,6 @@ export default class Layout extends Vue {
     }
 
     mounted() {
-        this.$log('mounted', 'sidebar menu', this?.$refs?.sidebarMenuDemo?.menu);
-
-        this.$py.menus.setupDefaultMenuBehaviour(this.$refs.sidebarMenuDemo.menu);
-        this.$py.menus.setupDefaultMenuBehaviour(this.$refs.headerMenuDemo.menu);
     }
 
     get menus() {

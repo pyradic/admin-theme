@@ -12,101 +12,58 @@
 
 <body class="{{ locale().isRtl() ? ' rtl' }}">
 {% block body %}
-    <py-layout id="app">
+    <div id="app">
+        <py-layout>
 
-{#        <template #header-toolbar>
-            {% block header_toolbar %}
-                <py-toolbar-title v-if="!layout.sidebar.collapsed" :width="layout.sidebar.normalWidth" title="CRVS" link="{{ url('admin') }}"></py-toolbar-title>
-                <py-toolbar-toggle></py-toolbar-toggle>
-                <py-toolbar-item>
-                    {{ menu_json('admin_header')|raw }}
-                </py-toolbar-item>
-            {% endblock %}
-        </template>
-        #}
+            <template #header>
+                {% block header %}
+                    {{ livewire('pyro.theme.admin::layout.header')|raw }}
+                {% endblock %}
+            </template>
 
-{#
-        <template #sidebar>
-         {% block sidebar %}
-                {% for navigation in template.structure %}
-                    {% if navigation.children.isNotEmpty() %}
-                        <el-submenu index="{{ navigation.key }}"
-                                    data-slug="{{ navigation.key }}"
-                                    data-key="{{ navigation.key }}"
-                                    popper-class="py-layout__sidebar-menu-popper"
-                        >
-                            <template slot="title">
-                                {% if navigation.icon %}
-                                    {{ icon(navigation.icon) }}
-                                {% endif %}
-                                <span>{{ trans(navigation.title) }}</span>
-                            </template>
-                            {% for section in navigation.children %}
-                                {% if not section.subSection %}
-                                    <el-menu-item tag="a"
-                                                  index="{{ section.key }}"
-                                                  data-slug="{{ section.key }}"
-                                                  href="{{ section.url }}"
-                                            {{ html_attributes(section.attributes) }}
-                                    >
-                                        <span>{{ trans(section.title) }}</span>
-                                    </el-menu-item>
-                                {% endif %}
-                            {% endfor %}
-                        </el-submenu>
-                    {% else %}
-                        <el-menu-item tag="a"
-                                      index="{{ navigation.slug }}"
-                                      href="{{ navigation.url }}"
-                                      slug="{{ navigation.slug }}"
-                                {{ html_attributes(navigation.attributes) }}
-                        >
-                            {% if navigation.icon %}
-                                {{ icon(navigation.icon) }}
-                            {% endif %}
-                            <span>{{ trans(navigation.title) }}</span>
-                        </el-menu-item>
-                    {% endif %}
-                {% endfor %}
-            {% endblock %}
-        </template>
- #}
-        <template #breadcrumb>
-            {% include "theme::partials/buttons" %}
-            {% block breadcrumb %}
-                {{ breadcrumb() }}
-            {% endblock %}
+            <template #sidebar>
+                {% block sidebar %}
+                    {{ livewire('pyro.theme.admin::layout.sidebar')|raw }}
+                {% endblock %}
+            </template>
 
-        </template>
+            <template #breadcrumb>
+                {% include "theme::partials/buttons" %}
+                {% block breadcrumb %}
+                    {{ livewire('pyro.theme.admin::layout.breadcrumb')|raw }}
+                {% endblock %}
 
-        <template #messages>
-            {% block messages %}
-                {% include "theme::partials/messages" %}
-            {% endblock %}
-        </template>
+            </template>
 
+            <template #messages>
+                <portal-target name="messages"></portal-target>
+                {% block messages %}
+                    {% include "theme::partials/messages" %}
+                {% endblock %}
+            </template>
 
-        <template #default>
-            {% block content %}{% endblock %}
-        </template>
+            <template #default>
+                {% block content %}{% endblock %}
+            </template>
 
-        <template #footer>
-            {% block footer %}
-{#                {{ menu('admin_footer').pyroAdmin()|raw }}#}
-            {% endblock %}
-        </template>
-    </py-layout>
+            <template #footer>
+                <portal-target name="footer"></portal-target>
+                {% block footer %}
+                    {{ livewire('pyro.theme.admin::layout.footer')|raw }}
+                {% endblock %}
+            </template>
+
+        </py-layout>
+    </div>
 {% endblock %}
 
 
 {% include "theme::partials/modals" %}
 
-<script>
 
-</script>
 {% block assets %}
-{% include "platform::assets" %}
-{#{% include "theme::partials/assets" %}#}
+    {% include "platform::assets" %}
+    {#{% include "theme::partials/assets" %}#}
 {% endblock %}
 </body>
 </html>

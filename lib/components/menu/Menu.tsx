@@ -21,6 +21,7 @@ export class Menu extends TsxComponent {
     @prop.string('auto') grow;
     @prop.string('div') tag: string;
     @prop.string('default') theme: string;
+    @prop.string('default') behaviour: string;
     @prop.string(uniqueId()) slug: string;
     @prop.boolean(false) collapsed: boolean;
     @prop.boolean(false) horizontal: boolean;
@@ -57,6 +58,9 @@ export class Menu extends TsxComponent {
         this.node  = new MenuNode(this);
         this.items = [];
         this.$py.menus.register(this);
+        if(this.behaviour === 'default') {
+            this.$py.menus.setupDefaultMenuBehaviour(this)
+        }
     }
 
     mounted() {

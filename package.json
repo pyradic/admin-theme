@@ -25,14 +25,16 @@
         ]
     },
     "dependencies": {
+        "@ag-grid-community/all-modules": "^22.1.1",
+        "@ag-grid-community/vue": "^22.1.2",
+        "@bem/sdk.naming.entity": "^0.2.11",
+        "@mdi/font": "^4.7.95",
+        "@mdi/svg": "^4.7.95",
         "@pyro/platform": "^1.0.0",
         "@radic/observable": "^1.0.0",
         "@radic/tree": "^1.0.0",
         "@types/classnames": "^2.2.9",
         "@types/popper.js": "^1.11.0",
-        "@mdi/font": "^4.7.95",
-        "@mdi/svg": "^4.7.95",
-        "@bem/sdk.naming.entity": "^0.2.11",
         "bootstrap": "^4.3.1",
         "classnames": "^2.2.6",
         "csstip": "^0.0.0",
@@ -42,14 +44,16 @@
         "font-awesome": "^4.7.0",
         "foundation-sites": "^6.5.3",
         "popper.js": "^1.16.0",
+        "portal-vue": "^2.1.7",
         "sass-ignis": "^1.0.3",
         "typestyle": "^2.0.4",
-        "portal-vue": "^2.1.7",
         "vue-avatar": "^2.1.8",
         "vue-bem-cn": "^1.1.1",
         "vue-clickaway": "^2.2.2",
+        "vue-good-table": "^2.18.1",
         "vue-popperjs": "^2.2.0",
-        "vuescroll": "^4.14.4"
+        "vuescroll": "^4.14.4",
+        "vuetable-2": "next"
     },
     "devDependencies": {}
 }

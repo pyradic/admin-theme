@@ -1,0 +1,83 @@
+@import "../../styling/base";
+
+//@import "~@ag-grid-community/core/dist/styles/ag-grid";
+//@import "~@ag-grid-community/core/dist/styles/ag-theme-balham/sass/ag-theme-balham";
+//@import "~@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material";
+
+
+.#{$table-prefix}-container {
+    .#{$table-prefix} {
+        // .py-table > &__top
+        &__top {}
+
+        // .py-table > &__top > &__views
+        &__views {}
+
+        // .py-table > &__top > &__views > &__view
+        &__view {}
+
+        // .py-table > &__top > &__filters
+        &__filters {
+            display        : flex;
+            flex-direction : row;
+        }
+
+        // .py-table > &__top > &__filters > &__filter
+        &__filter {
+            > .form-control {
+
+            }
+        }
+
+
+        // .py-table > &__table
+        &__table {}
+
+        // .py-table > &__table > &__table-header-row
+        &__table-header-row {}
+
+        // .py-table > &__table > &__table-header-row > &__table-header-cell
+        &__table-header-cell {}
+
+        // .py-table > &__table > &__table-row
+        &__table-row {}
+
+        // .py-table > &__table >  &__table-row > &__table-cell
+        &__table-cell {}
+
+        // .py-table > &__bottom
+        &__bottom {
+            background-color : $--table-header-background-color;
+            border-top       : $--table-border;
+            min-height       : 50px;
+            display          : flex;
+            flex-direction   : row;
+        }
+
+
+        // .py-table > &__bottom > &__pagination
+        &__pagination {
+        }
+
+        // .py-table > &__bottom > &__actions
+        &__actions {
+            height : 50px;
+        }
+
+        // .py-table > &__bottom > &__actions > &__action
+        &__action {}
+    }
+}
+
+$--table-border-color                 : $--border-color-lighter !default;
+$--table-border                       : 1px solid $--table-border-color !default;
+/// color||Color|0
+$--table-font-color                   : $--color-text-regular !default;
+/// color||Color|0
+$--table-header-font-color            : $--color-text-secondary !default;
+/// color||Color|0
+$--table-row-hover-background-color   : $--background-color-base !default;
+$--table-current-row-background-color : $--color-primary-light-9 !default;
+/// color||Color|0
+$--table-header-background-color      : $--color-white !default;
+$--table-fixed-box-shadow             : 0 0 10px rgba(0, 0, 0, .12) !default;

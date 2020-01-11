@@ -1,12 +1,12 @@
-import Vue                             from 'vue';
-import originNaming                    from '@bem/sdk.naming.presets/origin';
-import { Stringify, stringifyWrapper } from '@bem/sdk.naming.entity.stringify';
-import { EntityName }                  from '@bem/sdk.entity-name';
-import { Component, component }        from '@pyro/platform';
+import Vue                                 from 'vue';
+import originNaming                        from '@bem/sdk.naming.presets/origin';
+import { Stringify, stringifyWrapper }     from '@bem/sdk.naming.entity.stringify';
+import { EntityName }                      from '@bem/sdk.entity-name';
+import { Component, component, VuePlugin } from '@pyro/platform';
 
 const log = require('debug')('plugins:bem:install');
 
-class Bem {
+export class Bem {
     current: any = {
         b: null,
         e: null,
@@ -81,8 +81,9 @@ export interface BEMPluginOptions {
 }
 
 export { BEMPlugin };
-export default class BEMPlugin {
+export default class BEMPlugin extends VuePlugin {
     static __installed: boolean = false;
+    static stringify: Stringify;
 
     static install(_Vue: typeof Vue, opts: BEMPluginOptions = {}) {
         opts = {
