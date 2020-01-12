@@ -6,20 +6,51 @@ use Anomaly\Streams\Platform\View\ViewIncludes;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
 use Illuminate\Support\Arr;
 use Laradic\Support\Wrap;
+use Livewire\LivewireManager;
+use Pyro\AdminTheme\Components\Button;
+use Pyro\AdminTheme\Components\LayoutBreadcrumb;
+use Pyro\AdminTheme\Components\LayoutFooter;
+use Pyro\AdminTheme\Components\LayoutHeader;
+use Pyro\AdminTheme\Components\LayoutMessages;
+use Pyro\AdminTheme\Components\LayoutSidebar;
+use Pyro\AdminTheme\Components\Table;
+use Pyro\AdminTheme\Components\Toolbar;
 use Pyro\Platform\Platform;
 use Tightenco\Ziggy\ZiggyServiceProvider;
 
 class AdminThemeServiceProvider extends AddonServiceProvider
 {
+    protected $components = [
+        'module::layout.breadcrumb' => LayoutBreadcrumb::class,
+        'module::layout.footer'     => LayoutFooter::class,
+        'module::layout.header'     => LayoutHeader::class,
+        'module::layout.messages'   => LayoutMessages::class,
+        'module::layout.sidebar'    => LayoutSidebar::class,
+        'module::toolbar'           => Toolbar::class,
+        'module::button'            => Button::class,
+        'module::table'             => Table::class,
+        'module::table.body'        => Table\Body::class,
+        'module::table.filters'     => Table\Filters::class,
+        'module::table.footer'      => Table\Footer::class,
+        'module::table.header'      => Table\Header::class,
+        'module::table.views'       => Table\Views::class,
+//        'module::shortcut'       => Shortcut::class,
+    ];
 
-    public function register(Platform $platform)
+    public function boot()
     {
+
+    }
+
+    public function register(Platform $platform, LivewireManager $livewire)
+    {
+        AdminThemeBladeDirectives::registerDirectives($this->app);
+
         $this->app->register(ZiggyServiceProvider::class);
 
         LoginFormBuilder::when('make', function () use ($platform) {
             $platform->preventBootstrap();
         });
-
 
         $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
             $template = $event->getTemplate();
