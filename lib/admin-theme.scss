@@ -58,3 +58,9 @@ body {
 .fg1 {
     flex-grow: 1;
 }
+
+.table {
+    thead tr th {
+        white-space: nowrap;
+    }
+}

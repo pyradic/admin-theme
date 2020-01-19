@@ -40,7 +40,7 @@ export class AdminThemeVuePlugin {
 
         prefixAndRegisterComponents(_Vue, components);
 
-        // registerElementComponents(_Vue, { ElIcon });
+        registerElementComponents(_Vue, { ElIcon });
         registerElementComponents(_Vue, {
             Row, Col, Aside, Header, Footer, Container, Main,
             Divider, Alert, Tag, Button, Link,
@@ -50,9 +50,9 @@ export class AdminThemeVuePlugin {
             // ElIcon,
         });
 
-        // app.hooks.start.tap('AdminThemeVuePlugin', Vue => {
-        //     Vue.component(ElIcon.name, ElIcon);
-        // });
+        app.hooks.start.tap('AdminThemeVuePlugin', Vue => {
+            Vue.component(ElIcon.name, ElIcon);
+        });
 
         // _Vue.component(Menu.name, Menu)
         // _Vue.component(MenuItem.name, MenuItem)
