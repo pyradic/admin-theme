@@ -55,7 +55,7 @@ class PyroTableBuilder extends TableBuilder
         });
     }
 
-    public function build()
+    public function build2()
     {
         $this->fire('ready', [ 'builder' => $this ]);
 

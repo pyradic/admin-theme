@@ -1,7 +1,8 @@
-import { component, inject, prop, slot, TsxComponent, when } from '@pyro/platform';
+import { component, inject, inject$, prop, slot, TsxComponent, when } from '@pyro/platform';
 import 'vue-tsx-support/enable-check';
-import { Menu }                                              from '../Menu';
-import { MenuItem }                                          from '../MenuItem';
+import { Menu }                                                       from '../Menu';
+import { MenuItem }                                                   from '../MenuItem';
+import { IconRenderer }                                               from '../../../interfaces';
 
 @component({
     block     : 'menu-item',
@@ -10,10 +11,11 @@ export class LabelMenuItemType extends TsxComponent {
     @prop.classPrefix('menu-item--label') classPrefix
     @inject() menu: Menu;
     @prop.object.required() menuItem: MenuItem;
+    @inject$('menus.icon.renderer') renderMenuIcon:IconRenderer;
     @prop.object() attributes: any
 
     render(h) {
-        const {usePopper, href, handleClick,icon,renderMenuIcon,title} = this.menuItem
+        const {usePopper, href, handleClick,icon,title} = this.menuItem
         const contentExtras = {attrs:{...this.attributes}}
         return (
             <span ref="content"
@@ -23,7 +25,7 @@ export class LabelMenuItemType extends TsxComponent {
                onclick={handleClick as any}
             >
                 <span class={this.E('icon')} ref="icon">
-                    {slot(this, 'icon', when(icon, renderMenuIcon(h, icon)))}
+                    {slot(this, 'icon', when(icon, this.renderMenuIcon(h, icon)))}
                 </span>
                 <span class={this.E('title')} ref="title">
                     {slot(this, 'default', title)}
