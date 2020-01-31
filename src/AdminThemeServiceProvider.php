@@ -1,9 +1,12 @@
 <?php namespace Pyro\AdminTheme;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Anomaly\Streams\Platform\Ui\Table\Component\Row\Command\BuildRows;
 use Anomaly\Streams\Platform\View\Event\TemplateDataIsLoading;
 use Anomaly\Streams\Platform\View\ViewIncludes;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
+use Closure;
+use Crvs\ClientsModule\Client\Table\ClientTableBuilder;
 use Illuminate\Support\Arr;
 use Laradic\Support\Wrap;
 use Livewire\LivewireManager;
@@ -15,6 +18,8 @@ use Pyro\AdminTheme\Components\LayoutMessages;
 use Pyro\AdminTheme\Components\LayoutSidebar;
 use Pyro\AdminTheme\Components\Table;
 use Pyro\AdminTheme\Components\Toolbar;
+use Pyro\Platform\HookDispatch;
+use Pyro\Platform\Hooks;
 use Pyro\Platform\Platform;
 use Tightenco\Ziggy\ZiggyServiceProvider;
 
