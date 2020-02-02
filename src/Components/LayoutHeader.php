@@ -14,7 +14,7 @@ class LayoutHeader extends Component
 
     public $showToggle = '';
 
-    public $title = 'CR V';
+    public $title = 'CRVS';
 
     public function render()
     {
