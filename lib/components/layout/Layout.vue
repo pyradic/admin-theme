@@ -10,7 +10,22 @@
 <template>
     <div :class="classes" :style="style">
         <slot name="header">
-        <py-layout-header>
+            <py-layout-header>
+                <py-toolbar>
+                    <py-toolbar-item>
+                        <py-menu-demo
+                                ref="headerMenuDemo"
+                                :max-depth="20"
+                                v-if="menus.pre_header && menus.pre_header.children "
+                                :items="menus.pre_header.children"
+                                :options="{
+                                         dropdown:true,
+                                         horizontal:true,
+                                         slug:'header',
+                                     }"/>
+                    </py-toolbar-item>
+                </py-toolbar>
+
                 <py-toolbar
                         :show-title="!sidebar.collapsed"
                         :title-width="sidebar.normalWidth"
@@ -99,12 +114,12 @@
                         </div>
                     </slot>
                 </py-toolbar>
-        </py-layout-header>
+            </py-layout-header>
         </slot>
         <div class="py-layout__main">
 
             <!-- SIDEBAR-->
-            <slot name="sidebar" />
+            <slot name="sidebar"/>
 
             <div class="py-layout__content">
 
@@ -148,7 +163,7 @@ const noDelimiter = { replace: function () {} };
         };
     },
     components: {
-        [Dialog.name]:Dialog
+        [ Dialog.name ]: Dialog,
     },
 })
 export default class Layout extends Vue {
@@ -161,7 +176,7 @@ export default class Layout extends Vue {
         };
     }
 
-    dialogVisible = false
+    dialogVisible = false;
 
     get style(): Styles {
         return {};
@@ -192,9 +207,10 @@ export default class Layout extends Vue {
 
     get menus() {
         return {
-            sidebar: Object.values(this.$py.data.cp.structure),
-            header : this.$py.data?.menus?.admin_header,
-            footer : this.$py.data?.menus?.admin_footer,
+            sidebar   : Object.values(this.$py.data.cp.structure),
+            pre_header: this.$py.data?.menus?.admin_pre_header,
+            header    : this.$py.data?.menus?.admin_header,
+            footer    : this.$py.data?.menus?.admin_footer,
         };
     }
 
