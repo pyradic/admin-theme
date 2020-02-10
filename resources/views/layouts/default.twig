@@ -15,22 +15,34 @@
     <div id="app">
         <py-layout>
 
+            <template #pre-header>
+                {% block pre_header %}
+                    {#{{ livewire('pyro.theme.admin::layout.header')|raw }}#}
+                    {% include "theme::partials/pre-header" %}
+                {% endblock %}
+            </template>
+
             <template #header>
                 {% block header %}
-                    {{ livewire('pyro.theme.admin::layout.header')|raw }}
+                    {#{{ livewire('pyro.theme.admin::layout.header')|raw }}#}
+                    {% include "theme::partials/header" %}
                 {% endblock %}
             </template>
 
             <template #sidebar>
                 {% block sidebar %}
-                    {{ livewire('pyro.theme.admin::layout.sidebar')|raw }}
+                    {#{{ livewire('pyro.theme.admin::layout.sidebar')|raw }}#}
+                    {% include "theme::partials/sidebar" %}
                 {% endblock %}
             </template>
 
             <template #breadcrumb>
-                {% include "theme::partials/buttons" %}
                 {% block breadcrumb %}
-                    {{ livewire('pyro.theme.admin::layout.breadcrumb')|raw }}
+                    {% include "theme::partials/buttons" %}
+                    <div>
+                        {% include 'streams::partials/breadcrumb' %}
+                    </div>
+                    {#{{ livewire('pyro.theme.admin::layout.breadcrumb')|raw }}#}
                 {% endblock %}
 
             </template>
@@ -49,7 +61,8 @@
             <template #footer>
                 <portal-target name="footer"></portal-target>
                 {% block footer %}
-                    {{ livewire('pyro.theme.admin::layout.footer')|raw }}
+                    {% include "theme::partials/footer" %}
+                    {#{{ livewire('pyro.theme.admin::layout.footer')|raw }}#}
                 {% endblock %}
             </template>
 

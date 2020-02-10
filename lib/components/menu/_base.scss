@@ -35,12 +35,12 @@ $menu-divider-color                     : $blue-grey-800 !default;
 $menu-item-background                   : transparent !default;
 $menu-item-icon-color                   : #A6A6A7 !default; //$blue-grey-700 !default;
 $menu-item-title-color                  : #A6A6A7 !default;
-$menu-item-arrow-color                  : darken($menu-item-title-color, 30) !default; //#A6A6A7 !default; //$blue-grey-700 !default;
+$menu-item-arrow-color                  : lighten($menu-item-title-color, 30) !default; //#A6A6A7 !default; //$blue-grey-700 !default;
 
 $menu-item-hover-background             : #4C4C4C; //darken($blue-grey-900, 5) !default;
 $menu-item-hover-icon-color             : lighten($menu-item-icon-color, 15) !default;
 $menu-item-hover-title-color            : darken($menu-item-title-color, 5) !default;
-$menu-item-hover-arrow-color            : darken($menu-item-arrow-color, 20) !default;
+$menu-item-hover-arrow-color            : lighten($menu-item-arrow-color, 20) !default;
 
 $menu-item-active-background            : null !default; //rgba($blue-grey-400, 0.1) !default;
 $menu-item-active-icon-color            : lighten($menu-item-icon-color, 10) !default;

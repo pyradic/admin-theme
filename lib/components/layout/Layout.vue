@@ -9,117 +9,14 @@
 </style>
 <template>
     <div :class="classes" :style="style">
-        <slot name="header">
-            <py-layout-header>
-                <py-toolbar>
-                    <py-toolbar-item>
-                        <py-menu-demo
-                                ref="headerMenuDemo"
-                                :max-depth="20"
-                                v-if="menus.pre_header && menus.pre_header.children "
-                                :items="menus.pre_header.children"
-                                :options="{
-                                         dropdown:true,
-                                         horizontal:true,
-                                         slug:'header',
-                                     }"/>
-                    </py-toolbar-item>
-                </py-toolbar>
+        <!-- HEADER -->
+        <slot name="pre-header"/>
+        <slot name="header"/>
 
-                <py-toolbar
-                        :show-title="!sidebar.collapsed"
-                        :title-width="sidebar.normalWidth"
-                        show-toggle
-                        title="CRVS"
-                        @toggle-click="toggleSidebarCollapse"
-                >
-                    <!--                    <slot name="header-toolbar"></slot>-->
-
-                    <py-toolbar-title v-if="!sidebar.collapsed" :width="sidebar.normalWidth" title="CRVS" link="/admin"/>
-                    <py-toolbar-toggle/>
-                    <py-toolbar-item>
-                        <py-menu-demo
-                                ref="headerMenuDemo"
-                                :max-depth="20"
-                                v-if="menus.header && menus.header.children "
-                                :items="menus.header.children"
-                                :options="{
-                                         dropdown:true,
-                                         horizontal:true,
-                                         slug:'header',
-                                     }"/>
-                    </py-toolbar-item>
-                    <py-toolbar-item spacer/>
-
-                    <slot name="header-shortcuts">
-                        <py-shortcut-info/>
-                        <py-shortcut
-                                v-for="(shortcut, ishortcut) in $root.cp.shortcuts"
-                                :key="ishortcut"
-                                :highlighted="shortcut.highlighted"
-                                :type="shortcut.type || shortcut.attributes.type"
-                                :slug="shortcut.slug"
-                                :icon="shortcut.icon"
-                                :href="shortcut.href"
-                                :title="shortcut.title"
-                                :label="shortcut.label"
-                                :class="shortcut.class"
-                                :children="shortcut.children"
-                                :attributes="shortcut.attributes"
-                        >
-                        </py-shortcut>
-                        <!--
-                        <py-shortcut title="dialog" @click="dialogVisible = true"/>
-                        <py-dialog :visible.sync="dialogVisible" append-to-body width="300px">
-                            <template v-if="dialogVisible">
-                            <py-department-picker />
-                            </template>
-                        </py-dialog>
-                        -->
-                        <div class="py-toolbar__item dropdown">
-                            <el-dropdown trigger="click" size="small" class="account-dropdown">
-                                <a href="javascript:void(0);" data-toggle="dropdown">
-                                    <img :src="$root.user.gravatar" width="36" class="rounded-circle">
-                                </a>
-                                <el-dropdown-menu class="account-dropdown__menu">
-                                    <el-dropdown-item class="account-dropdown__item">
-                                        <a href="/" target="_blank">
-                                            <i class="fa fa-external-link"/> Site
-                                        </a>
-                                    </el-dropdown-item>
-                                    <el-dropdown-item>
-                                        <a href="/admin/logout">
-                                            <i class="fa fa-power-off"/> Logout
-                                        </a>
-                                    </el-dropdown-item>
-                                </el-dropdown-menu>
-                            </el-dropdown>
-                            <!--
-                                                        <a href="javascript:void(0);" data-toggle="dropdown">
-                                                            <img :src="$root.user.gravatar" width="36" class="rounded-circle">
-                                                        </a>
-                                                        <ul class="dropdown-menu-right dropdown-menu">
-                                                            <li class="dropdown-item">
-                                                                <a href="/" target="_blank">
-                                                                    <i class="fa fa-external-link"/> Site
-                                                                </a>
-                                                            </li>
-                                                            <li class="dropdown-item">
-                                                                <a href="/admin/logout">
-                                                                    <i class="fa fa-power-off"/> Logout
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                            -->
-                        </div>
-                    </slot>
-                </py-toolbar>
-            </py-layout-header>
-        </slot>
         <div class="py-layout__main">
 
             <!-- SIDEBAR-->
-            <slot name="sidebar"/>
+            <slot name="sidebar" />
 
             <div class="py-layout__content">
 

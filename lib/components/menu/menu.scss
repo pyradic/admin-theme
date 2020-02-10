@@ -159,6 +159,7 @@
         transition : all 0.2s linear;
         @include fa-icon();
 
+
         &:before {
             content : $fa-var-chevron-right
         }
