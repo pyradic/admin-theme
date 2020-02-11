@@ -25,22 +25,22 @@ use Tightenco\Ziggy\ZiggyServiceProvider;
 
 class AdminThemeServiceProvider extends AddonServiceProvider
 {
-    protected $components = [
-        'module::layout.breadcrumb' => LayoutBreadcrumb::class,
-        'module::layout.footer'     => LayoutFooter::class,
-        'module::layout.header'     => LayoutHeader::class,
-        'module::layout.messages'   => LayoutMessages::class,
-        'module::layout.sidebar'    => LayoutSidebar::class,
-        'module::toolbar'           => Toolbar::class,
-        'module::button'            => Button::class,
-        'module::table'             => Table::class,
-        'module::table.body'        => Table\Body::class,
-        'module::table.filters'     => Table\Filters::class,
-        'module::table.footer'      => Table\Footer::class,
-        'module::table.header'      => Table\Header::class,
-        'module::table.views'       => Table\Views::class,
-//        'module::shortcut'       => Shortcut::class,
-    ];
+//    protected $components = [
+//        'module::layout.breadcrumb' => LayoutBreadcrumb::class,
+//        'module::layout.footer'     => LayoutFooter::class,
+//        'module::layout.header'     => LayoutHeader::class,
+//        'module::layout.messages'   => LayoutMessages::class,
+//        'module::layout.sidebar'    => LayoutSidebar::class,
+//        'module::toolbar'           => Toolbar::class,
+//        'module::button'            => Button::class,
+//        'module::table'             => Table::class,
+//        'module::table.body'        => Table\Body::class,
+//        'module::table.filters'     => Table\Filters::class,
+//        'module::table.footer'      => Table\Footer::class,
+//        'module::table.header'      => Table\Header::class,
+//        'module::table.views'       => Table\Views::class,
+////        'module::shortcut'       => Shortcut::class,
+//    ];
 
     public function boot()
     {
