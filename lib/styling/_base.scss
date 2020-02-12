@@ -6,6 +6,8 @@
 @import "base/variables";
 @import "base/mixins";
 
+$--color-info: #5bc0de;
+
 @import "~font-awesome/scss/variables";
 @import "~font-awesome/scss/mixins";
 @import "~@mdi/font/scss/variables";
@@ -15,6 +17,8 @@
 @import "~accelerant-theme/resources/scss/theme/mixins";
 @import "~accelerant-theme/resources/scss/bootstrap/variables";
 @import "~accelerant-theme/resources/scss/bootstrap/mixins";
+
+
 
 
 //

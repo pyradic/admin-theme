@@ -65,3 +65,57 @@ body {
         white-space: nowrap;
     }
 }
+
+
+:root {
+
+    --color-primary: #{$--color-primary};
+    --color-white: #{$--color-white};
+    --color-black: #{$--color-black};
+    --color-primary-light-1: #{$--color-primary-light-1};
+    --color-primary-light-2: #{$--color-primary-light-2};
+    --color-primary-light-3: #{$--color-primary-light-3};
+    --color-primary-light-4: #{$--color-primary-light-4};
+    --color-primary-light-5: #{$--color-primary-light-5};
+    --color-primary-light-6: #{$--color-primary-light-6};
+    --color-primary-light-7: #{$--color-primary-light-7};
+    --color-primary-light-8: #{$--color-primary-light-8};
+    --color-primary-light-9: #{$--color-primary-light-9};
+    --color-success: #{$--color-success};
+    --color-warning: #{$--color-warning};
+    --color-danger: #{$--color-danger};
+    --color-info: #{$--color-info};
+    --color-success-light: #{$--color-success-light};
+    --color-warning-light: #{$--color-warning-light};
+    --color-danger-light: #{$--color-danger-light};
+    --color-info-light: #{$--color-info-light};
+    --color-success-lighter: #{$--color-success-lighter};
+    --color-warning-lighter: #{$--color-warning-lighter};
+    --color-danger-lighter: #{$--color-danger-lighter};
+    --color-info-lighter: #{$--color-info-lighter};
+    --color-text-primary: #{$--color-text-primary};
+    --color-text-regular: #{$--color-text-regular};
+    --color-text-secondary: #{$--color-text-secondary};
+    --color-text-placeholder: #{$--color-text-placeholder};
+
+    --link-color: #{$--link-color};
+    --link-hover-color: #{$--link-hover-color};
+    --icon-color: #{$--icon-color};
+    --icon-color-base: #{$--icon-color-base};
+    --font-size-extra-large: #{$--font-size-extra-large};
+    --font-size-large: #{$--font-size-large};
+    --font-size-medium: #{$--font-size-medium};
+    --font-size-base: #{$--font-size-base};
+    --font-size-small: #{$--font-size-small};
+    --font-size-extra-small: #{$--font-size-extra-small};
+    --font-weight-primary: #{$--font-weight-primary};
+    --font-weight-secondary: #{$--font-weight-secondary};
+    --font-line-height-primary: #{$--font-line-height-primary};
+    --font-line-height-secondary: #{$--font-line-height-secondary};
+    --font-color-disabled-base: #{$--font-color-disabled-base};
+    --size-base: #{$--size-base};
+    --sm: #{$--sm};
+    --md: #{$--md};
+    --lg: #{$--lg};
+    --xl: #{$--xl};
+}
