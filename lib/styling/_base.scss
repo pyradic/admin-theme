@@ -11,12 +11,13 @@ $--color-info: #5bc0de;
 @import "~font-awesome/scss/variables";
 @import "~font-awesome/scss/mixins";
 @import "~@mdi/font/scss/variables";
-@import "~element-ui-theme/src/main";
 @import "~foundation-sites/scss/global";
 @import "~accelerant-theme/resources/scss/theme/variables";
 @import "~accelerant-theme/resources/scss/theme/mixins";
 @import "~accelerant-theme/resources/scss/bootstrap/variables";
 @import "~accelerant-theme/resources/scss/bootstrap/mixins";
+@import "~element-ui-theme/src/mixins/mixins";
+@import "~element-ui-theme/src/common/var";
 
 
 
