@@ -49,17 +49,12 @@ export class AdminThemeVuePlugin {
             Icon
             // ElIcon,
         });
-
         app.hooks.start.tap('AdminThemeVuePlugin', Vue => {
             Vue.component(ElIcon.name, ElIcon);
         });
 
-        // _Vue.component(Menu.name, Menu)
-        // _Vue.component(MenuItem.name, MenuItem)
-        // _Vue.component(MenuItemGroup.name, MenuItemGroup)
-        // _Vue.component(Submenu.name, Submenu)
-
         for ( const id in directives ) {
+            // noinspection JSUnfilteredForInLoop
             _Vue.directive(id, directives[ id ]);
         }
 

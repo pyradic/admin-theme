@@ -6,18 +6,22 @@
 @import "base/variables";
 @import "base/mixins";
 
-$--color-info: #5bc0de;
+
 
 @import "~font-awesome/scss/variables";
 @import "~font-awesome/scss/mixins";
 @import "~@mdi/font/scss/variables";
 @import "~foundation-sites/scss/global";
+
+@import "base/element-ui-vars";
+@import "~element-ui-theme/src/mixins/config";
+@import "~element-ui-theme/src/mixins/function";
+@import "~element-ui-theme/src/mixins/mixins";
+
 @import "~accelerant-theme/resources/scss/theme/variables";
 @import "~accelerant-theme/resources/scss/theme/mixins";
-@import "~accelerant-theme/resources/scss/bootstrap/variables";
+//@import "~accelerant-theme/resources/scss/bootstrap/variables";
 @import "~accelerant-theme/resources/scss/bootstrap/mixins";
-@import "~element-ui-theme/src/mixins/mixins";
-@import "~element-ui-theme/src/common/var";
 
 
 
