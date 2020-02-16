@@ -30,6 +30,7 @@
         "@bem/sdk.naming.entity": "^0.2.11",
         "@mdi/font": "^4.7.95",
         "@mdi/svg": "^4.7.95",
+        "vue-directive-tooltip": "^1.6.3",
         "@pyro/platform": "^1.0.0",
         "@radic/observable": "^1.0.0",
         "@radic/tree": "^1.0.0",

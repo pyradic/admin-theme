@@ -36,16 +36,16 @@
                 {% endblock %}
             </template>
 
+            {#
             <template #breadcrumb>
                 {% block breadcrumb %}
                     {% include "theme::partials/buttons" %}
                     <div>
                         {% include 'streams::partials/breadcrumb' %}
                     </div>
-                    {#{{ livewire('pyro.theme.admin::layout.breadcrumb')|raw }}#}
                 {% endblock %}
-
             </template>
+            #}
 
             <template #messages>
                 <portal-target name="messages"></portal-target>
@@ -67,11 +67,11 @@
             </template>
 
         </py-layout>
+        {% include "theme::partials/modals" %}
     </div>
 {% endblock %}
 
 
-{% include "theme::partials/modals" %}
 
 
 {% block assets %}

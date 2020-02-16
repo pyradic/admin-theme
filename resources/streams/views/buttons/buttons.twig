@@ -4,7 +4,9 @@
     {% if button.dropdown is empty and not button.parent %}
 
         {# Render normal buttons as an anchor #}
-        <{{ button.tag ?: 'py-link-button' }}
+        {# Render normal buttons as an anchor #}
+{#        <{{ button.tag ?: 'py-link-button' }}#}
+        <py-link-button
         size="{{ button.size }}"
         type="{{ button.type }}"
         :disabled="{{ button.disabled ? 'true' : 'false' }}"
@@ -12,7 +14,8 @@
         {{ html_attributes(button.attributes) }}>
             {{ button.icon ? icon(button.icon)|raw }}
             {{ trans(button.text)|raw }}
-        </{{ button.tag ?: 'py-link-button' }}>
+        </py-link-button>
+{#        </{{ button.tag ?: 'py-link-button' }}>#}
 
     {% endif %}
 

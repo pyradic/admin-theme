@@ -11,12 +11,20 @@
 @import "~font-awesome/scss/variables";
 @import "~font-awesome/scss/mixins";
 @import "~@mdi/font/scss/variables";
-@import "~foundation-sites/scss/global";
 
 @import "base/element-ui-vars";
 @import "~element-ui-theme/src/mixins/config";
 @import "~element-ui-theme/src/mixins/function";
 @import "~element-ui-theme/src/mixins/mixins";
+
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: $--sm,
+        md: $--md,
+        lg: $--lg,
+        xl: $--xl
+);
 
 @import "~accelerant-theme/resources/scss/theme/variables";
 @import "~accelerant-theme/resources/scss/theme/mixins";
@@ -26,14 +34,17 @@
 
 
 
-//
-//// Bootstrap
-//@import "~mdbootstrap/scss/core/bootstrap/functions";
-//@import "~mdbootstrap/scss/core/bootstrap/variables";
-//
-//// CORE
-//@import "~mdbootstrap/scss/core/mixins";
-//// Your custom variables
-//@import "~mdbootstrap/scss/custom-variables";
-//@import "~mdbootstrap/scss/core/colors";
-//@import "~mdbootstrap/scss/core/variables";
+
+$table-background: $--table-current-row-background-color;
+$table-border: $--table-border;
+$table-row-hover: $--table-row-hover-background-color;
+$table-row-stripe-hover: $--table-row-hover-background-color;
+$table-head-background: $--table-current-row-background-color;
+$table-head-row-hover: $--table-row-hover-background-color;
+$table-foot-background: $--table-current-row-background-color;
+$table-foot-row-hover: $--table-row-hover-background-color;
+$table-head-font-color:  $--table-header-font-color;
+$table-foot-font-color: $--table-header-font-color;
+
+
+@import "~foundation-sites/scss/global";
