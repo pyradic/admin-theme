@@ -6,15 +6,17 @@
         {# Render normal buttons as an anchor #}
         {# Render normal buttons as an anchor #}
 {#        <{{ button.tag ?: 'py-link-button' }}#}
-        <py-link-button
+        {% set tag = button.url or button.href or button.attributes.href ? 'py-link-button' :'el-button' %}
+        <{{ tag }}
         size="{{ button.size }}"
         type="{{ button.type }}"
         :disabled="{{ button.disabled ? 'true' : 'false' }}"
         class="{{ button.class }}"
+        native-type="{{ button.attributes.type }}"
         {{ html_attributes(button.attributes) }}>
             {{ button.icon ? icon(button.icon)|raw }}
             {{ trans(button.text)|raw }}
-        </py-link-button>
+        </{{ tag }}>
 {#        </{{ button.tag ?: 'py-link-button' }}>#}
 
     {% endif %}
