@@ -1,7 +1,6 @@
 import { IconMap, IconMapper } from '../interfaces';
 
 export const iconMapper = (map: IconMap): IconMapper => (name: string, target: string, icon: string) => {
-    console.log('icon.mapper', name, target, icon);
     if ( name === '*' ) {
         let names = Object.keys(map);
         let icons = names.map(name => {
