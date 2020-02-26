@@ -1,11 +1,14 @@
+@import "~@pyro/platform/lib/styling/base";
 @import "../../lib/styling/base/colors";
+@import "../../lib/styling/base/variables";
 
 $link-color             : $cyan-900;
 
-$font-family-sans-serif : Poppins, Helvetica, sans-serif;
-$headings-font-family   : Roboto, Helvetica, sans-serif;
+$font-family-sans-serif : $font-family-base;
+$headings-font-family   : $font-family-headings;
 $font-size-root         : 13px;
-$font-weight-normal     : 300;
+$font-weight-normal     : $font-weight-base;
+$headings-font-weight   : $font-weight-headings;
 
 $tag-font-weight        : 500;
 

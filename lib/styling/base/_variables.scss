@@ -13,6 +13,12 @@ $secondary-light                 : #E2F1F8;
 $secondary-dark                  : #808E95;
 $secondary-text                  : #ECEFF1;
 
+$font-family-base                : "Open Sans", Helvetica, sans-serif !default;
+//$font-family-headings            : Roboto, Helvetica, sans-serif !default;
+$font-family-headings            : Poppins, Helvetica, sans-serif !default;
+$font-weight-base                : 300 !default;
+$font-weight-headings            : 500 !default;
+
 $layout-prefix                   : #{$prefix}-layout !default;
 $shortcut-prefix                 : #{$prefix}-shortcut !default;
 $toolbar-prefix                  : #{$prefix}-toolbar !default;

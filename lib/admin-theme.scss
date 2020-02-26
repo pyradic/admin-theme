@@ -71,7 +71,8 @@ body {
 }
 
 :root {
-
+    --font-family-base: #{$font-family-base};
+    --font-family-headings: #{$font-family-headings};
     --color-primary: #{$--color-primary};
     --color-white: #{$--color-white};
     --color-black: #{$--color-black};

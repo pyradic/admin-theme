@@ -99,7 +99,8 @@ $--box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !de
 // boxShadow|1|Shadow|1
 $--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12) !default;
 /// boxShadow|1|Shadow|1
-$--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+//$--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+$--box-shadow-light: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
 
 /* Fill
 -------------------------- */
@@ -123,7 +124,7 @@ $--font-size-small: 13px !default;
 $--font-size-extra-small: 12px !default;
 /// fontWeight|1|Font Weight|1
 //$--font-weight-primary: 500 !default;
-$--font-weight-primary: 400;
+$--font-weight-primary: $font-weight-base;
 /// fontWeight|1|Font Weight|1
 $--font-weight-secondary: 100 !default;
 /// fontLineHeight|1|Line Height|2

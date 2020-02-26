@@ -1,25 +1,15 @@
 <?php namespace Pyro\AdminTheme;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
-use Anomaly\Streams\Platform\Ui\Table\Component\Row\Command\BuildRows;
+use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
 use Anomaly\Streams\Platform\View\Event\TemplateDataIsLoading;
 use Anomaly\Streams\Platform\View\ViewIncludes;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
-use Closure;
-use Crvs\ClientsModule\Client\Table\ClientTableBuilder;
+use Crvs\ClientsModule\Ui\MultipleProfile\MultipleProfileBuilder;
+use Crvs\ClientsModule\Ui\Profile\Event\ProfileWasBuilt;
 use Illuminate\Support\Arr;
 use Laradic\Support\Wrap;
 use Livewire\LivewireManager;
-use Pyro\AdminTheme\Components\Button;
-use Pyro\AdminTheme\Components\LayoutBreadcrumb;
-use Pyro\AdminTheme\Components\LayoutFooter;
-use Pyro\AdminTheme\Components\LayoutHeader;
-use Pyro\AdminTheme\Components\LayoutMessages;
-use Pyro\AdminTheme\Components\LayoutSidebar;
-use Pyro\AdminTheme\Components\Table;
-use Pyro\AdminTheme\Components\Toolbar;
-use Pyro\Platform\HookDispatch;
-use Pyro\Platform\Hooks;
 use Pyro\Platform\Platform;
 use Tightenco\Ziggy\ZiggyServiceProvider;
 
@@ -55,6 +45,17 @@ class AdminThemeServiceProvider extends AddonServiceProvider
 
         LoginFormBuilder::when('make', function () use ($platform) {
             $platform->preventBootstrap();
+        });
+
+
+//        MultipleProfileBuilder::when('made', function (MultipleProfileBuilder $builder) use ($platform) {            return;        });
+
+        $this->app->events->listen('response.view', function ($view, $data) use ($platform) {
+            $platform[ 'breadcrumbs' ] = resolve(BreadcrumbCollection::class)
+                ->mapWithKeys(function ($url, $title) {
+                    return [ trans($title) => $url ];
+                })
+                ->toArray();
         });
 
         $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
