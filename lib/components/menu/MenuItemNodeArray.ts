@@ -1,11 +1,13 @@
-import { MenuNode } from './MenuNode';
-import { MenuItemNode } from './MenuItemNode';
-import { NodeArray } from '@radic/tree';
+import { MenuNode }      from './MenuNode';
+import { MenuItemNode }  from './MenuItemNode';
+import { NodeArray }     from '@radic/tree';
 import { MenuItemState } from './interfaces';
 
 
 export class MenuItemNodeArray extends NodeArray<MenuItemNode> {
     _menu: MenuNode;
+
+    withoutRoot() {return this.filter(item => !item.isRoot());}
 
     menu(): MenuNode {return this._menu;}
 

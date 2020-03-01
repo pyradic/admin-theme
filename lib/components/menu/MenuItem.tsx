@@ -10,8 +10,7 @@ import { mixin as clickaway }    from 'vue-clickaway';
 import Popper, { PopperOptions } from 'popper.js';
 import { MenuSubmenu }           from './MenuSubmenu';
 import { MenuItemType }          from './MenuItemType';
-import { VNodeData }             from 'vue';
-import { styles }                from './styling';
+import vue,{ VNodeData }             from 'vue';
 
 export interface VuePopperProps {
     'disabled'?: boolean // 	false
@@ -64,6 +63,7 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
     @prop.string() icon: string;
     @prop.string('default') type: string;
     @prop.boolean() active: boolean;
+    @prop.boolean() noSubmenuIcons: boolean;
     @prop.object() attributes: any;
 
     // @styles<MenuItem>(({ util, theme, ctx }) => ({
@@ -125,8 +125,8 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
     get href() {
         switch(true){//formatter:off
             case this.hasChildren: return 'javascript:void(0);';
-            case !!this.url: return this.url // case this.url != null: return this.url
             case this?.attributes?.href: return this.attributes.href
+            case !!this.url: return this.url // case this.url != null: return this.url
             case !!this.$attrs.href: return this.$attrs.href
             default:
                 return null;//formatter:on
@@ -154,14 +154,30 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
     }
 
     handleClick(event: MouseEvent) {
-        console.log('MenuItem.handleClick', { event, me: this });
-        this.$emit('click', event);
+        this.$emit('click', { event, me: this });
         // event.preventDefault();
         // event.stopPropagation();
+        if(this.$attrs['data-toggle'] === 'modal'){
+            let $target=$(this.$attrs['data-target'])
+            this.$log('click for modal', $target)
+            $target.modal('show');
+        }
         if ( this.hasChildren ) {
             event.preventDefault();
             this.node.toggle();
         }
+    }
+
+    async openModal(href){
+        let response = await this.$http.get(href);
+        const {staticRenderFns,render} = vue.compile(response.data);
+        const el = new vue({staticRenderFns, render})
+
+        $().modal('show')
+        this.showModal =true;
+        this.$nextTick(() => {
+            el.$mount(this.$refs['modalContent']);
+        })
     }
 
     handleMouseOver(event: MouseEvent) { !this.node.hovered() && this.node.hover(); }
@@ -297,11 +313,17 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
         );
         const submenu = (
             <py-expand-transition enabled={this.menu.slide} show={this.isExpanded}>
-                <py-menu-submenu ref="submenu" class={classNames({})} v-show={this.isExpanded}>
+                <py-menu-submenu ref="submenu" class={classNames({})} v-show={this.isExpanded} no-icons={this.noSubmenuIcons}>
                     {this.$slots.submenu}
                 </py-menu-submenu>
             </py-expand-transition>
         );
+
+        const modal = this.showModal ? (
+                <py-dialog before-close={this.onBeforeClose} visible append-to-body close-on-click-modal close-on-press-escape destroy-on-close>
+                    <div ref="modalContent" />
+                </py-dialog>
+        ) : null;
 
         return (
             <Tag ref="root"
@@ -313,8 +335,14 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
             >
                 {cont}
                 {when(this.$slots.submenu, submenu)}
+                {modal}
             </Tag>
         );
     }
-
+    modalContent=null
+    showModal=false
+    onBeforeClose(hide) {
+        hide();
+        this.showModal = false;
+    }
 }

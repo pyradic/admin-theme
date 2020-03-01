@@ -1,6 +1,7 @@
 import './menu.scss';
 // @ts-ignore
 import MenuDemo                from './MenuDemo';
+import ObjectMenu                from './ObjectMenu';
 import * as menuUtils          from './utils';
 import { MenuManager }         from './MenuManager';
 import { Menu }                from './Menu';
@@ -19,6 +20,7 @@ export * from './interfaces';
 
 export {
     MenuDemo,
+    ObjectMenu
 };
 
 export {

@@ -1,12 +1,13 @@
 <py-layout-sidebar>
-    <py-menu-demo
+    <py-object-menu
         ref="sidebar"
         v-if="layout.menus.sidebar"
+        :max-depth="3"
         :items="layout.menus.sidebar"
         :options="{
              horizontal:false,
              collapsed: layout.sidebar.collapsed,
              slug:'sidebar'
        }"
-    ></py-menu-demo>
+    ></py-object-menu>
 </py-layout-sidebar>

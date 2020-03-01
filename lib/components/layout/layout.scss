@@ -50,19 +50,20 @@
     }
 
     &__header {
-        background  : $layout-header-background;
-        color       : $layout-header-font-color;
-        height      : $layout-header-height;
+        background  : var(--layout-header-background);
+        background  : var(--layout-header-background);
+        color       : var(--layout-header-font-color);
+        height      : var(--layout-header-height);
 
         &-item {
             padding     : 0 10px;
-            height      : $layout-header-height;
-            line-height : $layout-header-height;
+            height      : var(--layout-header-height);
+            line-height : var(--layout-header-height);
         }
         a {
-            color : $layout-header-font-color;
+            color : var(--layout-header-font-color);
 
-            &:hover { color : $layout-header-hover-font-color; }
+            &:hover { color : var(--layout-header-hover-font-color); }
         }
 
         .el-menu.el-menu--horizontal {
@@ -72,14 +73,14 @@
                     vertical-align : auto;
                 }
 
-                color  : $layout-header-font-color;
-                height : $layout-header-height;
+                color  : var(--layout-header-font-color);
+                height : var(--layout-header-height);
 
-                i { color : $layout-header-font-color; }
+                i { color : var(--layout-header-font-color); }
 
                 &:hover {
-                    color      : $layout-header-hover-font-color;
-                    background : $layout-header-hover-background;
+                    color      : var(--layout-header-hover-font-color);
+                    background : var(--layout-header-hover-background);
                 }
             }
 
@@ -126,19 +127,19 @@
 
     }
     &__sidebar {
-        width      : $layout-sidebar-width;
+        width      : var(--layout-sidebar-width);
         order      : 0;
-        background : $layout-sidebar-background;
-        color      : $layout-sidebar-font-color;
+        background : var(--layout-sidebar-background);
+        color      : var(--layout-sidebar-font-color);
         //height     : 100%;
         height     : auto;
         overflow-x : hidden !important;
 
         &.is-collapsed {
-            width : $layout-sidebar-collapse-width;
+            width : var(--layout-sidebar-collapse-width);
             @include b(menu) {
                 @include m(collapse) {
-                    width : $layout-sidebar-collapse-width;
+                    width : var(--layout-sidebar-collapse-width);
                 }
             }
         }
@@ -146,11 +147,11 @@
         &-menu.el-menu {
             background : transparent;
             border     : none;
-            color      : $layout-sidebar-font-color;
+            color      : var(--layout-sidebar-font-color);
             @include m(collapse) {
-                width : $layout-sidebar-collapse-width;
+                width : var(--layout-sidebar-collapse-width);
                 @include b(submenu) {
-                    width : $layout-sidebar-collapse-width;
+                    width : var(--layout-sidebar-collapse-width);
                     @include e(title) {
                         line-height  : 32px;
                         font-size    : 14px;
@@ -164,14 +165,14 @@
             > .el-submenu > .el-menu > .el-menu-item,
             > .el-menu-item {
 
-                color : $layout-sidebar-font-color;
+                color : var(--layout-sidebar-font-color);
 
-                i { color : $layout-sidebar-font-color; }
+                i { color : var(--layout-sidebar-font-color); }
 
 
                 &:hover {
-                    color      : $layout-sidebar-hover-font-color;
-                    background : $layout-sidebar-hover-background;
+                    color      : var(--layout-sidebar-hover-font-color);
+                    background : var(--layout-sidebar-hover-background);
                 }
             }
 
@@ -185,8 +186,8 @@
                         padding-left : 17px !important;
                     }
                     .el-menu-item.is-active {
-                        color      : $layout-sidebar-hover-font-color;
-                        background : $layout-sidebar-hover-background;
+                        color      : var(--layout-sidebar-hover-font-color);
+                        background : var(--layout-sidebar-hover-background);
                     }
                 }
 
@@ -224,23 +225,23 @@
     }
 
     &__footer {
-        background  : $layout-footer-background;
-        color       : $layout-footer-font-color;
-        //border-top     : $layout-footer-border-top;
-        height      : $layout-footer-height;
-        line-height : $layout-footer-height;
+        background  : var(--layout-footer-background);
+        color       : var(--layout-footer-font-color);
+        //border-top     : var(--layout-footer-border-top);
+        height      : var(--layout-footer-height);
+        line-height : var(--layout-footer-height);
 
         .el-menu.el-menu--horizontal {
             > .el-submenu .el-submenu__title,
             > .el-menu-item {
-                height : $layout-footer-height;
-                color  : $layout-footer-font-color;
+                height : var(--layout-footer-height);
+                color  : var(--layout-footer-font-color);
 
-                i { color : $layout-footer-font-color; }
+                i { color : var(--layout-footer-font-color); }
 
                 &:hover {
-                    color      : $layout-footer-hover-font-color;
-                    background : $layout-footer-hover-background;
+                    color      : var(--layout-footer-hover-font-color);
+                    background : var(--layout-footer-hover-background);
                 }
             }
 
@@ -248,189 +249,189 @@
     }
 }
 
-.#{$layout-prefix}-sdfg {
-    $self  : &;
-    height : 100%;
-
-    &__header,
-    &__footer,
-    &__sidebar {
-        @include b(menu) {
-            background : transparent;
-        }
-    }
-
-    &__header {
-
-        flex-direction : row;
-        display        : flex;
-        height         : $layout-header-height;
-        line-height    : $layout-header-height;
-        padding        : 0;
-        background     : $layout-header-background;
-        border-bottom  : $layout-header-border-bottom;
-
-        .el-menu.el-menu--horizontal {
-            height : $layout-header-height - 1px;
-            border : none;
-
-
-            > .el-submenu .el-submenu__title,
-            > .el-menu-item {
-                line-height : $layout-header-height;
-                height      : $layout-header-height;
-                color       : $layout-header-font-color;
-                background  : transparent !important;
-
-                &:hover {
-                    color      : $layout-header-hover-font-color;
-                    background : $layout-header-hover-background;
-                }
-            }
-
-            //> .el-submenu .el-submenu__title,
-            //> .el-menu-item {
-            //    color : $layout-header-font-color;
-            //
-            //    &:hover {
-            //        color      : $layout-header-hover-font-color;
-            //        background : $layout-header-hover-background;
-            //    }
-            //}
-        }
-
-        //.el-submenu .el-submenu__title,
-        //.el-menu-item {
-        //    line-height : $layout-header-height;
-        //    height      : $layout-header-height;
-        //}
-
-        a {
-            color : $layout-header-font-color;
-
-            &:hover {
-                color : $layout-header-hover-font-color;
-            }
-        }
-
-    }
-
-    &__header-sidebar-toggle {
-
-        line-height : $layout-header-height;
-        height      : $layout-header-height;
-    }
-
-    &__sidebar {
-        background : $layout-sidebar-background;
-        color      : #FFF;
-        height     : 100%;
-        overflow-x : hidden !important;
-
-        @include m(collapse) {
-            width : $layout-sidebar-collapse-width;
-            @include b(menu) {
-                @include m(collapse) {
-                    width : $layout-sidebar-collapse-width;
-                }
-            }
-        }
-
-    }
-
-    &__sidebar-menu.el-menu {
-        background : transparent;
-        border     : none;
-        @include m(collapse) {
-            width : $layout-sidebar-collapse-width;
-            @include b(submenu) {
-                width : $layout-sidebar-collapse-width;
-                @include e(title) {
-                    line-height  : 32px;
-                    font-size    : 14px;
-                    padding-left : 23px !important;
-                }
-            }
-        }
-
-        > .el-submenu {
-            &.is-active > .el-submenu__title {
-                border-left  : 3px solid #409EFF;
-                padding-left : 17px !important;
-            }
-
-            &.is-opened > .el-submenu__title {
-                background : #2F2E2E !important;
-            }
-        }
-
-        .el-submenu__title,
-        .el-submenu__title span,
-        .el-submenu > .el-menu > .el-menu-item span {
-            font-size    : 12px;
-            padding-left : 10px;
-        }
-
-        .el-submenu__title,
-        .el-submenu .el-menu-item {
-            height      : 35px;
-            line-height : 35px;
-            display     : block;
-        }
-    }
-
-    &__sidebar-menu-popper {
-        .el-menu {
-            .el-menu-item {
-
-                height      : 35px;
-                line-height : 35px;
-                display     : block;
-
-                span {
-                    font-size : 12px;
-                }
-            }
-        }
-    }
-
-    &__main {
-        #{$self} & {
-            padding : 0;
-        }
-
-        #buttons {
-
-            float    : right;
-            position : absolute;
-            right    : 0;
-            margin   : 8px;
-        }
-    }
-
-    &__main-breadcrumb { }
-
-    &__main-buttons { }
-
-    &__main-messages { }
-
-    &__main-content { }
-
-    &__footer {
-        height      : $layout-footer-height;
-        line-height : $layout-footer-height;
-        padding     : 0;
-        background  : $layout-footer-background;
-        border-top  : $layout-footer-border-top;
-
-        .el-menu.el-menu--horizontal {
-            border-bottom : none;
-            background    : transparent !important;
-
-            > .el-submenu .el-submenu__title,
-            > .el-menu-item {
-                background : transparent !important;
-            }
-        }
-    }
-}
+//.#{$layout-prefix}-sdfg {
+//    $self  : &;
+//    height : 100%;
+//
+//    &__header,
+//    &__footer,
+//    &__sidebar {
+//        @include b(menu) {
+//            background : transparent;
+//        }
+//    }
+//
+//    &__header {
+//
+//        flex-direction : row;
+//        display        : flex;
+//        height         : $layout-header-height;
+//        line-height    : $layout-header-height;
+//        padding        : 0;
+//        background     : $layout-header-background;
+//        border-bottom  : $layout-header-border-bottom;
+//
+//        .el-menu.el-menu--horizontal {
+//            height : $layout-header-height - 1px;
+//            border : none;
+//
+//
+//            > .el-submenu .el-submenu__title,
+//            > .el-menu-item {
+//                line-height : $layout-header-height;
+//                height      : $layout-header-height;
+//                color       : $layout-header-font-color;
+//                background  : transparent !important;
+//
+//                &:hover {
+//                    color      : $layout-header-hover-font-color;
+//                    background : $layout-header-hover-background;
+//                }
+//            }
+//
+//            //> .el-submenu .el-submenu__title,
+//            //> .el-menu-item {
+//            //    color : $layout-header-font-color;
+//            //
+//            //    &:hover {
+//            //        color      : $layout-header-hover-font-color;
+//            //        background : $layout-header-hover-background;
+//            //    }
+//            //}
+//        }
+//
+//        //.el-submenu .el-submenu__title,
+//        //.el-menu-item {
+//        //    line-height : $layout-header-height;
+//        //    height      : $layout-header-height;
+//        //}
+//
+//        a {
+//            color : $layout-header-font-color;
+//
+//            &:hover {
+//                color : $layout-header-hover-font-color;
+//            }
+//        }
+//
+//    }
+//
+//    &__header-sidebar-toggle {
+//
+//        line-height : $layout-header-height;
+//        height      : $layout-header-height;
+//    }
+//
+//    &__sidebar {
+//        background : $layout-sidebar-background;
+//        color      : #FFF;
+//        height     : 100%;
+//        overflow-x : hidden !important;
+//
+//        @include m(collapse) {
+//            width : $layout-sidebar-collapse-width;
+//            @include b(menu) {
+//                @include m(collapse) {
+//                    width : $layout-sidebar-collapse-width;
+//                }
+//            }
+//        }
+//
+//    }
+//
+//    &__sidebar-menu.el-menu {
+//        background : transparent;
+//        border     : none;
+//        @include m(collapse) {
+//            width : $layout-sidebar-collapse-width;
+//            @include b(submenu) {
+//                width : $layout-sidebar-collapse-width;
+//                @include e(title) {
+//                    line-height  : 32px;
+//                    font-size    : 14px;
+//                    padding-left : 23px !important;
+//                }
+//            }
+//        }
+//
+//        > .el-submenu {
+//            &.is-active > .el-submenu__title {
+//                border-left  : 3px solid #409EFF;
+//                padding-left : 17px !important;
+//            }
+//
+//            &.is-opened > .el-submenu__title {
+//                background : #2F2E2E !important;
+//            }
+//        }
+//
+//        .el-submenu__title,
+//        .el-submenu__title span,
+//        .el-submenu > .el-menu > .el-menu-item span {
+//            font-size    : 12px;
+//            padding-left : 10px;
+//        }
+//
+//        .el-submenu__title,
+//        .el-submenu .el-menu-item {
+//            height      : 35px;
+//            line-height : 35px;
+//            display     : block;
+//        }
+//    }
+//
+//    &__sidebar-menu-popper {
+//        .el-menu {
+//            .el-menu-item {
+//
+//                height      : 35px;
+//                line-height : 35px;
+//                display     : block;
+//
+//                span {
+//                    font-size : 12px;
+//                }
+//            }
+//        }
+//    }
+//
+//    &__main {
+//        #{$self} & {
+//            padding : 0;
+//        }
+//
+//        #buttons {
+//
+//            float    : right;
+//            position : absolute;
+//            right    : 0;
+//            margin   : 8px;
+//        }
+//    }
+//
+//    &__main-breadcrumb { }
+//
+//    &__main-buttons { }
+//
+//    &__main-messages { }
+//
+//    &__main-content { }
+//
+//    &__footer {
+//        height      : $layout-footer-height;
+//        line-height : $layout-footer-height;
+//        padding     : 0;
+//        background  : $layout-footer-background;
+//        border-top  : $layout-footer-border-top;
+//
+//        .el-menu.el-menu--horizontal {
+//            border-bottom : none;
+//            background    : transparent !important;
+//
+//            > .el-submenu .el-submenu__title,
+//            > .el-menu-item {
+//                background : transparent !important;
+//            }
+//        }
+//    }
+//}

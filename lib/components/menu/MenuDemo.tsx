@@ -41,7 +41,7 @@ export default class MenuDemo extends TsxComponent {
         let childNodes: any[] = [
             title
         ]
-        if ( depth < this.maxDepth && children ) {
+        if ( depth < this.maxDepth && children && children.length > 1 ) {
             childNodes.push(h('template', { slot: 'submenu' }, children.map(child => this.renderItem(h, child as any, depth + 1))))
         }
         return h('py-menu-item', {

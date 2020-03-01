@@ -5,6 +5,7 @@
     "main": "lib/index.ts",
     "typings": "lib/index.ts",
     "types": "lib/index.ts",
+    "sass": "lib/admin-theme.scss",
     "pyro": {
         "srcPath": "lib",
         "entrypoints": [

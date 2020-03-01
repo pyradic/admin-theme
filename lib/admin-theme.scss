@@ -1,6 +1,7 @@
 @import "styling/base";
 @import "~@mdi/font/scss/materialdesignicons";
 @import "styling/components/label";
+@import "~element-ui-theme/src/reset";
 
 @include color-classes(fg-, bg-);
 
@@ -38,13 +39,20 @@
 }
 
 .el-message-box__wrapper > .el-message-box {
-    border-radius: 0;
+    border-radius : 0;
+
     &__header {}
+
     &__title {}
+
     &__headerbtn {}
+
     &__close {}
+
     &__content {}
+
     &__btns {}
+
     &__ {}
 }
 
@@ -52,74 +60,131 @@ body {
     // @todo find a better way to avoid the 'flicker' to left/right when for example:
     //  ajax loaded content and added to page that increases height so much that a scrollbar will be displayed,
     //  then next ajax request it removes that content again and the scrollbar will not be displayed anymore
-    overflow-y:scroll !important;
+    overflow-y : scroll !important;
 }
 
 
 .fg1 {
-    flex-grow: 1;
+    flex-grow : 1;
 }
 
 .table {
     thead tr th {
-        white-space: nowrap;
+        white-space : nowrap;
     }
 }
 
 .datetime__timezone.input-group-addon {
-    display: none;
+    display : none;
 }
 
 :root {
-    --font-family-base: #{$font-family-base};
-    --font-family-headings: #{$font-family-headings};
-    --color-primary: #{$--color-primary};
-    --color-white: #{$--color-white};
-    --color-black: #{$--color-black};
-    --color-primary-light-1: #{$--color-primary-light-1};
-    --color-primary-light-2: #{$--color-primary-light-2};
-    --color-primary-light-3: #{$--color-primary-light-3};
-    --color-primary-light-4: #{$--color-primary-light-4};
-    --color-primary-light-5: #{$--color-primary-light-5};
-    --color-primary-light-6: #{$--color-primary-light-6};
-    --color-primary-light-7: #{$--color-primary-light-7};
-    --color-primary-light-8: #{$--color-primary-light-8};
-    --color-primary-light-9: #{$--color-primary-light-9};
-    --color-success: #{$--color-success};
-    --color-warning: #{$--color-warning};
-    --color-danger: #{$--color-danger};
-    --color-info: #{$--color-info};
-    --color-success-light: #{$--color-success-light};
-    --color-warning-light: #{$--color-warning-light};
-    --color-danger-light: #{$--color-danger-light};
-    --color-info-light: #{$--color-info-light};
-    --color-success-lighter: #{$--color-success-lighter};
-    --color-warning-lighter: #{$--color-warning-lighter};
-    --color-danger-lighter: #{$--color-danger-lighter};
-    --color-info-lighter: #{$--color-info-lighter};
-    --color-text-primary: #{$--color-text-primary};
-    --color-text-regular: #{$--color-text-regular};
-    --color-text-secondary: #{$--color-text-secondary};
-    --color-text-placeholder: #{$--color-text-placeholder};
+    --font-family-base                       : #{$font-family-base};
+    --font-family-headings                   : #{$font-family-headings};
+    --color-primary                          : #{$--color-primary};
+    --color-white                            : #{$--color-white};
+    --color-black                            : #{$--color-black};
+    --color-primary-light-1                  : #{$--color-primary-light-1};
+    --color-primary-light-2                  : #{$--color-primary-light-2};
+    --color-primary-light-3                  : #{$--color-primary-light-3};
+    --color-primary-light-4                  : #{$--color-primary-light-4};
+    --color-primary-light-5                  : #{$--color-primary-light-5};
+    --color-primary-light-6                  : #{$--color-primary-light-6};
+    --color-primary-light-7                  : #{$--color-primary-light-7};
+    --color-primary-light-8                  : #{$--color-primary-light-8};
+    --color-primary-light-9                  : #{$--color-primary-light-9};
+    --color-success                          : #{$--color-success};
+    --color-warning                          : #{$--color-warning};
+    --color-danger                           : #{$--color-danger};
+    --color-info                             : #{$--color-info};
+    --color-success-light                    : #{$--color-success-light};
+    --color-warning-light                    : #{$--color-warning-light};
+    --color-danger-light                     : #{$--color-danger-light};
+    --color-info-light                       : #{$--color-info-light};
+    --color-success-lighter                  : #{$--color-success-lighter};
+    --color-warning-lighter                  : #{$--color-warning-lighter};
+    --color-danger-lighter                   : #{$--color-danger-lighter};
+    --color-info-lighter                     : #{$--color-info-lighter};
+    --color-text-primary                     : #{$--color-text-primary};
+    --color-text-regular                     : #{$--color-text-regular};
+    --color-text-secondary                   : #{$--color-text-secondary};
+    --color-text-placeholder                 : #{$--color-text-placeholder};
 
-    --link-color: #{$--link-color};
-    --link-hover-color: #{$--link-hover-color};
-    --icon-color: #{$--icon-color};
-    --icon-color-base: #{$--icon-color-base};
-    --font-size-extra-large: #{$--font-size-extra-large};
-    --font-size-large: #{$--font-size-large};
-    --font-size-medium: #{$--font-size-medium};
-    --font-size-base: #{$--font-size-base};
-    --font-size-small: #{$--font-size-small};
-    --font-size-extra-small: #{$--font-size-extra-small};
-    --font-weight-primary: #{$--font-weight-primary};
-    --font-weight-secondary: #{$--font-weight-secondary};
-    --font-line-height-primary: #{$--font-line-height-primary};
-    --font-line-height-secondary: #{$--font-line-height-secondary};
-    --font-color-disabled-base: #{$--font-color-disabled-base};
-    --size-base: #{$--size-base};
-    --sm: #{$--sm};
-    --md: #{$--md};
-    --lg: #{$--lg};
-    --xl: #{$--xl};
+    --link-color                             : #{$--link-color};
+    --link-hover-color                       : #{$--link-hover-color};
+    --icon-color                             : #{$--icon-color};
+    --icon-color-base                        : #{$--icon-color-base};
+    --font-size-extra-large                  : #{$--font-size-extra-large};
+    --font-size-large                        : #{$--font-size-large};
+    --font-size-medium                       : #{$--font-size-medium};
+    --font-size-base                         : #{$--font-size-base};
+    --font-size-small                        : #{$--font-size-small};
+    --font-size-extra-small                  : #{$--font-size-extra-small};
+    --font-weight-primary                    : #{$--font-weight-primary};
+    --font-weight-secondary                  : #{$--font-weight-secondary};
+    --font-line-height-primary               : #{$--font-line-height-primary};
+    --font-line-height-secondary             : #{$--font-line-height-secondary};
+    --font-color-disabled-base               : #{$--font-color-disabled-base};
+    --size-base                              : #{$--size-base};
+    --sm                                     : #{$--sm};
+    --md                                     : #{$--md};
+    --lg                                     : #{$--lg};
+    --xl                                     : #{$--xl};
+
+
+    --layout-header-height                   : #{$layout-header-height};
+    --layout-header-font-color               : #{$layout-header-font-color};
+    --layout-header-background               : #{$layout-header-background};
+    --layout-header-hover-font-color         : #{$layout-header-hover-font-color};
+    --layout-header-hover-background         : #{$layout-header-hover-background};
+    --layout-header-border-bottom            : #{$layout-header-border-bottom};
+    --layout-footer-height                   : #{$layout-footer-height};
+    --layout-footer-font-color               : #{$layout-footer-font-color};
+    --layout-footer-background               : #{$layout-footer-background};
+    --layout-footer-hover-font-color         : #{$layout-footer-hover-font-color};
+    --layout-footer-hover-background         : #{$layout-footer-hover-background};
+    --layout-footer-border-top               : #{$layout-footer-border-top};
+    --layout-sidebar-width                   : #{$layout-sidebar-width};
+    --layout-sidebar-collapse-width          : #{$layout-sidebar-collapse-width};
+    --layout-sidebar-font-color              : #{$layout-sidebar-font-color};
+    --layout-sidebar-background              : #{$layout-sidebar-background};
+    --layout-sidebar-hover-font-color        : #{$layout-sidebar-hover-font-color};
+    --layout-sidebar-hover-background        : #{$layout-sidebar-hover-background};
+
+    --menu-font-size                         : #{$menu-font-size};
+    --menu-line-height                       : #{$menu-line-height};
+    --menu-item-text-shadow                  : #{$menu-item-text-shadow};
+    --menu-item-font-size                    : #{$menu-item-font-size};
+    --menu-item-font-weight                  : #{$menu-item-font-weight};
+    --menu-item-icon-font-size               : #{$menu-item-icon-font-size};
+    --menu-item-icon-width                   : #{$menu-item-icon-width};
+    --menu-item-indent                       : #{$menu-item-indent};
+    --menu-item-padding-y                    : #{$menu-item-padding-y};
+    --menu-submenu-padding-y                 : #{$menu-submenu-padding-y};
+    --menu-item-divider-background           : #{$menu-item-divider-background};
+    --menu-divider-color                     : #{$menu-divider-color};
+    --menu-item-background                   : #{$menu-item-background};
+    --menu-item-icon-color                   : #{$menu-item-icon-color};
+    --menu-item-title-color                  : #{$menu-item-title-color};
+    --menu-item-arrow-color                  : #{$menu-item-arrow-color};
+    --menu-item-hover-background             : #{$menu-item-hover-background};
+    --menu-item-hover-icon-color             : #{$menu-item-hover-icon-color};
+    --menu-item-hover-title-color            : #{$menu-item-hover-title-color};
+    --menu-item-hover-arrow-color            : #{$menu-item-hover-arrow-color};
+    --menu-item-active-background            : #{$menu-item-active-background};
+    --menu-item-active-icon-color            : #{$menu-item-active-icon-color};
+    --menu-item-active-title-color           : #{$menu-item-active-title-color};
+    --menu-item-active-arrow-color           : #{$menu-item-active-arrow-color};
+    --menu-item-selected-background          : #{$menu-item-selected-background};
+    --menu-item-selected-icon-color          : #{$menu-item-selected-icon-color};
+    --menu-item-selected-title-color         : #{$menu-item-selected-title-color};
+    --menu-item-selected-arrow-color         : #{$menu-item-selected-arrow-color};
+    --menu-dropdown-submenu-background       : #{$menu-dropdown-submenu-background};
+    --menu-dropdown-submenu-border-width     : #{$menu-dropdown-submenu-border-width};
+    --menu-dropdown-submenu-border-color     : #{$menu-dropdown-submenu-border-color};
+    --menu-dropdown-submenu-box-shadow       : #{$menu-dropdown-submenu-box-shadow};
+    --menu-dropdown-submenu-item-background  : #{$menu-dropdown-submenu-item-background};
+    --menu-dropdown-submenu-item-title-color : #{$menu-dropdown-submenu-item-title-color};
+    --menu-dropdown-submenu-item-icon-color  : #{$menu-dropdown-submenu-item-icon-color};
+    --menu-dropdown-submenu-item-arrow-color : #{$menu-dropdown-submenu-item-arrow-color};
 }

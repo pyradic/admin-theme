@@ -12,54 +12,10 @@ $state-prefix                           : 'is-' !default;
 
 $fa-font-path                           : "~font-awesome/fonts";
 
-$font-size-root                         : 13px;
-$font-family-base                       : Arial;
-$dropdown-border-width                  : 1px;
-$dropdown-border-color                  : #333333;
+$font-size-root                         : $--font-size-base; //13px;
+//$font-family-base                       : Arial;
 
 // Dimensions
-$menu-font-size                         : $font-size-root !default;
-$menu-line-height                       : 20px !default;
-$menu-item-text-shadow                  : 1px 1px 0px #000000 !default;
-$menu-item-font-size                    : $menu-font-size !default;
-$menu-item-font-weight                  : 400 !default;
-$menu-item-icon-font-size               : $menu-font-size !default;
-$menu-item-icon-width                   : 25px !default;
-$menu-item-indent                       : $menu-item-icon-width + 10px !default;
-$menu-item-padding-y                    : 9px !default; // top / bottom
-$menu-submenu-padding-y                 : 0px !default;
-$menu-item-divider-background           : #4B4B4B;
-
-
-$menu-divider-color                     : $blue-grey-800 !default;
-$menu-item-background                   : transparent !default;
-$menu-item-icon-color                   : #A6A6A7 !default; //$blue-grey-700 !default;
-$menu-item-title-color                  : #A6A6A7 !default;
-$menu-item-arrow-color                  : lighten($menu-item-title-color, 30) !default; //#A6A6A7 !default; //$blue-grey-700 !default;
-
-$menu-item-hover-background             : #4C4C4C; //darken($blue-grey-900, 5) !default;
-$menu-item-hover-icon-color             : lighten($menu-item-icon-color, 15) !default;
-$menu-item-hover-title-color            : darken($menu-item-title-color, 5) !default;
-$menu-item-hover-arrow-color            : lighten($menu-item-arrow-color, 20) !default;
-
-$menu-item-active-background            : null !default; //rgba($blue-grey-400, 0.1) !default;
-$menu-item-active-icon-color            : lighten($menu-item-icon-color, 10) !default;
-$menu-item-active-title-color           : lighten($menu-item-title-color, 10) !default;
-$menu-item-active-arrow-color           : $menu-item-title-color !default;
-
-$menu-item-selected-background          : null !default;
-$menu-item-selected-icon-color          : $menu-item-title-color !default;
-$menu-item-selected-title-color         : $menu-item-active-title-color !default;
-$menu-item-selected-arrow-color         : $menu-item-title-color !default;
-
-$menu-dropdown-submenu-background       : #333333;
-$menu-dropdown-submenu-border-width     : $dropdown-border-width !default;
-$menu-dropdown-submenu-border-color     : $dropdown-border-color !default;
-$menu-dropdown-submenu-box-shadow       : 1px 1px 5px 2px rgba(#000, 0.175) !default;
-$menu-dropdown-submenu-item-background  : $blue-grey-900 !default;
-$menu-dropdown-submenu-item-title-color : $blue-grey-200 !default;
-$menu-dropdown-submenu-item-icon-color  : $blue-grey-200 !default;
-$menu-dropdown-submenu-item-arrow-color : $blue-grey-200 !default;
 
 @mixin menu-theme-item($background: $menu-item-background, $icon: $menu-item-icon-color, $title: $menu-item-title-color, $arrow: $menu-item-arrow-color) {
     > .#{$menu-item-prefix}__content {

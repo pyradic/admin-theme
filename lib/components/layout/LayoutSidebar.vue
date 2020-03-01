@@ -7,7 +7,7 @@
 // background-color="#333"
 // text-color="#ffffff"
 import Vue from 'vue';
-import { component, inject, prop } from '@pyro/platform';
+import { component, inject, prop,Component } from '@pyro/platform';
 import Layout from './Layout.vue';
 import { Menu, MenuItem } from 'element-ui';
 
@@ -16,10 +16,10 @@ type IMenu = Menu & {
 }
 
 @component()
-export default class LayoutSidebar extends Vue {
-    $refs: { menu: IMenu }
+export default class LayoutSidebar extends Component {
     @inject() layout: typeof Layout.prototype
     @prop.classPrefix('layout__sidebar') classPrefix: string
+
 
     get classes() {
         return {
@@ -59,10 +59,6 @@ export default class LayoutSidebar extends Vue {
         // let slug      = this.$py.data.get('cp.section.slug')
         // return `${namespace}.${slug}`
         return this.$py.data.get('cp.section.key')
-    }
-
-    get menu(): IMenu {
-        return this.$refs.menu
     }
 }
 </script>

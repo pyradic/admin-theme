@@ -59,7 +59,7 @@ export class Menu extends TsxComponent {
         this.items = [];
         this.$py.menus.register(this);
         if(this.behaviour === 'default') {
-            this.$py.menus.setupDefaultMenuBehaviour(this)
+            this.$py.menus.setupBehaviour(this)
         }
     }
 

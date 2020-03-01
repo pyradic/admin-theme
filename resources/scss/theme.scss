@@ -1,2 +1,7 @@
 @import "custom";
 @import "~accelerant-theme/resources/scss/theme/theme";
+
+
+html body {
+    font-weight: $font-weight-base;
+}

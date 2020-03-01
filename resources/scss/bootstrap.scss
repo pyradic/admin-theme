@@ -7,7 +7,7 @@
 @import "~accelerant-theme/resources/scss/bootstrap/../theme/mixins";
 
 // Reset and dependencies
-@import "~accelerant-theme/resources/scss/bootstrap/normalize";
+//@import "~accelerant-theme/resources/scss/bootstrap/normalize";
 @import "~accelerant-theme/resources/scss/bootstrap/print";
 
 // Core CSS
@@ -49,24 +49,4 @@
 // Utility classes
 @import "~accelerant-theme/resources/scss/bootstrap/utilities";
 
-
-html,
-body {
-
-    font-size: $font-size-root;
-    font-weight: 300;
-    font-family: $font-family-sans-serif;
-
-}
-body {
-
-    display: flex;
-    flex-direction: column;
-}
-
-.table {
-    th {
-        font-family: $headings-font-family;
-    }
-}
 // sdf

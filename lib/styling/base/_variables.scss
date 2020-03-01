@@ -1,111 +1,99 @@
-$fa-font-path                    : '~font-awesome/fonts';
-$mdi-font-path                   : '~@mdi/font/fonts';
+$fa-font-path                           : '~font-awesome/fonts';
+$mdi-font-path                          : '~@mdi/font/fonts';
 //$fa-css-prefix                   : 'el-icon-fa';
 //$mdi-css-prefix                  : 'icon-';
 
-$primary                         : #607D8B;
-$primary-light                   : #8EACBB;
-$primary-dark                    : #34515E;
-$primary-text                    : #CFD8DC;
+$primary                                : #607D8B;
+$primary-light                          : #8EACBB;
+$primary-dark                           : #34515E;
+$primary-text                           : #CFD8DC;
 
-$secondary                       : #B0BEC5;
-$secondary-light                 : #E2F1F8;
-$secondary-dark                  : #808E95;
-$secondary-text                  : #ECEFF1;
+$secondary                              : #B0BEC5;
+$secondary-light                        : #E2F1F8;
+$secondary-dark                         : #808E95;
+$secondary-text                         : #ECEFF1;
 
-$font-family-base                : "Open Sans", Helvetica, sans-serif !default;
+$font-family-base                       : "Open Sans", Helvetica, sans-serif !default;
 //$font-family-headings            : Roboto, Helvetica, sans-serif !default;
-$font-family-headings            : Poppins, Helvetica, sans-serif !default;
-$font-weight-base                : 300 !default;
-$font-weight-headings            : 500 !default;
+$font-family-headings                   : Poppins, Helvetica, sans-serif !default;
+$font-weight-base                       : 400;
+$font-weight-headings                   : 500 !default;
+$font-size                          : 14px;
 
-$layout-prefix                   : #{$prefix}-layout !default;
-$shortcut-prefix                 : #{$prefix}-shortcut !default;
-$toolbar-prefix                  : #{$prefix}-toolbar !default;
-$menu-prefix                     : #{$prefix}-menu !default;
-$client-prefix                   : #{$prefix}-client !default;
-$client-view-prefix              : #{$prefix}-client-view !default;
-$table-prefix                    : #{$prefix}-table !default;
+$layout-prefix                          : #{$prefix}-layout !default;
+$shortcut-prefix                        : #{$prefix}-shortcut !default;
+$toolbar-prefix                         : #{$prefix}-toolbar !default;
+$menu-prefix                            : #{$prefix}-menu !default;
+$client-prefix                          : #{$prefix}-client !default;
+$client-view-prefix                     : #{$prefix}-client-view !default;
+$table-prefix                           : #{$prefix}-table !default;
 
-$layout-header-height            : 50px !default;
+$layout-header-height                   : 50px !default;
 
-$layout-header-font-color        : #BBB6B6 !default;
-$layout-header-background        : $blue-grey-800 !default;
-$layout-header-hover-font-color  : darken($layout-header-font-color, 10) !default;
-$layout-header-hover-background  : lighten($layout-header-background, 10) !default;
-$layout-header-border-bottom     : 1px solid #4A626F !default;
+$layout-header-font-color               : #BBB6B6 !default;
+$layout-header-background               : $blue-grey-800 !default;
+$layout-header-hover-font-color         : darken($layout-header-font-color, 10) !default;
+$layout-header-hover-background         : lighten($layout-header-background, 10) !default;
+$layout-header-border-bottom            : 1px solid #4A626F !default;
 
-$layout-footer-height            : 50px !default;
-$layout-footer-font-color        : #BBB6B6 !default;
-$layout-footer-background        : $blue-grey-800 !default;
-$layout-footer-hover-font-color  : darken($layout-footer-font-color, 10) !default;
-$layout-footer-hover-background  : lighten($layout-footer-background, 10) !default;
-$layout-footer-border-top        : 1px solid #4A626F !default;
+$layout-footer-height                   : 50px !default;
+$layout-footer-font-color               : #BBB6B6 !default;
+$layout-footer-background               : $blue-grey-800 !default;
+$layout-footer-hover-font-color         : darken($layout-footer-font-color, 10) !default;
+$layout-footer-hover-background         : lighten($layout-footer-background, 10) !default;
+$layout-footer-border-top               : 1px solid #4A626F !default;
 
-$layout-sidebar-width            : 200px !default;
-$layout-sidebar-collapse-width   : 64px !default;
+$layout-sidebar-width                   : 200px !default;
+$layout-sidebar-collapse-width          : 64px !default;
 
-$layout-sidebar-font-color       : #BBB6B6 !default;
-$layout-sidebar-background       : #333333 !default;
-$layout-sidebar-hover-font-color : darken($layout-sidebar-font-color, 10) !default;
-$layout-sidebar-hover-background : lighten($layout-sidebar-background, 10) !default;
+$layout-sidebar-font-color              : #BBB6B6 !default;
+$layout-sidebar-background              : #333333 !default;
+$layout-sidebar-hover-font-color        : darken($layout-sidebar-font-color, 10) !default;
+$layout-sidebar-hover-background        : lighten($layout-sidebar-background, 10) !default;
+
+$dropdown-border-width                  : 1px;
+$dropdown-border-color                  : #333333;
 
 
-//$fa-font-path                  : '../fonts/font-awesome';
-//$enable-flex                   : true;
-//$enable-rounded                : false;
-//$font-size-root                : 14px;
-//$border-radius                 : 0;
-//$border-radius-lg              : 0;
-//$border-radius-sm              : 0;
-//
-//$background-color              : $blue-grey-50;
-//
-//$layout-header-background      : $blue-grey-800;
-//$layout-footer-background      : $grey-900;
-//$layout-compact-font-size      : 13px;
-//$layout-side-background        : #252525;
-//
-//
-//$layout-breadcrumbs-background : $blue-grey-100;
-//
-//$prefix                        : c;
-//$menu-prefix                   : #{$prefix}-menu;
-//$layout-prefix                 : #{$prefix}-layout;
-//$toolbar-prefix                : #{$prefix}-toolbar;
-//$dropdown-prefix               : #{$prefix}-dropdown;
-//$shortcut-prefix               : #{$prefix}-shortcut;
-//
-//
-//$grid-columns                  : 24;
-//
-////@formatter:off
-//$_variables: (
-//    layout-header-background: $layout-header-background,
-//    layout-footer-background: $layout-footer-background,
-//    layout-compact-font-size: $layout-compact-font-size,
-//    layout-side-background: $layout-side-background,
-//    layout-breadcrumbs-background: $layout-breadcrumbs-background,
-//);
-////@formatter:on
-//@mixin root-vars() {
-//    :root {
-//        // Custom variable values only support SassScript inside `#{}`.
-//        //@each $name, $variants in $material-colors {
-//        //    @each $variant, $value in $variants{
-//        //        --#{$name}-#{$variant}: #{$value};
-//        //    }
-//        //}
-//        --test-size : 50;
-//
-//        @each $color, $value in $_variables {
-//            --#{$color}: #{$value};
-//        }
-//
-//        @each $bp, $value in $grid-breakpoints {
-//            --breakpoint-#{$bp}: #{$value};
-//        }
-//
-//    }
-//
-//}
+$menu-font-size                         : $font-size !default;
+$menu-line-height                       : 20px !default;
+$menu-item-text-shadow                  : 1px 1px 0px #000000 !default;
+$menu-item-font-size                    : $menu-font-size !default;
+$menu-item-font-weight                  : 400 !default;
+$menu-item-icon-font-size               : $menu-font-size !default;
+$menu-item-icon-width                   : 25px !default;
+$menu-item-indent                       : $menu-item-icon-width + 10px !default;
+$menu-item-padding-y                    : 9px !default; // top / bottom
+$menu-submenu-padding-y                 : 0px !default;
+$menu-item-divider-background           : #4B4B4B;
+
+
+$menu-divider-color                     : $blue-grey-800 !default;
+$menu-item-background                   : transparent !default;
+$menu-item-icon-color                   : #A6A6A7 !default; //$blue-grey-700 !default;
+$menu-item-title-color                  : #A6A6A7 !default;
+$menu-item-arrow-color                  : lighten($menu-item-title-color, 30) !default; //#A6A6A7 !default; //$blue-grey-700 !default;
+
+$menu-item-hover-background             : #4C4C4C; //darken($blue-grey-900, 5) !default;
+$menu-item-hover-icon-color             : lighten($menu-item-icon-color, 15) !default;
+$menu-item-hover-title-color            : darken($menu-item-title-color, 5) !default;
+$menu-item-hover-arrow-color            : lighten($menu-item-arrow-color, 20) !default;
+
+$menu-item-active-background            : null !default; //rgba($blue-grey-400, 0.1) !default;
+$menu-item-active-icon-color            : lighten($menu-item-icon-color, 20) !default;
+$menu-item-active-title-color           : lighten($menu-item-title-color, 20) !default;
+$menu-item-active-arrow-color           : $menu-item-arrow-color !default;
+
+$menu-item-selected-background          : null !default;
+$menu-item-selected-icon-color          : $menu-item-title-color !default;
+$menu-item-selected-title-color         : $menu-item-active-title-color !default;
+$menu-item-selected-arrow-color         : $menu-item-arrow-color !default;
+
+$menu-dropdown-submenu-background       : #333333;
+$menu-dropdown-submenu-border-width     : $dropdown-border-width !default;
+$menu-dropdown-submenu-border-color     : $dropdown-border-color !default;
+$menu-dropdown-submenu-box-shadow       : 1px 1px 5px 2px rgba(#000, 0.175) !default;
+$menu-dropdown-submenu-item-background  : $blue-grey-900 !default;
+$menu-dropdown-submenu-item-title-color : $blue-grey-200 !default;
+$menu-dropdown-submenu-item-icon-color  : $blue-grey-200 !default;
+$menu-dropdown-submenu-item-arrow-color : $blue-grey-200 !default;

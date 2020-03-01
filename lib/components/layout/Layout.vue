@@ -126,7 +126,7 @@ export default class Layout extends Component {
 
     get menus() {
         return {
-            sidebar   : Object.values(this.$py.data.cp.structure),
+            sidebar   : this.$py.data.cp.navigation.children,
             pre_header: this.$py.data?.menus?.admin_pre_header,
             header    : this.$py.data?.menus?.admin_header,
             footer    : this.$py.data?.menus?.admin_footer,

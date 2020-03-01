@@ -21,7 +21,7 @@ export class MenuManager {
 
     has(slug: string) {return slug in this.menus; }
 
-    setupBehaviour(menu:Menu,behaviour:string){
+    setupBehaviour(menu:Menu,behaviour:string='default'){
         if(behaviour === 'default'){
             return this.setupDefaultMenuBehaviour(menu)
         }

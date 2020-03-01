@@ -111,17 +111,17 @@ $--fill-base: $--color-white !default;
 $--font-path: 'fonts' !default;
 $--font-display: 'auto' !default;
 /// fontSize|1|Font Size|0
-$--font-size-extra-large: 20px !default;
+$--font-size-extra-large: $font-size + 6px;
 /// fontSize|1|Font Size|0
-$--font-size-large: 18px !default;
+$--font-size-large: $font-size + 4px;
 /// fontSize|1|Font Size|0
-$--font-size-medium: 16px !default;
+$--font-size-medium: $font-size + 2px;
 /// fontSize|1|Font Size|0
-$--font-size-base: 14px !default;
+$--font-size-base: $font-size;
 /// fontSize|1|Font Size|0
-$--font-size-small: 13px !default;
+$--font-size-small: $font-size - 1px;
 /// fontSize|1|Font Size|0
-$--font-size-extra-small: 12px !default;
+$--font-size-extra-small: $font-size - 2px;
 /// fontWeight|1|Font Weight|1
 //$--font-weight-primary: 500 !default;
 $--font-weight-primary: $font-weight-base;

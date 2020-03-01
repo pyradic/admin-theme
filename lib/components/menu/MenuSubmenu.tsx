@@ -9,10 +9,12 @@ export class MenuSubmenu extends TsxComponent {
     @prop.classPrefix('menu-submenu') classPrefix: string
     @inject() menu: Menu
     @inject() parent: Menu | MenuItem
+    @prop.boolean() noIcons
 
     get classes() {
         return classNames({
-            [ this.classPrefix ]: true
+            [ this.classPrefix ]: true,
+            [ 'has-no-icons' ]: this.noIcons,
         })
     }
 

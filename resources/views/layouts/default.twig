@@ -17,21 +17,18 @@
 
             <template #pre-header>
                 {% block pre_header %}
-                    {#{{ livewire('pyro.theme.admin::layout.header')|raw }}#}
                     {% include "theme::partials/pre-header" %}
                 {% endblock %}
             </template>
 
             <template #header>
                 {% block header %}
-                    {#{{ livewire('pyro.theme.admin::layout.header')|raw }}#}
                     {% include "theme::partials/header" %}
                 {% endblock %}
             </template>
 
             <template #sidebar>
                 {% block sidebar %}
-                    {#{{ livewire('pyro.theme.admin::layout.sidebar')|raw }}#}
                     {% include "theme::partials/sidebar" %}
                 {% endblock %}
             </template>
@@ -62,7 +59,6 @@
                 <portal-target name="footer"></portal-target>
                 {% block footer %}
                     {% include "theme::partials/footer" %}
-                    {#{{ livewire('pyro.theme.admin::layout.footer')|raw }}#}
                 {% endblock %}
             </template>
 

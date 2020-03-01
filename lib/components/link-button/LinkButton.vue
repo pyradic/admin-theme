@@ -31,6 +31,7 @@ export default class LinkButton extends Component {
     @inject({ default: '' }) elForm: Form;
     @inject({ default: '' }) elFormItem: FormItem;
     @prop.string('primary') type: string; //ButtonType;
+    @prop.string('button') nativeType: string; //ButtonType;
     @prop.string() size: string; //ElementUIComponentSize;
     @prop.string() href: string;
     @prop.string() icon: string;

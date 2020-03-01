@@ -7,8 +7,8 @@
     margin         : 0;
     padding        : 0;
     list-style     : none;
-    font-size      : $menu-font-size;
-    line-height    : $menu-line-height;
+    font-size      : var(--menu-font-size);
+    line-height    : var(--menu-line-height);
 }
 
 .#{$menu-item-prefix} {
@@ -62,7 +62,7 @@
     &--pyro_extension_label_link_type {
         .#{$content} {
 
-            padding : $menu-item-padding-y 20px $menu-item-padding-y 5px;
+            padding : var(--menu-item-padding-y) 20px var(--menu-item-padding-y) 5px;
             cursor  : pointer;
         }
     }
@@ -73,7 +73,7 @@
         .#{$content} {
             padding    : 0 !important;
             height     : 1px;
-            background : $menu-item-divider-background;
+            background : var(--menu-item-divider-background);
         }
     }
 
@@ -116,10 +116,10 @@
 
 // > __content > 1: __icon
 .#{$menu-item-prefix}__icon {
-    font-size       : $menu-item-icon-font-size;
+    font-size       : var(--menu-item-icon-font-size);
     display         : flex;
     align-items     : center;
-    flex            : 0 0 $menu-item-icon-width;
+    flex            : 0 0 var(--menu-item-icon-width);
     justify-content : center;
     margin-right    : 10px;
     text-align      : center;
@@ -127,14 +127,14 @@
 
 // > __content > 2: __title
 .#{$menu-item-prefix}__title {
-    font-size    : $menu-item-font-size;
-    font-weight  : $menu-item-font-weight;
+    font-size    : var(--menu-item-font-size);
+    font-weight  : var(--menu-item-font-weight);
     display      : flex;
     align-items  : center;
     margin-right : 30px;
     padding      : 0;
     white-space  : nowrap;
-    text-shadow  : $menu-item-text-shadow;
+    text-shadow  : var(--menu-item-text-shadow);
     flex-grow    : 1;
 }
 
@@ -217,7 +217,7 @@
     flex-grow      : 1;
     min-width      : 100%;
     margin         : 0;
-    padding        : $menu-submenu-padding-y 0;
+    padding        : var(--menu-submenu-padding-y) 0;
     list-style     : none;
 
 
@@ -264,6 +264,10 @@
 }
 
 .#{$menu-prefix}--vertical {
+
+    .#{$menu-item-prefix} {
+        @include menu-indent-levels(4);
+    }
 
     .#{$menu-item-prefix}__spacing {
         display : block;
@@ -328,7 +332,7 @@
             position   : absolute;
             z-index    : $zindex-dropdown;
             min-width  : 150px;
-            background : $menu-dropdown-submenu-background;
+            background : var(--menu-dropdown-submenu-background);
         }
     }
 
@@ -367,41 +371,93 @@
 
 
 .#{$menu-item-prefix} {
-    @include menu-theme-item(
-                    $menu-item-background,
-                    $menu-item-icon-color,
-                    $menu-item-title-color,
-                    $menu-item-arrow-color,
-    );
+    > .#{$menu-item-prefix}__content {
+        background : var(--menu-item-background);
+        color      : var(--menu-item-title-color);
+
+        &:active, &:focus, &:hover {color : var(--menu-item-title-color); }
+        .#{$menu-item-prefix}__icon { color : var(--menu-item-icon-color); }
+        .#{$menu-item-prefix}__title { color : var(--menu-item-title-color); }
+        .#{$menu-item-prefix}__arrow { color : var(--menu-item-arrow-color); }
+    }
 }
 
 .#{$menu-item-prefix}.is-hovered {
-    @include menu-theme-item(
-                    $menu-item-hover-background,
-                    $menu-item-hover-icon-color,
-                    $menu-item-hover-title-color,
-                    $menu-item-hover-arrow-color,
-    );
+    > .#{$menu-item-prefix}__content {
+        background : var(--menu-item-hover-background);
+        color      : var(--menu-item-hover-title-color);
+
+        &:active, &:focus, &:hover {color : var(--menu-item-hover-title-color); }
+        .#{$menu-item-prefix}__icon { color : var(--menu-item-hover-icon-color); }
+        .#{$menu-item-prefix}__title { color : var(--menu-item-hover-title-color); }
+        .#{$menu-item-prefix}__arrow { color : var(--menu-item-hover-arrow-color); }
+    }
 }
 
 .#{$menu-item-prefix}.is-selected {
-    @include menu-theme-item(
-                    $menu-item-selected-background,
-                    $menu-item-selected-icon-color,
-                    $menu-item-selected-title-color,
-                    $menu-item-selected-arrow-color,
-    );
+    > .#{$menu-item-prefix}__content {
+        background : var(--menu-item-selected-background);
+        color      : var(--menu-item-selected-title-color);
+
+        &:active, &:focus, &:hover {color : var(--menu-item-selected-title); }
+        .#{$menu-item-prefix}__icon { color : var(--menu-item-selected-icon); }
+        .#{$menu-item-prefix}__title { color : var(--menu-item-selected-title); }
+        .#{$menu-item-prefix}__arrow { color : var(--menu-item-selected-arrow); }
+    }
 }
 
 
 .#{$menu-item-prefix}.is-active {
-    @include menu-theme-item(
-                    $menu-item-active-background,
-                    $menu-item-active-icon-color,
-                    $menu-item-active-title-color,
-                    $menu-item-active-arrow-color,
-    );
+    > .#{$menu-item-prefix}__content {
+        background : var(--menu-item-active-background);
+        color      : var(--menu-item-active-title-color);
+
+        &:active, &:focus, &:hover {color : var(--menu-item-active-title-color); }
+        .#{$menu-item-prefix}__icon { color : var(--menu-item-active-icon-color); }
+        .#{$menu-item-prefix}__title { color : var(--menu-item-active-title-color); }
+        .#{$menu-item-prefix}__arrow { color : var(--menu-item-active-arrow-color); }
+    }
 }
+//
+//
+//
+//.#{$menu-item-prefix} {
+//    @include menu-theme-item(
+//                    $menu-item-background,
+//                    $menu-item-icon-color,
+//                    $menu-item-title-color,
+//                    $menu-item-arrow-color,
+//    );
+//}
+//
+//.#{$menu-item-prefix}.is-hovered {
+//    @include menu-theme-item(
+//                    $menu-item-hover-background,
+//                    $menu-item-hover-icon-color,
+//                    $menu-item-hover-title-color,
+//                    $menu-item-hover-arrow-color,
+//    );
+//}
+//
+//.#{$menu-item-prefix}.is-selected {
+//    @include menu-theme-item(
+//                    $menu-item-selected-background,
+//                    $menu-item-selected-icon-color,
+//                    $menu-item-selected-title-color,
+//                    $menu-item-selected-arrow-color,
+//    );
+//}
+//
+//
+//.#{$menu-item-prefix}.is-active {
+//
+//    @include menu-theme-item(
+//                    $menu-item-active-background,
+//                    $menu-item-active-icon-color,
+//                    $menu-item-active-title-color,
+//                    $menu-item-active-arrow-color,
+//    );
+//}
 
 .#{$menu-prefix}--dropdown {
 
@@ -423,9 +479,9 @@
 
     .#{$menu-item-prefix} {
         .#{$menu-submenu-prefix} {
-            box-shadow : $menu-dropdown-submenu-box-shadow;
-            background : $menu-dropdown-submenu-item-background;
-            border     : $menu-dropdown-submenu-border-width solid $menu-dropdown-submenu-border-color;
+            box-shadow : var(--menu-dropdown-submenu-box-shadow);
+            background : var(--menu-dropdown-submenu-item-background);
+            border     : var(--menu-dropdown-submenu-border-width) solid var(--menu-dropdown-submenu-border-color);
 
 
         }
