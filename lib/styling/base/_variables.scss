@@ -18,7 +18,7 @@ $font-family-base                       : "Open Sans", Helvetica, sans-serif !de
 $font-family-headings                   : Poppins, Helvetica, sans-serif !default;
 $font-weight-base                       : 400;
 $font-weight-headings                   : 500 !default;
-$font-size                          : 14px;
+$font-size                              : 14px;
 
 $layout-prefix                          : #{$prefix}-layout !default;
 $shortcut-prefix                        : #{$prefix}-shortcut !default;
@@ -43,7 +43,7 @@ $layout-footer-hover-font-color         : darken($layout-footer-font-color, 10) 
 $layout-footer-hover-background         : lighten($layout-footer-background, 10) !default;
 $layout-footer-border-top               : 1px solid #4A626F !default;
 
-$layout-sidebar-width                   : 200px !default;
+$layout-sidebar-width                   : 250px !default;
 $layout-sidebar-collapse-width          : 64px !default;
 
 $layout-sidebar-font-color              : #BBB6B6 !default;
@@ -97,3 +97,15 @@ $menu-dropdown-submenu-item-background  : $blue-grey-900 !default;
 $menu-dropdown-submenu-item-title-color : $blue-grey-200 !default;
 $menu-dropdown-submenu-item-icon-color  : $blue-grey-200 !default;
 $menu-dropdown-submenu-item-arrow-color : $blue-grey-200 !default;
+
+$menu-depth-1-font-size                   : $menu-font-size !default;
+$menu-depth-2-font-size                   : $menu-font-size !default;
+$menu-depth-3-font-size                   : $menu-font-size !default;
+$menu-depth-4-font-size                   : $menu-font-size !default;
+$menu-depth-5-font-size                   : $menu-font-size !default;
+
+$menu-depth-1-indent                   : $menu-item-indent !default;
+$menu-depth-2-indent                   : $menu-item-indent !default;
+$menu-depth-3-indent                   : $menu-item-indent !default;
+$menu-depth-4-indent                   : $menu-item-indent !default;
+$menu-depth-5-indent                   : $menu-item-indent !default;

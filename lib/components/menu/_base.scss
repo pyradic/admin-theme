@@ -37,13 +37,17 @@ $font-size-root                         : $--font-size-base; //13px;
 
 @mixin menu-indent-levels($depth, $current: 1) {
     .#{$menu-submenu-prefix} {
+        .#{$menu-item-prefix}__title {
+            font-size: var(--menu-depth-#{$current}-font-size);
+        }
         .#{$menu-item-prefix}__content {
-            padding-left : $menu-item-indent * $current;
+            padding-left : calc(var(--menu-depth-#{$current}-indent) * #{$current});
+            font-size: var(--menu-depth-#{$current}-font-size);
         }
 
         &.has-no-icons {
             .#{$menu-item-prefix}__content {
-                padding-left : ($menu-item-indent * $current) + 5px;
+                padding-left : calc(calc(var(--menu-depth-#{$current}-indent) * #{$current}) + 5px);
             }
         }
 

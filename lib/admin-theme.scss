@@ -187,4 +187,22 @@ body {
     --menu-dropdown-submenu-item-title-color : #{$menu-dropdown-submenu-item-title-color};
     --menu-dropdown-submenu-item-icon-color  : #{$menu-dropdown-submenu-item-icon-color};
     --menu-dropdown-submenu-item-arrow-color : #{$menu-dropdown-submenu-item-arrow-color};
+    --menu-depth-1-font-size                 : #{$menu-depth-1-font-size};
+    --menu-depth-2-font-size                 : #{$menu-depth-2-font-size};
+    --menu-depth-3-font-size                 : #{$menu-depth-3-font-size};
+    --menu-depth-4-font-size                 : #{$menu-depth-4-font-size};
+    --menu-depth-5-font-size                 : #{$menu-depth-5-font-size};
+    --menu-depth-1-indent                    : #{$menu-depth-1-indent};
+    --menu-depth-2-indent                    : #{$menu-depth-2-indent};
+    --menu-depth-3-indent                    : #{$menu-depth-3-indent};
+    --menu-depth-4-indent                    : #{$menu-depth-4-indent};
+    --menu-depth-5-indent                    : #{$menu-depth-5-indent};
+
+}
+
+.#{$layout-prefix}__sidebar {
+    --menu-item-padding-y    : 5px;
+    --menu-depth-1-font-size : 12px;
+    --menu-depth-2-font-size : 11px;
+    --menu-depth-2-indent    : 25px;
 }
