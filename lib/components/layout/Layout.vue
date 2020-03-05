@@ -24,8 +24,14 @@
                 <slot name="breadcrumb">
                     <div class="py-layout__content-top">
                         <el-breadcrumb separator="/" class="py-layout__breadcrumbs">
-                            <el-breadcrumb-item v-for="(bc, ibc) in breadcrumbs" :key="ibc">
-                                <a :href="bc[1]">{{ bc[0] }}</a>
+                            <el-breadcrumb-item v-for="(bc,ibc) in breadcrumbs"
+                                                v-bind="bc.attributes"
+                                                :class="bc.class"
+                                                :to="bc.url"
+                                                :key="ibc"
+                            >
+                                <a :href="bc.url" :data-slug="bc.key" v-if="ibc !== breadcrumbs.length -1">{{ bc.title }}</a>
+                                <span :data-slug="bc.key" v-if="ibc === breadcrumbs.length -1">{{ bc.title }}</span>
                             </el-breadcrumb-item>
                         </el-breadcrumb>
                         <div class="fg1"/>
@@ -67,12 +73,13 @@
     </div>
 </template>
 <script lang="ts">
-import { Collection, Component, component, prop, strEnsureRight, Styles } from '@pyro/platform';
-import { styleVars }                                                      from '../../styling/export';
-import { MenuDemo }                                                       from '../menu';
-import { Dialog }                                                         from 'element-ui';
-import { StreamsTable }                                                   from '../table';
+import { Collection, Component, component, Platform, prop, strEnsureRight, Styles } from '@pyro/platform';
+import { styleVars }                                                                from '../../styling/export';
+import { MenuDemo }                                                                 from '../menu';
+import { Dialog }                                                                   from 'element-ui';
+import { StreamsTable }                                                             from '../table';
 import Button = StreamsTable.Button;
+import Breadcrumb = Platform.Breadcrumb;
 
 const noDelimiter = { replace: function () {} };
 @component({
@@ -143,7 +150,8 @@ export default class Layout extends Component {
         this.$py.events.emit('layout:sidebar:toggle');
     }
 
-    get breadcrumbs(): Array<[ string, string ]> { return Object.entries(this.$py.data.breadcrumbs); }
+    // get breadcrumbs(): Array<[ string, string ]> { return Object.entries(this.$py.data.breadcrumbs); }
+    get breadcrumbs(): Breadcrumb[] { return this.$py.data.breadcrumbs ? Object.values(this.$py.data.breadcrumbs) as any : []; }
 
     get buttons(): Button[] { return new Collection(...this.$py.data.cp.buttons); }
 }

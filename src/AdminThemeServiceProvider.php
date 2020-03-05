@@ -1,12 +1,9 @@
 <?php namespace Pyro\AdminTheme;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
-use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
 use Anomaly\Streams\Platform\View\Event\TemplateDataIsLoading;
 use Anomaly\Streams\Platform\View\ViewIncludes;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
-use Crvs\ClientsModule\Ui\MultipleProfile\MultipleProfileBuilder;
-use Crvs\ClientsModule\Ui\Profile\Event\ProfileWasBuilt;
 use Illuminate\Support\Arr;
 use Laradic\Support\Wrap;
 use Livewire\LivewireManager;
@@ -47,17 +44,6 @@ class AdminThemeServiceProvider extends AddonServiceProvider
             $platform->preventBootstrap();
         });
 
-
-//        MultipleProfileBuilder::when('made', function (MultipleProfileBuilder $builder) use ($platform) {            return;        });
-
-        $this->app->events->listen('response.view', function ($view, $data) use ($platform) {
-            $platform[ 'breadcrumbs' ] = resolve(BreadcrumbCollection::class)
-                ->mapWithKeys(function ($url, $title) {
-                    return [ trans($title) => $url ];
-                })
-                ->toArray();
-        });
-
         $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
             $template = $event->getTemplate();
             /** @var \Anomaly\Streams\Platform\Addon\Module\Module|\Anomaly\Streams\Platform\Addon\Module\ModulePresenter $module */
@@ -79,10 +65,12 @@ class AdminThemeServiceProvider extends AddonServiceProvider
                 $platform[ 'module' ] = $module->toArray();
             }
 
-            if ($breadcrumbs = $template->get('breadcrumbs')) {
-                $platform[ 'breadcrumbs' ] = $breadcrumbs->mapWithKeys(function ($url, $title) {
-                    return [ trans($title) => $url ];
-                })->toArray();
+            if( ! $platform->has('breadcrumbs')) {
+                if ($breadcrumbs = $template->get('breadcrumbs')) {
+                    $platform[ 'breadcrumbs' ] = $breadcrumbs->map(function ($url, $title) {
+                        return [ 'title' =>trans($title),'url' => $url ];
+                    })->toArray();
+                }
             }
 
             $user = null;
