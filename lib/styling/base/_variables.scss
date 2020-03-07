@@ -73,6 +73,7 @@ $menu-item-background                   : transparent !default;
 $menu-item-icon-color                   : #A6A6A7 !default; //$blue-grey-700 !default;
 $menu-item-title-color                  : #A6A6A7 !default;
 $menu-item-arrow-color                  : lighten($menu-item-title-color, 30) !default; //#A6A6A7 !default; //$blue-grey-700 !default;
+$menu-item-arrow-font-size              : 9px !default; //#A6A6A7 !default; //$blue-grey-700 !default;
 
 $menu-item-hover-background             : #4C4C4C; //darken($blue-grey-900, 5) !default;
 $menu-item-hover-icon-color             : lighten($menu-item-icon-color, 15) !default;

@@ -146,7 +146,7 @@
 
 // > __content > 4: __arrow
 .#{$menu-item-prefix}__arrow {
-    font-size       : 9px;
+    font-size       : var(--menu-item-arrow-font-size);
     line-height     : 0;
     display         : none;
     align-items     : center;

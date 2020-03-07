@@ -30,8 +30,8 @@
                                                 :to="bc.url"
                                                 :key="ibc"
                             >
-                                <a :href="bc.url" :data-slug="bc.key" v-if="ibc !== breadcrumbs.length -1">{{ bc.title }}</a>
-                                <span :data-slug="bc.key" v-if="ibc === breadcrumbs.length -1">{{ bc.title }}</span>
+                                <a :href="bc.url" :data-slug="bc.key" v-if="ibc !== breadcrumbs.length -1 && bc.url">{{ bc.title }}</a>
+                                <span :data-slug="bc.key" v-else >{{ bc.title }}</span>
                             </el-breadcrumb-item>
                         </el-breadcrumb>
                         <div class="fg1"/>

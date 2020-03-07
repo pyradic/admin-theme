@@ -199,7 +199,7 @@
             .el-submenu__title,
             .el-submenu__title span,
             .el-submenu > .el-menu > .el-menu-item span {
-                font-size    : 12px;
+                font-size    : var(--font-size-extra-small);
                 padding-left : 10px;
             }
 
@@ -219,7 +219,7 @@
                 line-height : 35px;
                 display     : block;
 
-                span { font-size : 12px; }
+                span { font-size : var(--font-size-extra-small); }
             }
         }
     }
