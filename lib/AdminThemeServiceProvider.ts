@@ -65,8 +65,10 @@ export class AdminThemeServiceProvider extends ServiceProvider {
         this.app.dynamic('menus', app => {
             let manager = this.app.resolve(MenuManager);
             manager.registerType('default', 'py-default-menu-item-type');
+
             manager.registerType('pyro.extension.label_link_type', 'py-label-menu-item-type');
             manager.registerType('pyro.extension.header_link_type', 'py-header-menu-item-type');
+            //asdf
             manager.registerType('pyro.extension.divider_link_type', 'py-divider-menu-item-type');
             manager.registerType('pyro.extension.url_link_type', 'py-default-menu-item-type');
             manager.registerType('pyro.extension.module_link_type', 'py-default-menu-item-type');

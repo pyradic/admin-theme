@@ -45,6 +45,6 @@ export {
 export {
     DividerMenuItemType,
     HeaderMenuItemType,
-    // LabelMenuItemType,
+    LabelMenuItemType,
     DefaultMenuItemType,
 };
