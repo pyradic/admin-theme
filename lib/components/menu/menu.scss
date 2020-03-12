@@ -330,7 +330,7 @@
     .#{$menu-item-prefix} {
         .#{$menu-submenu-prefix} {
             position   : absolute;
-            z-index    : $zindex-dropdown;
+            z-index    : var(--menu-dropdown-submenu-zindex);
             min-width  : 150px;
             background : var(--menu-dropdown-submenu-background);
         }

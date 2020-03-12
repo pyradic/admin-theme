@@ -187,6 +187,7 @@ a {
     --menu-item-selected-icon-color          : #{$menu-item-selected-icon-color};
     --menu-item-selected-title-color         : #{$menu-item-selected-title-color};
     --menu-item-selected-arrow-color         : #{$menu-item-selected-arrow-color};
+    --menu-dropdown-submenu-zindex           : #{$menu-dropdown-submenu-zindex};
     --menu-dropdown-submenu-background       : #{$menu-dropdown-submenu-background};
     --menu-dropdown-submenu-border-width     : #{$menu-dropdown-submenu-border-width};
     --menu-dropdown-submenu-border-color     : #{$menu-dropdown-submenu-border-color};
@@ -236,14 +237,15 @@ a {
     --menu-depth-2-font-size : calc(var(--font-size-base) - 3px);
     --menu-depth-2-indent    : 25px;
 }
+
 .#{$layout-prefix}__header {
 
-    --menu-item-background                   : var(--layout-header-background);
-    --menu-item-icon-color                   : var(--layout-header-font-color);
-    --menu-item-title-color                  : var(--layout-header-font-color);
-    --menu-item-arrow-color                  : var(--layout-header-font-color);
-    --menu-item-hover-background             : var(--layout-header-hover-background);
-    --menu-item-hover-icon-color             : var(--layout-header-hover-font-color);
-    --menu-item-hover-title-color            : var(--layout-header-hover-font-color);
-    --menu-item-hover-arrow-color            : var(--layout-header-hover-font-color);
+    --menu-item-background        : var(--layout-header-background);
+    --menu-item-icon-color        : var(--layout-header-font-color);
+    --menu-item-title-color       : var(--layout-header-font-color);
+    --menu-item-arrow-color       : var(--layout-header-font-color);
+    --menu-item-hover-background  : var(--layout-header-hover-background);
+    --menu-item-hover-icon-color  : var(--layout-header-hover-font-color);
+    --menu-item-hover-title-color : var(--layout-header-hover-font-color);
+    --menu-item-hover-arrow-color : var(--layout-header-hover-font-color);
 }

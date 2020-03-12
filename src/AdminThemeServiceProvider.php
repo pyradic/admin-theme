@@ -34,6 +34,10 @@ class AdminThemeServiceProvider extends AddonServiceProvider
 
     }
 
+    protected $overrides = [
+//        'streams::table/partials/heading' => 'pyro.theme.admin::heading'
+    ];
+
     public function register(Platform $platform, LivewireManager $livewire)
     {
         AdminThemeBladeDirectives::registerDirectives($this->app);

@@ -90,6 +90,7 @@ $menu-item-selected-icon-color          : $menu-item-title-color !default;
 $menu-item-selected-title-color         : $menu-item-active-title-color !default;
 $menu-item-selected-arrow-color         : $menu-item-arrow-color !default;
 
+$menu-dropdown-submenu-zindex           : 1111 !default;
 $menu-dropdown-submenu-background       : #333333;
 $menu-dropdown-submenu-border-width     : $dropdown-border-width !default;
 $menu-dropdown-submenu-border-color     : $dropdown-border-color !default;
@@ -99,14 +100,14 @@ $menu-dropdown-submenu-item-title-color : $blue-grey-200 !default;
 $menu-dropdown-submenu-item-icon-color  : $blue-grey-200 !default;
 $menu-dropdown-submenu-item-arrow-color : $blue-grey-200 !default;
 
-$menu-depth-1-font-size                   : $menu-font-size !default;
-$menu-depth-2-font-size                   : $menu-font-size !default;
-$menu-depth-3-font-size                   : $menu-font-size !default;
-$menu-depth-4-font-size                   : $menu-font-size !default;
-$menu-depth-5-font-size                   : $menu-font-size !default;
+$menu-depth-1-font-size                 : $menu-font-size !default;
+$menu-depth-2-font-size                 : $menu-font-size !default;
+$menu-depth-3-font-size                 : $menu-font-size !default;
+$menu-depth-4-font-size                 : $menu-font-size !default;
+$menu-depth-5-font-size                 : $menu-font-size !default;
 
-$menu-depth-1-indent                   : $menu-item-indent !default;
-$menu-depth-2-indent                   : $menu-item-indent !default;
-$menu-depth-3-indent                   : $menu-item-indent !default;
-$menu-depth-4-indent                   : $menu-item-indent !default;
-$menu-depth-5-indent                   : $menu-item-indent !default;
+$menu-depth-1-indent                    : $menu-item-indent !default;
+$menu-depth-2-indent                    : $menu-item-indent !default;
+$menu-depth-3-indent                    : $menu-item-indent !default;
+$menu-depth-4-indent                    : $menu-item-indent !default;
+$menu-depth-5-indent                    : $menu-item-indent !default;
