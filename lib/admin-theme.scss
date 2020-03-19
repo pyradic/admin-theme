@@ -4,7 +4,9 @@
 @import "~element-ui-theme/src/reset";
 
 @include color-classes(fg-, bg-);
-
+html body {
+    font-family: var(--font-family-base);
+}
 
 %btn-xs {
     font-size : $font-size-xs;

@@ -1,5 +1,5 @@
 import { app, prefixAndRegisterComponents, registerElementComponents }                                                               from '@pyro/platform';
-import { Alert,Icon, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Link, Main, Row, Tag,Breadcrumb,BreadcrumbItem,ButtonGroup } from 'element-ui';
+import { Alert,Icon, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header,Tooltip, Link, Main, Row, Tag,Breadcrumb,BreadcrumbItem,ButtonGroup,Popover } from 'element-ui';
 
 import Vue       from 'vue';
 import ElIcon    from './components/el-icon/icon.vue';
@@ -46,6 +46,7 @@ export class AdminThemeVuePlugin {
             Divider, Alert, Tag, Button, Link,
             // Menu, MenuItem, MenuItemGroup, Submenu
             DropdownMenu, DropdownItem, Dropdown,
+            Tooltip,Popover,
             Icon,
             Breadcrumb,BreadcrumbItem,ButtonGroup
             // ElIcon,

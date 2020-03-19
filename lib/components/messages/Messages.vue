@@ -4,11 +4,14 @@
             <template v-for="(message,imessage)  in messages[type]">
                 <el-alert
                         :type="convertType(type)"
-                        :title="message"
                         effect="dark"
                         show-icon
                         closable
-                />
+                >
+                    <template #title>
+                        <div v-html="message" />
+                    </template>
+                </el-alert>
             </template>
         </template>
     </div>
