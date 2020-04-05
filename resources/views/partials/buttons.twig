@@ -1,0 +1,12 @@
+<el-button-group class="py-layout__buttons">
+    <py-link-button
+            v-for="(button, ibutton) in buttons"
+            :key="ibutton"
+            :type="button.type"
+            :icon="button.icon"
+            :class="button.class"
+            v-bind="{...button.attributes}"
+            size="mini"
+            v-text="button.text"
+    ></py-link-button>
+</el-button-group>

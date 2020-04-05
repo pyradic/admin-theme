@@ -12,7 +12,6 @@ import { iconRenderer }                        from './utils/iconRenderer';
 import { componentIconReplacer }               from './utils/componentIconReplacer';
 import { iconMap }                             from './utils/iconMap';
 
-
 export class AdminThemeServiceProvider extends ServiceProvider {
     providers = [];
 
@@ -90,7 +89,14 @@ export class AdminThemeServiceProvider extends ServiceProvider {
         this.app.ctxfactory('icon.mapper', ctx => iconMapper(ctx.container.get('icon.map')));
         this.app.ctxfactory('icon.renderer', ctx => iconRenderer(ctx.container.get('icon.mapper')));
         this.app.ctxfactory('icon.replacer', ctx => componentIconReplacer(ctx.container.get('icon.mapper')));
-        this.app.hooks.started.tap(this.constructor.name, root => this.app.get<ComponentIconReplacer>('icon.replacer')(root));
+        this.app.hooks.started.tap(this.constructor.name, root => {
+            root.$nextTick(() => {
+                if ( this.app.settings.get('pyro.theme.admin.icons.replace', true) ) {
+                    this.app.get<ComponentIconReplacer>('icon.replacer')(root);
+                }
+            });
+
+        });
 
         // this.app['iconRenderer']=(h: CreateElement, icon: string, data: VNodeData = {}) => {
         //     console.log('icon.renderer', icon, {icon,data,h})

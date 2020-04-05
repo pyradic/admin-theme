@@ -1,17 +1,16 @@
-import { app, prefixAndRegisterComponents, registerElementComponents }                                                               from '@pyro/platform';
-import { Alert,Icon, Aside, Button, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header,Tooltip, Link, Main, Row, Tag,Breadcrumb,BreadcrumbItem,ButtonGroup,Popover } from 'element-ui';
+import { app, prefixAndRegisterComponents, registerElementComponents }                                                                                                                                from '@pyro/platform';
+import { Alert, Aside, Breadcrumb, BreadcrumbItem, Button, ButtonGroup, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Icon, Link, Main, Popover, Row, Tag, Tooltip, Input } from 'element-ui';
 
 import Vue       from 'vue';
 import ElIcon    from './components/el-icon/icon.vue';
-import lang      from 'element-ui/lib/locale/lang/nl';
-import locale    from 'element-ui/lib/locale';
 import vuescroll from 'vuescroll';
-import PortalVue from 'portal-vue'
+import PortalVue from 'portal-vue';
 
-import * as components from './components';
-import * as directives from './directives';
-import BEMPlugin       from './plugins/bem';
-import LoadingPlugin   from './plugins/loading';
+import * as components           from './components';
+import * as directives           from './directives';
+import BEMPlugin                 from './plugins/bem';
+import LoadingPlugin             from './plugins/loading';
+import { ComponentIconReplacer } from './interfaces';
 
 export class AdminThemeVuePlugin {
 
@@ -32,23 +31,31 @@ export class AdminThemeVuePlugin {
             },
         });
 
-        _Vue.use(LoadingPlugin)
+        _Vue.use(LoadingPlugin);
 
         _Vue.use(PortalVue);
-
-        locale.use(lang);
 
         prefixAndRegisterComponents(_Vue, components);
 
         registerElementComponents(_Vue, { ElIcon });
         registerElementComponents(_Vue, {
+            Button: Vue.component('ElButton', {
+                mixins:[Button],
+                mounted() {
+                    this.$nextTick(() => {
+                        this.$log('mount Button icon.replacer')
+                        this.$py.get('icon.replacer')(this);
+                    })
+                },
+            }),
             Row, Col, Aside, Header, Footer, Container, Main,
-            Divider, Alert, Tag, Button, Link,
+            Divider, Alert, Tag, Link,
             // Menu, MenuItem, MenuItemGroup, Submenu
             DropdownMenu, DropdownItem, Dropdown,
-            Tooltip,Popover,
+            Tooltip, Popover,
             Icon,
-            Breadcrumb,BreadcrumbItem,ButtonGroup
+            Input,
+            Breadcrumb, BreadcrumbItem, ButtonGroup,
             // ElIcon,
         });
         app.hooks.start.tap('AdminThemeVuePlugin', Vue => {

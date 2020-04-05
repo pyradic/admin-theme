@@ -1,0 +1,11 @@
+<el-breadcrumb separator="/" class="py-layout__breadcrumbs">
+    <el-breadcrumb-item v-for="(bc,ibc) in breadcrumbs"
+                        v-bind="bc.attributes"
+                        :class="bc.class"
+                        :to="bc.url"
+                        :key="ibc"
+    >
+        <a :href="bc.url" :data-slug="bc.key" v-if="ibc !== breadcrumbs.length -1 && bc.url" v-text="bc.title"></a>
+        <span :data-slug="bc.key" v-else v-text="bc.title"></span>
+    </el-breadcrumb-item>
+</el-breadcrumb>

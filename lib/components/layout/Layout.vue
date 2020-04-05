@@ -20,9 +20,10 @@
 
             <div class="py-layout__content">
 
-                <!-- BREADCRUMB -->
-                <slot name="breadcrumb">
-                    <div class="py-layout__content-top">
+                <div class="py-layout__content-top">
+                    <!-- BREADCRUMB -->
+                    <slot name="breadcrumbs" :breadcrumbs="breadcrumbs">
+                        <!--
                         <el-breadcrumb separator="/" class="py-layout__breadcrumbs">
                             <el-breadcrumb-item v-for="(bc,ibc) in breadcrumbs"
                                                 v-bind="bc.attributes"
@@ -31,10 +32,15 @@
                                                 :key="ibc"
                             >
                                 <a :href="bc.url" :data-slug="bc.key" v-if="ibc !== breadcrumbs.length -1 && bc.url">{{ bc.title }}</a>
-                                <span :data-slug="bc.key" v-else >{{ bc.title }}</span>
+                                <span :data-slug="bc.key" v-else>{{ bc.title }}</span>
                             </el-breadcrumb-item>
                         </el-breadcrumb>
-                        <div class="fg1"/>
+                        -->
+                    </slot>
+                    <div class="fg1"/>
+                    <!-- BUTTONS -->
+                    <slot name="buttons" :buttons="buttons">
+                        <!--
                         <el-button-group class="py-layout__buttons">
                             <py-link-button
                                     v-for="(button, ibutton) in buttons"
@@ -47,8 +53,9 @@
                             >{{ button.text }}
                             </py-link-button>
                         </el-button-group>
-                    </div>
-                </slot>
+                        -->
+                    </slot>
+                </div>
 
                 <!-- MESSAGES -->
                 <template v-if="$slots['messages']">
@@ -60,7 +67,7 @@
                 <py-test-view v-if="showTestView"/>
 
                 <!-- DEFAULT -->
-                <div class="py-layout__inner" v-else>
+                <div class="py-layout__inner" :style="{padding: innerPadding}" v-else>
                     <slot/>
                 </div>
 
@@ -93,8 +100,9 @@ const noDelimiter = { replace: function () {} };
     },
 })
 export default class Layout extends Component {
-    @prop.classPrefix('layout') classPrefix: string;
     $refs: { headerMenuDemo: MenuDemo, sidebarMenuDemo: MenuDemo };
+    @prop.classPrefix('layout') classPrefix: string;
+    @prop([String,Number],'0') innerPadding: string;
 
     get classes() {
         return {
@@ -121,6 +129,14 @@ export default class Layout extends Component {
         },
     };
     styleVars = styleVars; //ssssssss{ ...styleVars.raw() }
+
+    get contentMaxWidth():number{
+        return document.body.getBoundingClientRect().width - parseInt(this.sidebar.width);
+    }
+
+    get contentMaxWidthPx():string{
+        return this.contentMaxWidth + 'px'
+    }
 
     created() {
         this.$py.instance('layout', this);

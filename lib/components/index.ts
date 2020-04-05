@@ -1,6 +1,7 @@
 export * from './dev'
 export * from './dialog'
 export * from './form'
+export * from './http-error'
 export * from './layout'
 export * from './link-button'
 export * from './nav'

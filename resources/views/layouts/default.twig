@@ -8,12 +8,14 @@
     {% include "platform::before_metadata" %}
     {% include "theme::partials/metadata" %}
     {% include "platform::after_metadata" %}
+    {% block head %}
+    {% endblock %}
 </head>
 
 <body class="{{ locale().isRtl() ? ' rtl' }}">
 {% block body %}
     <div id="app">
-        <py-layout>
+        <py-layout inner-padding="0 20px">
 
             <template #pre-header>
                 {% block pre_header %}
@@ -33,16 +35,17 @@
                 {% endblock %}
             </template>
 
-            {#
-            <template #breadcrumb>
-                {% block breadcrumb %}
-                    {% include "theme::partials/buttons" %}
-                    <div>
-                        {% include 'streams::partials/breadcrumb' %}
-                    </div>
+            <template v-slot:breadcrumbs="{breadcrumbs}">
+                {% block breadcrumbs %}
+                    {% include 'theme::partials/breadcrumbs' %}
                 {% endblock %}
             </template>
-            #}
+
+            <template #buttons="{buttons}">
+                {% block buttons %}
+                    {% include 'theme::partials/buttons' %}
+                {% endblock %}
+            </template>
 
             <template #messages>
                 <portal-target name="messages"></portal-target>
@@ -51,7 +54,7 @@
                 {% endblock %}
             </template>
 
-            <template #default>
+            <template #default >
                 {% block content %}{% endblock %}
             </template>
 
