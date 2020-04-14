@@ -80,6 +80,10 @@ body {
     display : none;
 }
 
+.datetime-field_type .flatpickr-input[readonly].form-control {
+    color: black;
+}
+
 a {
     color : var(--link-color);
 
