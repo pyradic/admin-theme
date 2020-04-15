@@ -25,7 +25,10 @@ export default class ObjectMenu extends TsxComponent {
 
     mounted() {
         this.$nextTick(() => {
-            this.menu.node.getAllDescendants().active().last().getAncestorsAndSelf().withoutRoot().activate().expand();
+            let lastActive = this.menu.node.getAllDescendants().active().last();
+            if ( lastActive ) {
+                lastActive.getAncestorsAndSelf().withoutRoot().activate().expand();
+            }
         });
     }
 
@@ -40,16 +43,16 @@ export default class ObjectMenu extends TsxComponent {
         const { title, active, attributes, children, icon, key, url, type } = item;
 
         const props             = { attributes, title, active, children, icon, slug: key, url, type };
-        const attrs             = { };
+        const attrs             = {};
         const childNodes: any[] = [ title ];
 
         Object.keys(attributes).forEach(key => {
-            if(key.startsWith(':')){
-                props[key.slice(1)] = attributes[key]
+            if ( key.startsWith(':') ) {
+                props[ key.slice(1) ] = attributes[ key ];
             } else {
-                attrs[key] = attributes[key]
+                attrs[ key ] = attributes[ key ];
             }
-        })
+        });
 
         if ( depth < this.maxDepth && children && children.length > 1 ) {
             childNodes.push(h('template', { slot: 'submenu' }, children.map(child => this.renderItem(h, child as any, depth + 1))));

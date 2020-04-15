@@ -1,1 +1,0 @@
-../../../../../packages/pyro/platform/lib/vue.d.ts
