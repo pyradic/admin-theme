@@ -13,6 +13,8 @@ export const iconMap = {
     el: {
         mdi: {
             user: 'account',
+            error: 'close-circle-outline',
+            warning: 'alert'
         },
     },
 }

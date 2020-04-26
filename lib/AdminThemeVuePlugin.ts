@@ -5,12 +5,15 @@ import Vue       from 'vue';
 import ElIcon    from './components/el-icon/icon.vue';
 import vuescroll from 'vuescroll';
 import PortalVue from 'portal-vue';
+/** @see https://github.com/Akryum/v-tooltip */
+import {VTooltip} from 'v-tooltip'
 
 import * as components           from './components';
 import * as directives           from './directives';
 import BEMPlugin                 from './plugins/bem';
 import LoadingPlugin             from './plugins/loading';
 import { ComponentIconReplacer } from './interfaces';
+
 
 export class AdminThemeVuePlugin {
 
@@ -34,6 +37,7 @@ export class AdminThemeVuePlugin {
         _Vue.use(LoadingPlugin);
 
         _Vue.use(PortalVue);
+
 
         prefixAndRegisterComponents(_Vue, components);
 
@@ -66,6 +70,8 @@ export class AdminThemeVuePlugin {
             // noinspection JSUnfilteredForInLoop
             _Vue.directive(id, directives[ id ]);
         }
+        /** @see https://github.com/Akryum/v-tooltip */
+        _Vue.directive('tooltip',VTooltip)
 
         _Vue.component('py-scroll', async function () {
             const VueScroll: typeof vuescroll = await import('vuescroll/dist/vuescroll-native');

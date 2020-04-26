@@ -9,5 +9,6 @@ package-lock.json
 /coverage
 /node_modules
 /lib/_vue_completion.ts
+/lib/_element-ui_completion.js
 /lib/components/menu3/
 /.idea

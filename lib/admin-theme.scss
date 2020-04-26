@@ -1,11 +1,12 @@
 @import "styling/base";
 @import "~@mdi/font/scss/materialdesignicons";
 @import "styling/components/label";
+@import "styling/components/tooltip";
 @import "~element-ui-theme/src/reset";
 
 @include color-classes(fg-, bg-);
 html body {
-    font-family: var(--font-family-base);
+    font-family : var(--font-family-base);
 }
 
 %btn-xs {
@@ -81,7 +82,7 @@ body {
 }
 
 .datetime-field_type .flatpickr-input[readonly].form-control {
-    color: black;
+    color : black;
 }
 
 a {
@@ -233,7 +234,10 @@ a {
     --popover-font-size                      : var(--font-size-base);
     --rate-font-size                         : var(--font-size-base);
     --link-font-size                         : var(--font-size-base);
+    --link-font-weight                       : #{$--link-font-weight};
     --form-label-font-size                   : var(--font-size-base);
+
+    --alert-margin                           : #{$--alert-margin};
 
 }
 

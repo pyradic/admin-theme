@@ -17,11 +17,6 @@
                 "path": "inertia/index.ts",
                 "suffix": "inertia",
                 "provider": "AdminThemeInertiaServiceProvider"
-            },
-            {
-                "path": "livewire/index.ts",
-                "suffix": "livewire",
-                "provider": "AdminThemeLivewireServiceProvider"
             }
         ]
     },

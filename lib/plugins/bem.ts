@@ -62,6 +62,8 @@ export class BemMixin extends Component {
 }
 
 export interface BemMethods {
+    bem: Bem;
+
     B(name): string
 
     E(name, modifiers?: string[]): string
@@ -117,6 +119,30 @@ export default class BEMPlugin extends VuePlugin {
                 }
             },
         }));
+        const directiveFn = (el, binding, vnode, oldVnode) => {
+            log('v-bem bind', { el, binding, vnode });
+            if(binding.arg === undefined){
+                return;
+            }
+            if ( ![ 'b', 'e', 'm', 'is', 'has' ].includes(binding.arg) ) {
+                throw new Error('v-bem directive requires argument to be one of "b", "e", "m", "is" or "has"');
+            }
+            const bem: Bem = vnode.context.bem;
+            if ( !bem ) {
+                throw new Error('v-bem directive requires the vnode context (vue component instance) to have the "bem" instance');
+            }
+            let restArgs = Object.values(binding.modifiers);
+            log('v-bem call', 'bem.', binding.arg, '(', binding.value, ',', ...restArgs.map(arg => arg.toString() + ','), ')', {
+                bem,
+                bem_current: bem.current
+            });
+            bem[ binding.arg ](binding.value, ...Object.values(binding.modifiers));
+        };
+        _Vue.directive('bem', {
+            bind            : directiveFn,
+            update          : directiveFn,
+            componentUpdated: directiveFn,
+        });
 
     }
 }
