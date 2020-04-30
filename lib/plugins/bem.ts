@@ -12,6 +12,7 @@ export class Bem {
         e: null,
     };
 
+
     constructor(protected stringify: Stringify) {}
 
     b(name) {

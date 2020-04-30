@@ -1,5 +1,6 @@
 // @todo move this to pyro/menus-module
 import './menu.scss';
+
 // @ts-ignore
 import MenuDemo                from './MenuDemo';
 import ObjectMenu                from './ObjectMenu';

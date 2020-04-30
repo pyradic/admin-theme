@@ -72,6 +72,7 @@ export class AdminThemeServiceProvider extends ServiceProvider {
             manager.registerType('pyro.extension.url_link_type', 'py-default-menu-item-type');
             manager.registerType('pyro.extension.module_link_type', 'py-default-menu-item-type');
             manager.registerType('pyro.extension.cp_action_link_type', 'py-default-menu-item-type');
+            manager.registerType('pyro.extension.disabled_link_type', 'py-default-menu-item-type');
             return manager;
         });
 
