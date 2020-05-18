@@ -39,6 +39,7 @@ export class Menu extends TsxComponent {
 
     node: MenuNode;
     items: MenuItem[];
+    currentBehaviourName:string
 
     get classes() {
         return classNames({
@@ -58,13 +59,11 @@ export class Menu extends TsxComponent {
         this.node  = new MenuNode(this);
         this.items = [];
         this.$py.menus.register(this);
-        if(this.behaviour === 'default') {
-            this.$py.menus.setupBehaviour(this)
-        }
     }
 
     mounted() {
         this.$log('mounted', this.slug, this);
+        this.$py.menus.bindMenuBehaviour(this)
     }
 
     beforeDestroy() {

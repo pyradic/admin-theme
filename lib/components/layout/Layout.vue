@@ -16,7 +16,7 @@
         <div class="py-layout__main">
 
             <!-- SIDEBAR-->
-            <slot name="sidebar"/>
+            <slot name="sidebar" v-if="sidebar.enabled"/>
 
             <div class="py-layout__content">
 
@@ -80,7 +80,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Collection, Component, component, Platform, prop, strEnsureRight, Styles } from '@pyro/platform';
+import { Collection, Component, component, Platform, prop, strEnsureRight, Styles, Css3 } from '@pyro/platform';
 import { styleVars }                                                                from '../../styling/export';
 import { MenuDemo }                                                                 from '../menu';
 import { Dialog }                                                                   from 'element-ui';
@@ -102,7 +102,7 @@ const noDelimiter = { replace: function () {} };
 export default class Layout extends Component {
     $refs: { headerMenuDemo: MenuDemo, sidebarMenuDemo: MenuDemo };
     @prop.classPrefix('layout') classPrefix: string;
-    @prop([String,Number],'0') innerPadding: string;
+    @prop([ String, Number ], '0') innerPadding: string;
 
     get classes() {
         return {
@@ -122,20 +122,22 @@ export default class Layout extends Component {
 
     sidebar   = {
         collapsed     : false,
-        collapsedWidth: styleVars.get('layout-sidebar-collapse-width'),
-        normalWidth   : styleVars.get('layout-sidebar-width'),
+        collapsedWidth: Css3.get('--layout-sidebar-collapse-width'),
+        normalWidth   : Css3.get('--layout-sidebar-width'),
+        enabled       : true,
         get width() {
             return strEnsureRight((this.collapsed ? this.collapsedWidth : this.normalWidth), 'px');
         },
     };
+    css3 = Css3
     styleVars = styleVars; //ssssssss{ ...styleVars.raw() }
 
-    get contentMaxWidth():number{
+    get contentMaxWidth(): number {
         return document.body.getBoundingClientRect().width - parseInt(this.sidebar.width);
     }
 
-    get contentMaxWidthPx():string{
-        return this.contentMaxWidth + 'px'
+    get contentMaxWidthPx(): string {
+        return this.contentMaxWidth + 'px';
     }
 
     created() {

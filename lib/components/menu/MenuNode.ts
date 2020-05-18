@@ -1,9 +1,9 @@
 import EventEmitter, { EventEmitter2, Listener } from 'eventemitter2';
-import { MenuItemNode } from './MenuItemNode';
-import { MenuItemNodeArray } from './MenuItemNodeArray';
-import { RootNode } from '@radic/tree';
-import { MenuConfig, MenuItemState } from './interfaces';
-import { MenuItem } from './MenuItem';
+import { MenuItemNode }                          from './MenuItemNode';
+import { MenuItemNodeArray }                     from './MenuItemNodeArray';
+import { RootNode }                                                                  from '@radic/tree';
+import { MenuConfig, MenuItemNodeClickEvent, MenuItemNodeStateEvent, MenuItemState } from './interfaces';
+import { MenuItem }                                                                  from './MenuItem';
 
 import { Menu }                     from './Menu';
 import { bindEventEmitter, Config } from '@pyro/platform';
@@ -11,47 +11,29 @@ import { bindEventEmitter, Config } from '@pyro/platform';
 export interface MenuNode extends EventEmitter2 {
     constructor: typeof MenuNode
 
+    //@formatter:off
     on(event: string | string[], listener: Listener): this;
-
-    on(event: 'item:click', listener: (node?: MenuItemNode, eventName?: string, event?:MouseEvent, state?: MenuItemState) => any): this
-
-    on(event: 'item:focused', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:focus', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:blur', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:active', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:activate', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:deactivate', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:hidden', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:show', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:hide', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:expanded', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:expand', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:collapse', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:selected', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:select', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:deselect', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:hovered', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:hover', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
-
-    on(event: 'item:unhover', listener: (node?: MenuItemNode, eventName?: string, key?: string, value?: boolean, state?: MenuItemState) => any): this
+    on(event: 'item:click', listener: (event:MenuItemNodeClickEvent) => any): this
+    on(event: 'item:focused', listener: (event:MenuItemNodeStateEvent<'focused'>) => any): this
+    on(event: 'item:focus', listener: (event:MenuItemNodeStateEvent<'focused'>) => any): this
+    on(event: 'item:blur', listener: (event:MenuItemNodeStateEvent<'focused'>) => any): this
+    on(event: 'item:active', listener: (event:MenuItemNodeStateEvent<'active'>) => any): this
+    on(event: 'item:activate', listener: (event:MenuItemNodeStateEvent<'active'>) => any): this
+    on(event: 'item:deactivate', listener: (event:MenuItemNodeStateEvent<'active'>) => any): this
+    on(event: 'item:hidden', listener: (event:MenuItemNodeStateEvent<'hidden'>) => any): this
+    on(event: 'item:show', listener: (event:MenuItemNodeStateEvent<'hidden'>) => any): this
+    on(event: 'item:hide', listener: (event:MenuItemNodeStateEvent<'hidden'>) => any): this
+    on(event: 'item:expanded', listener: (event:MenuItemNodeStateEvent<'expanded'>) => any): this
+    on(event: 'item:expand', listener: (event:MenuItemNodeStateEvent<'expanded'>) => any): this
+    on(event: 'item:collapse', listener: (event:MenuItemNodeStateEvent<'expanded'>) => any): this
+    on(event: 'item:selected', listener: (event:MenuItemNodeStateEvent<'selected'>) => any): this
+    on(event: 'item:select', listener: (event:MenuItemNodeStateEvent<'selected'>) => any): this
+    on(event: 'item:deselect', listener: (event:MenuItemNodeStateEvent<'selected'>) => any): this
+    on(event: 'item:hovered', listener: (event:MenuItemNodeStateEvent<'hovered'>) => any): this
+    on(event: 'item:hover', listener: (event:MenuItemNodeStateEvent<'hovered'>) => any): this
+    on(event: 'item:unhover', listener: (event: MenuItemNodeStateEvent<'hovered'>) => any): this
+    //@formatter:on
 }
-
 
 export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends RootNode<C> {
     static defaultConfig: MenuConfig   = {
@@ -69,7 +51,7 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
         expanded: false,
         selected: false,
         hovered : false,
-        active : false,
+        active  : false,
     };
 
     data            = Config.proxied({});
@@ -79,7 +61,7 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
     config: MenuConfig;
 
 
-    constructor(public readonly menu:Menu, config: Partial<MenuConfig> = {}) {
+    constructor(public readonly menu: Menu, config: Partial<MenuConfig> = {}) {
         super();
         this.events = new (EventEmitter as any)({
             delimiter   : ':',
@@ -90,6 +72,23 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
         bindEventEmitter(this.events, this);
         // [ 'emit', 'emitAsync', 'addListener', 'on', 'prependListener', 'once', 'prependOnceListener', 'many', 'prependMany', 'onAny', 'prependAny', 'offAny', 'removeListener', 'off', 'removeAllListeners', 'setMaxListeners', 'eventNames', 'listeners', 'listenersAny' ].forEach(name => { this[ name ] = this.events[ name ].bind(this.events); });
         this.configure(config);
+    }
+
+    emitItemState<K extends keyof MenuItemState>(event: string | string[], node: MenuItemNode, key: K, value: MenuItemState[K], state: MenuItemState, ...args: any[]) {
+        const { itemPrefix, delimiter } = this.config.events;
+        let names: string[]             = Array.isArray(event) ? event : [ event ];
+        for ( const name of names ) {
+            const eventName                                 = `${itemPrefix}${delimiter}${name}`;
+            const itemStateEvent: MenuItemNodeStateEvent<K> = { name, key, value, state, args,node, item:node.item, menu: this };
+            this.events.emit(eventName, itemStateEvent);
+        }
+    }
+
+    emitItemClick(item: MenuItem, event: MouseEvent, state?: MenuItemState) {
+        const name                                   = 'item:click';
+        state                                        = state || item.node.getState();
+        const itemClickEvent: MenuItemNodeClickEvent = { name, item, node: item.node, event, state };
+        this.events.emit(name, itemClickEvent);
     }
 
     createMenuItemNode(menuItem: MenuItem) {

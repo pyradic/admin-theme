@@ -29,9 +29,11 @@
             </template>
 
             <template #sidebar>
+                {% if input_authorize('streams::control_panel.sidebar') %}
                 {% block sidebar %}
                     {% include "theme::partials/sidebar" %}
                 {% endblock %}
+                {% endif %}
             </template>
 
             <template v-slot:breadcrumbs="{breadcrumbs}">

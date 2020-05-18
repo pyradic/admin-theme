@@ -18,7 +18,7 @@ export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
     constructor(public readonly item: MenuItem, public readonly _menu: MenuNode) {
         super(_menu);
         this._state = observable(_menu.getDefaultState());
-        this.observe(change => this.fire(change.name.toString(), change.name, change.newValue, this.state()));
+        this.observe(change => this.fire(change.name.toString(), change.name as any, change.newValue, this.state()));
     }
 
     observe(key: string, listener: ObserverChangedFunction): ObserverSubscription
@@ -47,13 +47,8 @@ export class MenuItemNode extends BaseNode<MenuItemNodeArray> {
         return this;
     }
 
-    fire(name: string | string[], ...extraArgs): this {
-        const { itemPrefix, delimiter } = this._menu.config.events;
-        let names: string[]             = Array.isArray(name) ? name : [ name ];
-        for ( const name of names ) {
-            const eventName = `${itemPrefix}${delimiter}${name}`;
-            this._menu.emit(eventName, this, eventName, ...extraArgs);
-        }
+    fire<K extends keyof MenuItemState>(name: string | string[], key: K, value: MenuItemState[K], state:MenuItemState, ...args:any[]): this {
+        this._menu.emitItemState(name, this,key, value, state, ...args);
         return this;
     }
 

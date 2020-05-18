@@ -1,9 +1,9 @@
 import { Config, ServiceProvider }             from '@pyro/platform';
 import { AdminThemeVuePlugin }                 from './AdminThemeVuePlugin';
 import { styleVars }                           from './styling/export';
-import { CreateElement, VNodeData }            from 'vue';
-import { MenuManager }                         from './components/menu/MenuManager';
-import { ShortcutTypeRegistry }                from './components/shortcut';
+import { CreateElement, VNodeData }                    from 'vue';
+import { defaultMenuBehaviourDefinition, MenuManager } from './components/menu/MenuManager';
+import { ShortcutTypeRegistry }                        from './components/shortcut';
 import DefaultShortcutType                     from './components/shortcut/types/DefaultShortcutType.vue';
 import DropdownShortcutType                    from './components/shortcut/types/DropdownShortcutType.vue';
 import { ComponentIconReplacer, IconRenderer } from './interfaces';
@@ -73,6 +73,8 @@ export class AdminThemeServiceProvider extends ServiceProvider {
             manager.registerType('pyro.extension.module_link_type', 'py-default-menu-item-type');
             manager.registerType('pyro.extension.cp_action_link_type', 'py-default-menu-item-type');
             manager.registerType('pyro.extension.disabled_link_type', 'py-default-menu-item-type');
+
+            manager.registerBehaviour(defaultMenuBehaviourDefinition)
             return manager;
         });
 

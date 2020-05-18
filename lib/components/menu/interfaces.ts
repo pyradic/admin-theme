@@ -48,6 +48,52 @@ export interface MenuItemState {
     slug?:string
 }
 
+
+export type MenuItemNodeEventName = MenuItemNodeClickEventName | MenuItemNodeStateEventName
+export type MenuItemNodeClickEventName = 'item:click' | 'item:touch'
+export type MenuItemNodeStateEventName =
+    'item:focused'
+    | 'item:focus'
+    | 'item:blur'
+    | 'item:active'
+    | 'item:activate'
+    | 'item:deactivate'
+    | 'item:hidden'
+    | 'item:show'
+    | 'item:hide'
+    | 'item:expanded'
+    | 'item:expand'
+    | 'item:collapse'
+    | 'item:selected'
+    | 'item:select'
+    | 'item:deselect'
+    | 'item:hovered'
+    | 'item:hover'
+    | 'item:unhover'
+
+export type MenuItemNodeEvent = MenuItemNodeStateEvent<any> | MenuItemNodeClickEvent;
+
+export interface MenuItemNodeClickEvent {
+    name: string
+    node: MenuItemNode
+    item: MenuItem
+    event: MouseEvent
+    state: MenuItemState
+}
+
+export interface MenuItemNodeStateEvent<K extends keyof MenuItemState> {
+    name: string
+    key: K
+    value: MenuItemState[K]
+    state: MenuItemState
+    args: any[]
+    node: MenuItemNode
+    item: MenuItem
+    menu: MenuNode
+}
+
+
+
 export interface IMenuNode {
     node: INode
 }
@@ -58,7 +104,10 @@ export function isMenuNode(value): value is IMenuNode {
 
 export type RenderMenuIcon = (h: CreateElement, icon: string, data?: VNodeData) => VNode
 
-import Popper from 'popper.js';
+import Popper           from 'popper.js';
+import { MenuItemNode } from './MenuItemNode';
+import { MenuItem }     from './MenuItem';
+import { MenuNode }     from './MenuNode';
 
 export type Grow =
     | 'auto'

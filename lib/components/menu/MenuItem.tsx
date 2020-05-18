@@ -157,6 +157,7 @@ export class MenuItem extends TsxComponent<{ tag: string, slug?: string }> {
         this.$emit('click', { event, me: this });
         // event.preventDefault();
         // event.stopPropagation();
+        this.node._menu.emitItemClick(this,event)
         if(this.$attrs['data-toggle'] === 'modal'){
             let $target=$(this.$attrs['data-target'])
             this.$log('click for modal', $target)

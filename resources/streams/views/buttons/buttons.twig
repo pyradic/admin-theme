@@ -14,9 +14,6 @@
         {% if button.href %}
             href="{{ button.href }}"
         {% endif %}
-        {% if button.attributes.href %}
-            href="{{ button.attributes.href }}"
-        {% endif %}
         >
         {{ button.icon ? icon(button.icon)|raw }}
         {{ trans(button.text)|raw }}

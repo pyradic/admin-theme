@@ -40,6 +40,8 @@ class AdminThemeServiceProvider extends AddonServiceProvider
 
     public function register(Platform $platform, LivewireManager $livewire)
     {
+        config()->push('streams::permissions.control_panel', 'sidebar');
+        trans()->addLines(['permission.control_panel.option.sidebar' => 'Sidebar weergeven'], 'nl','streams');
         AdminThemeBladeDirectives::registerDirectives($this->app);
 
         $this->app->register(ZiggyServiceProvider::class);
