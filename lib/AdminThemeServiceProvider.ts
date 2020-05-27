@@ -1,16 +1,18 @@
-import { Config, ServiceProvider }             from '@pyro/platform';
-import { AdminThemeVuePlugin }                 from './AdminThemeVuePlugin';
-import { styleVars }                           from './styling/export';
-import { CreateElement, VNodeData }                    from 'vue';
-import { defaultMenuBehaviourDefinition, MenuManager } from './components/menu/MenuManager';
-import { ShortcutTypeRegistry }                        from './components/shortcut';
-import DefaultShortcutType                     from './components/shortcut/types/DefaultShortcutType.vue';
-import DropdownShortcutType                    from './components/shortcut/types/DropdownShortcutType.vue';
-import { ComponentIconReplacer, IconRenderer } from './interfaces';
-import { iconMapper }                          from './utils/iconMapper';
-import { iconRenderer }                        from './utils/iconRenderer';
-import { componentIconReplacer }               from './utils/componentIconReplacer';
-import { iconMap }                             from './utils/iconMap';
+import { Config, ServiceProvider }                     from '@pyro/platform';
+import { AdminThemeVuePlugin }                         from './AdminThemeVuePlugin';
+import { styleVars }                                   from './styling/export';
+import { CreateElement, VNodeData }                                  from 'vue';
+import { defaultMenuBehaviourDefinition, MenuManager }               from './components/menu/MenuManager';
+import { ShortcutTypeRegistry }                                      from './components/shortcut';
+import DefaultShortcutType                                           from './components/shortcut/types/DefaultShortcutType.vue';
+import DropdownShortcutType                                          from './components/shortcut/types/DropdownShortcutType.vue';
+import { ComponentIconReplacer, IconRenderer }                       from './interfaces';
+import { iconMapper }                                                from './utils/iconMapper';
+import { iconRenderer }                                              from './utils/iconRenderer';
+import { componentIconReplacer }                                     from './utils/componentIconReplacer';
+import { iconMap }                                                   from './utils/iconMap';
+import { bindCssVariableEditor, createCssVariableEditorKeyListener } from './utils/createCssVariableEditorDialog';
+import { cssVariables }                                              from './components/css-variable-editor/cssVariables';
 
 export class AdminThemeServiceProvider extends ServiceProvider {
     providers = [];
@@ -35,6 +37,11 @@ export class AdminThemeServiceProvider extends ServiceProvider {
     public register() {
 
         this.vuePlugin(AdminThemeVuePlugin);
+
+        this.app.instance('css-variable-editor-variables', cssVariables);
+        this.app.instance('css-variable-editor-listener', bindCssVariableEditor(this.app));
+        this.app.hooks.started.tap('css-variable-editor-listener', () => this.app.get<any>('css-variable-editor-listener').bind());
+
 
         this.registerShortcuts();
         this.registerIcons();
@@ -74,7 +81,7 @@ export class AdminThemeServiceProvider extends ServiceProvider {
             manager.registerType('pyro.extension.cp_action_link_type', 'py-default-menu-item-type');
             manager.registerType('pyro.extension.disabled_link_type', 'py-default-menu-item-type');
 
-            manager.registerBehaviour(defaultMenuBehaviourDefinition)
+            manager.registerBehaviour(defaultMenuBehaviourDefinition);
             return manager;
         });
 

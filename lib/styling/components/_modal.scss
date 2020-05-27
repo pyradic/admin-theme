@@ -1,0 +1,16 @@
+
+#modals-container {
+    .vm--container,
+    .vm--overlay {
+        position : unset;
+        left     : unset;
+        top      : unset;
+        width    : unset;
+        height   : unset;
+    }
+
+    .vm--modal {
+        box-shadow : 0px 0px 8px 2px rgba(27, 33, 58, 0.4)
+    }
+}
+

@@ -51,6 +51,7 @@ class AdminThemeServiceProvider extends AddonServiceProvider
         });
 
         $this->app->events->listen(TemplateDataIsLoading::class, function (TemplateDataIsLoading $event) use ($platform) {
+            \ServerTiming::start('templatedata:admin');
             $template = $event->getTemplate();
             /** @var \Anomaly\Streams\Platform\Addon\Module\Module|\Anomaly\Streams\Platform\Addon\Module\ModulePresenter $module */
             $module = $template->get('module');
@@ -92,6 +93,7 @@ class AdminThemeServiceProvider extends AddonServiceProvider
             }
 
             $platform->set('user', $user);
+            \ServerTiming::stop('templatedata:admin');
         });
     }
 }

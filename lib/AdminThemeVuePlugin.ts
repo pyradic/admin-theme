@@ -1,18 +1,19 @@
-import { app, prefixAndRegisterComponents, registerElementComponents }                                                                                                                                from '@pyro/platform';
-import { Alert, Aside, Breadcrumb, BreadcrumbItem, Button, ButtonGroup, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Icon, Link, Main, Popover, Row, Tag, Tooltip, Input } from 'element-ui';
+import { app, prefixAndRegisterComponents, registerElementComponents }                                                                                                                                       from '@pyro/platform';
+import { Alert, Aside, Breadcrumb, BreadcrumbItem, Button, ButtonGroup, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Icon, Input, Link, Main, Popover, Row, Tag, Tooltip } from 'element-ui';
 
-import Vue       from 'vue';
-import ElIcon    from './components/el-icon/icon.vue';
-import vuescroll from 'vuescroll';
-import PortalVue from 'portal-vue';
+import Vue          from 'vue';
+import ElIcon       from './components/el-icon/icon.vue';
+import vuescroll    from 'vuescroll';
+import PortalVue    from 'portal-vue';
 /** @see https://github.com/Akryum/v-tooltip */
-import {VTooltip} from 'v-tooltip'
+import { VTooltip } from 'v-tooltip';
 
-import * as components           from './components';
-import * as directives           from './directives';
-import BEMPlugin                 from './plugins/bem';
-import LoadingPlugin             from './plugins/loading';
-import { ComponentIconReplacer } from './interfaces';
+import * as components                        from './components';
+import * as directives                        from './directives';
+import BEMPlugin                              from './plugins/bem';
+import LoadingPlugin                          from './plugins/loading';
+import { createCssVariableEditorKeyListener } from './utils/createCssVariableEditorDialog';
+import VueJSModal                             from 'vue-js-modal';
 
 
 export class AdminThemeVuePlugin {
@@ -24,6 +25,8 @@ export class AdminThemeVuePlugin {
             return;
         }
         this.__installed = true;
+
+
 
         _Vue.use(BEMPlugin, {
             delimiters: {
@@ -38,18 +41,26 @@ export class AdminThemeVuePlugin {
 
         _Vue.use(PortalVue);
 
+        _Vue.use(VueJSModal, {
+            dynamic:true,
+            injectModalsContainer:true,
+            dynamicDefaults: {
+                resizable   : true,
+                clickToClose: false,
+            }
+        })
 
         prefixAndRegisterComponents(_Vue, components);
 
         registerElementComponents(_Vue, { ElIcon });
         registerElementComponents(_Vue, {
             Button: Vue.component('ElButton', {
-                mixins:[Button],
+                mixins: [ Button ],
                 mounted() {
                     this.$nextTick(() => {
-                        this.$log('mount Button icon.replacer')
+                        this.$log('mount Button icon.replacer');
                         this.$py.get('icon.replacer')(this);
-                    })
+                    });
                 },
             }),
             Row, Col, Aside, Header, Footer, Container, Main,
@@ -66,12 +77,10 @@ export class AdminThemeVuePlugin {
             Vue.component(ElIcon.name, ElIcon);
         });
 
-        for ( const id in directives ) {
-            // noinspection JSUnfilteredForInLoop
-            _Vue.directive(id, directives[ id ]);
-        }
+        _Vue.directive('confirm', directives.Confirm);
+        _Vue.directive('draggable', directives.Draggable);
         /** @see https://github.com/Akryum/v-tooltip */
-        _Vue.directive('tooltip',VTooltip)
+        _Vue.directive('tooltip', VTooltip);
 
         _Vue.component('py-scroll', async function () {
             const VueScroll: typeof vuescroll = await import('vuescroll/dist/vuescroll-native');
@@ -105,6 +114,7 @@ export class AdminThemeVuePlugin {
                 },
             },
         });
+
 
     }
 }

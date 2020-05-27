@@ -32,6 +32,15 @@ $grid-breakpoints: (
 @import "~accelerant-theme/resources/scss/bootstrap/mixins";
 
 
+$--color-success-dark: darken($--color-success, 10);
+$--color-success-darker: darken($--color-success, 20);
+$--color-warning-dark: darken($--color-warning, 10);
+$--color-warning-darker: darken($--color-warning, 20);
+$--color-danger-dark: darken($--color-danger, 10);
+$--color-danger-darker: darken($--color-danger, 20);
+$--color-info-dark: darken($--color-info, 10);
+$--color-info-darker: darken($--color-info, 20);
+
 
 
 

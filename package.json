@@ -28,8 +28,6 @@
         "@mdi/svg": "^4.7.95",
         "vue-directive-tooltip": "^1.6.3",
         "@pyro/platform": "^1.0.0",
-        "@radic/observable": "^1.0.0",
-        "@radic/tree": "^1.0.0",
         "@types/classnames": "^2.2.9",
         "@types/popper.js": "^1.11.0",
         "bootstrap": "^4.3.1",
@@ -51,7 +49,9 @@
         "lodash-decorators": "^6.0.1",
         "vue-popperjs": "^2.2.0",
         "vuescroll": "^4.14.4",
-        "vuetable-2": "next"
+        "vuetable-2": "next",
+        "vue-js-modal": "^2.0.0-rc.3",
+        "v-clipboard": "^2.2.3"
     },
     "devDependencies": {}
 }
