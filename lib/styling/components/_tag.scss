@@ -145,7 +145,7 @@
         }
     }
 
-    @include m(--client-role) {
+    @include m(client-role) {
         color       : $--color-white;
         color       : var(--color-white);
         text-shadow : 1px 1px 0px black;
@@ -154,6 +154,10 @@
 
 #app {
     .tag {
-        @include py-tag
+        @include py-tag;
+    }
+
+    .el-tag {
+        @include py-tag;
     }
 }

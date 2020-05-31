@@ -1,6 +1,6 @@
-import EventEmitter, { EventEmitter2, Listener } from 'eventemitter2';
-import { MenuItemNode }                          from './MenuItemNode';
-import { MenuItemNodeArray }                     from './MenuItemNodeArray';
+import EventEmitter, { EventEmitter2, Listener }                                     from 'eventemitter2';
+import { MenuItemNode }                                                              from './MenuItemNode';
+import { MenuItemNodeArray }                                                         from './MenuItemNodeArray';
 import { RootNode }                                                                  from '@radic/tree';
 import { MenuConfig, MenuItemNodeClickEvent, MenuItemNodeStateEvent, MenuItemState } from './interfaces';
 import { MenuItem }                                                                  from './MenuItem';
@@ -69,7 +69,7 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
             newListener : true,
             wildcard    : true,
         }) as any;
-        bindEventEmitter(this.events, this);
+        bindEventEmitter(this.events as any, this);
         // [ 'emit', 'emitAsync', 'addListener', 'on', 'prependListener', 'once', 'prependOnceListener', 'many', 'prependMany', 'onAny', 'prependAny', 'offAny', 'removeListener', 'off', 'removeAllListeners', 'setMaxListeners', 'eventNames', 'listeners', 'listenersAny' ].forEach(name => { this[ name ] = this.events[ name ].bind(this.events); });
         this.configure(config);
     }
@@ -79,7 +79,7 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
         let names: string[]             = Array.isArray(event) ? event : [ event ];
         for ( const name of names ) {
             const eventName                                 = `${itemPrefix}${delimiter}${name}`;
-            const itemStateEvent: MenuItemNodeStateEvent<K> = { name, key, value, state, args,node, item:node.item, menu: this };
+            const itemStateEvent: MenuItemNodeStateEvent<K> = { name, key, value, state, args, node, item: node.item, menu: this };
             this.events.emit(eventName, itemStateEvent);
         }
     }
