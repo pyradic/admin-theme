@@ -1,4 +1,4 @@
-import { component, prop, Styles, StylesProp, TsxComponent, uniqueId } from '@pyro/platform';
+import { component, prop, Styles, StylesProp, TsxComponent, uniqueId } from '@crvs/platform';
 import 'vue-tsx-support/enable-check';
 import classNames                                                              from 'classnames';
 import { MenuNode }                                                            from './MenuNode';

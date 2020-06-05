@@ -4,10 +4,10 @@ use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\View\Event\TemplateDataIsLoading;
 use Anomaly\Streams\Platform\View\ViewIncludes;
 use Anomaly\UsersModule\User\Login\LoginFormBuilder;
+use Crvs\Platform\Platform;
 use Illuminate\Support\Arr;
 use Laradic\Support\Wrap;
 use Livewire\LivewireManager;
-use Pyro\Platform\Platform;
 use Tightenco\Ziggy\ZiggyServiceProvider;
 
 class AdminThemeServiceProvider extends AddonServiceProvider

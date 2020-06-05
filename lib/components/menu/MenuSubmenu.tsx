@@ -1,4 +1,4 @@
-import { component, inject, prop, Styles, TsxComponent } from '@pyro/platform';
+import { component, inject, prop, Styles, TsxComponent } from '@crvs/platform';
 import 'vue-tsx-support/enable-check'
 import classNames from 'classnames'
 import { Menu } from './Menu';

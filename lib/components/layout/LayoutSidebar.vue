@@ -7,7 +7,7 @@
 // background-color="#333"
 // text-color="#ffffff"
 import Vue from 'vue';
-import { component, inject, prop,Component } from '@pyro/platform';
+import { component, inject, prop,Component } from '@crvs/platform';
 import Layout from './Layout.vue';
 import { Menu, MenuItem } from 'element-ui';
 

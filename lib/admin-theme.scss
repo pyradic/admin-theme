@@ -116,3 +116,11 @@ a {
     --menu-item-hover-title-color : var(--layout-header-hover-font-color);
     --menu-item-hover-arrow-color : var(--layout-header-hover-font-color);
 }
+
+
+.card:not(.el-card .card) {
+    $box-shadow        : 0 0 5px 3px rgba(66, 66, 66, 0.2);
+    -webkit-box-shadow : $box-shadow;
+    -mox-box-shadow    : $box-shadow;
+    box-shadow         : $box-shadow;
+}

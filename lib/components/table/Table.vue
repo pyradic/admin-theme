@@ -83,7 +83,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Component, component, prop, Styles, watch }                                                from '@pyro/platform';
+import { Component, component, prop, Styles, watch }                                                from '@crvs/platform';
 // noinspection ES6UnusedImports
 import Vue, { CreateElement, VNode }                                                                from 'vue';
 import { Input, Loading, Menu, MenuItem, Pagination, Table as ElTable, TableColumn, TabPane, Tabs } from 'element-ui';

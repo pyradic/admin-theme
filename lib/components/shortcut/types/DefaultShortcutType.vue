@@ -10,7 +10,7 @@
     </div>
 </template>
 <script lang="ts">
-import { component, mixins, prop, Styles } from '@pyro/platform';
+import { component, mixins, prop, Styles } from '@crvs/platform';
 import { ShortcutTypeMixin }               from './ShortcutTypeMixin';
 
 @component()

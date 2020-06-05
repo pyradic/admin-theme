@@ -1,7 +1,7 @@
 import { injectable }                               from 'inversify';
 import { Menu }                                     from './Menu';
 import { SyncHook }                                 from 'tapable';
-import { app }                                      from '@pyro/platform';
+import { app }                                      from '@crvs/platform';
 import { MenuItemNodeEvent, MenuItemNodeEventName } from './interfaces';
 
 @injectable()

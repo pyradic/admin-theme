@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { component, inject$, prop, Styles } from '@pyro/platform';
+import { component, inject$, prop, Styles } from '@crvs/platform';
 import Vue, { CreateElement }               from 'vue';
 import { Dropdown }                         from 'element-ui';
 import { ShortcutTypeRegistry }             from './types';

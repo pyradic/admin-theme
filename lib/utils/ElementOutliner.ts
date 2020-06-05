@@ -1,6 +1,6 @@
 
 import { BackgroundProperty, ColorProperty, Position } from 'csstype';
-import { isString }                                    from '@pyro/platform';
+import { isString }                                    from '@crvs/platform';
 
 export interface ElementOutlinerConfigItem  {
     label: string,

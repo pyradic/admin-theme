@@ -3,17 +3,16 @@
 namespace Pyro\AdminTheme\Ui\Menu;
 
 use ArrayAccess;
+use Crvs\Platform\Ui\Traits\HasClassAttribute;
+use Crvs\Platform\Ui\Traits\HasHtmlAttributes;
+use Crvs\Platform\Ui\Traits\HasIcon;
+use Crvs\Platform\Ui\TreeNode\NodeInterface;
+use Crvs\Platform\Ui\TreeNode\NodeTrait;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
-use Laradic\Support\Dot;
 use Laradic\Support\Traits\ArrayableProperties;
 use Laradic\Support\Traits\ArrayAccessibleProperties;
-use Pyro\Platform\Ui\Traits\HasClassAttribute;
-use Pyro\Platform\Ui\Traits\HasHtmlAttributes;
-use Pyro\Platform\Ui\Traits\HasIcon;
-use Pyro\Platform\Ui\TreeNode\NodeInterface;
-use Pyro\Platform\Ui\TreeNode\NodeTrait;
 
 class MenuItem implements NodeInterface, Arrayable, Jsonable, ArrayAccess, JsonSerializable, \IteratorAggregate
 {

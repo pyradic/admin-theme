@@ -31,7 +31,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Component, component, inject, prop } from '@pyro/platform';
+import { Component, component, inject, prop } from '@crvs/platform';
 import Popper, { PopperOptions }              from 'popper.js';
 import Pop                                    from './Pop.vue';
 import { placements }                         from './utils';

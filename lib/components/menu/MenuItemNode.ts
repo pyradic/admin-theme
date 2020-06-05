@@ -4,7 +4,7 @@ import { MenuItemState }                                                      fr
 import { MenuItemNodeArray }                                                  from './MenuItemNodeArray';
 import { observable, observe, ObserverChangedFunction, ObserverSubscription } from '@radic/observable';
 import { MenuItem }                                                           from './MenuItem';
-import { Config }                                                             from '@pyro/platform';
+import { Config }                                                             from '@crvs/platform';
 
 
 export interface MenuItemNodeData extends Record<string, any>{}

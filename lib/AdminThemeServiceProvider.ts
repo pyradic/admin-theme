@@ -1,4 +1,4 @@
-import { Config, ServiceProvider }                     from '@pyro/platform';
+import { Config, ServiceProvider }                     from '@crvs/platform';
 import { AdminThemeVuePlugin }                         from './AdminThemeVuePlugin';
 import { styleVars }                                   from './styling/export';
 import { CreateElement, VNodeData }                                  from 'vue';

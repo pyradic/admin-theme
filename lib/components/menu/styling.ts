@@ -1,4 +1,4 @@
-import { styled }                                                             from '@pyro/platform';
+import { styled }                                                             from '@crvs/platform';
 import { color, deg, em, percent, px, rad, rem, turn, viewHeight, viewWidth } from 'csx';
 
 

@@ -1,4 +1,4 @@
-import { VuePlugin }                                 from '@pyro/platform';
+import { VuePlugin }                                 from '@crvs/platform';
 import Vue                                           from 'vue';
 import { ElLoadingComponent, LoadingServiceOptions } from 'element-ui/types/loading';
 import { Loading }                                   from 'element-ui';

@@ -1,4 +1,4 @@
-import { component, Platform, prop, ref, streams, TsxComponent } from '@pyro/platform';
+import { component, Platform, prop, ref, streams, TsxComponent } from '@crvs/platform';
 import { CreateElement }                                         from 'vue';
 import { Menu }                                                  from './Menu';
 import StructureNavigtion = Platform.StructureNavigtion;

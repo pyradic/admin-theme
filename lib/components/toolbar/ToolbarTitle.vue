@@ -5,7 +5,7 @@
     </div>
 </template>
 <script lang="ts">
-    import { component, prop } from '@pyro/platform';
+    import { component, prop } from '@crvs/platform';
     import Vue from 'vue';
 
     @component()

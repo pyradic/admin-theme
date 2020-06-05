@@ -2,8 +2,8 @@
 
 namespace Pyro\AdminTheme\Components;
 
+use Crvs\Platform\Livewire\Component;
 use Illuminate\Support\Arr;
-use Pyro\Platform\Livewire\Component;
 
 class Button extends Component
 {

@@ -1,5 +1,5 @@
-import { Component }                        from '@pyro/platform/lib/classes/Component';
-import { component }                        from '@pyro/platform';
+import { Component }                        from '@crvs/platform/lib/classes/Component';
+import { component }                        from '@crvs/platform';
 import { StreamsTable as s, VueTable as v } from './interfaces';
 import { Transformer }                      from './Transformer';
 

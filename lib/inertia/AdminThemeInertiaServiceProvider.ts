@@ -1,4 +1,4 @@
-import { ServiceProvider } from '@pyro/platform';
+import { ServiceProvider } from '@crvs/platform';
 import Vue                 from 'vue';
 import {Inertia}                                             from '@inertiajs/inertia'
 import {InertiaLink}                                         from '@inertiajs/inertia-vue'

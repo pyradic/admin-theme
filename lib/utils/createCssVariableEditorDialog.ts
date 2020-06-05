@@ -1,7 +1,7 @@
 import { GlobalDialog }                   from './GlobalDialog';
 import { CssVariableEditor }              from '../components/css-variable-editor';
 import { Dialog }                         from 'element-ui';
-import { Application, createKeyListener } from '@pyro/platform';
+import { Application, createKeyListener } from '@crvs/platform';
 
 export const createCssVariableEditorDialog = () => {
     return GlobalDialog.create({

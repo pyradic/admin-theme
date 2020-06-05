@@ -6,7 +6,7 @@ import { MenuConfig, MenuItemNodeClickEvent, MenuItemNodeStateEvent, MenuItemSta
 import { MenuItem }                                                                  from './MenuItem';
 
 import { Menu }                     from './Menu';
-import { bindEventEmitter, Config } from '@pyro/platform';
+import { bindEventEmitter, Config } from '@crvs/platform';
 
 export interface MenuNode extends EventEmitter2 {
     constructor: typeof MenuNode

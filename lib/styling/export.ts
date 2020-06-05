@@ -1,4 +1,4 @@
-import {Config} from '@pyro/platform';
+import {Config} from '@crvs/platform';
 export interface AdminThemeStyleVariables {
 	'fa-font-path'?:string
 	'primary'?:string

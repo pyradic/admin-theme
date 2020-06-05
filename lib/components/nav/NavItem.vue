@@ -9,7 +9,7 @@
     </el-menu-item>
 </template>
 <script lang="ts">
-    import { component, prop, Styles } from '@pyro/platform';
+    import { component, prop, Styles } from '@crvs/platform';
     import Vue from 'vue';
     import { IMenuItem } from '@pyro/menus-module/lib/interfaces';
 

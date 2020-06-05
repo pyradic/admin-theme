@@ -2,10 +2,8 @@
 
 namespace Pyro\AdminTheme;
 
-use Anomaly\Streams\Platform\Support\Decorator;
 use Anomaly\Streams\Platform\Ui\Button\Command\GetButtons;
-use Anomaly\Streams\Platform\Ui\Icon\Command\GetIcon;
-use Pyro\Platform\View\BladeDirectives;
+use Crvs\Platform\View\BladeDirectives;
 
 class AdminThemeBladeDirectives extends BladeDirectives
 {

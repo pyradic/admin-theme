@@ -1,5 +1,5 @@
 import { color, deg, em, percent, px, rad, rem, turn, viewHeight, viewWidth } from 'csx';
-import { isObject, kindOf }                                                   from '@pyro/platform';
+import { isObject, kindOf }                                                   from '@crvs/platform';
 
 namespace styled {
     export function define(name, callback, options) {

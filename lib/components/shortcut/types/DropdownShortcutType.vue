@@ -15,7 +15,7 @@
     </el-dropdown>
 </template>
 <script lang="ts">
-import { component, prop,mixins }   from '@pyro/platform';
+import { component, prop,mixins }   from '@crvs/platform';
 import { ShortcutTypeMixin }      from './ShortcutTypeMixin';
 import { Dropdown, DropdownItem, DropdownMenu } from 'element-ui';
 

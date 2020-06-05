@@ -1,4 +1,4 @@
-import { component, Component, prop, Styles } from '@pyro/platform';
+import { component, Component, prop, Styles } from '@crvs/platform';
 
 @component()
 export class ShortcutTypeMixin extends Component {

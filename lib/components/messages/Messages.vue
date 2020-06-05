@@ -17,7 +17,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Component, component, prop, Styles } from '@pyro/platform';
+import { Component, component, prop, Styles } from '@crvs/platform';
 import { IMessages, IMessageType }            from './interfaces';
 
 @component()

@@ -33,7 +33,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Component, component, prop, Styles } from '@pyro/platform';
+import { Component, component, prop, Styles } from '@crvs/platform';
 import Vue                                    from 'vue';
 import { placements }                         from './utils';
 

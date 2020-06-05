@@ -1,5 +1,5 @@
 import { ElementUIComponentSize } from 'element-ui/types/component';
-import { objectKeyValueSwitch }   from '@pyro/platform';
+import { objectKeyValueSwitch }   from '@crvs/platform';
 
 export type BootstrapSize = 'lg' | 'md' | 'sm' | 'xs'
 

@@ -1,5 +1,5 @@
 import { ComponentIconReplacer, IconMapper } from '../interfaces';
-import { cash as $ }                         from '@pyro/platform';
+import { cash as $ }                         from '@crvs/platform';
 
 export const componentIconReplacer = (mapper: IconMapper): ComponentIconReplacer => (component) => component.$nextTick(() => {
     const els = document.querySelectorAll('[class^="el-icon-"]');

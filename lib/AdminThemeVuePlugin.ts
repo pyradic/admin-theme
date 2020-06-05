@@ -1,4 +1,4 @@
-import { app, prefixAndRegisterComponents, registerElementComponents }                                                                                                                                       from '@pyro/platform';
+import { app, prefixAndRegisterComponents, registerElementComponents }                                                                                                                                       from '@crvs/platform';
 import { Alert, Aside, Breadcrumb, BreadcrumbItem, Button, ButtonGroup, Col, Container, Divider, Dropdown, DropdownItem, DropdownMenu, Footer, Header, Icon, Input, Link, Main, Popover, Row, Tag, Tooltip } from 'element-ui';
 
 import Vue          from 'vue';

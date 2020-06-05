@@ -4,7 +4,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Component, component, prop, Styles } from '@pyro/platform';
+import { Component, component, prop, Styles } from '@crvs/platform';
 import Table                                  from './Table.vue';
 const BaseComponent= Component.extend({
     props: Table['extendOptions'].props

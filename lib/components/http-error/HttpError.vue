@@ -44,7 +44,7 @@ $http-error-prefix : #{$prefix}-http-error;
 }
 </style>
 <script lang="ts">
-import { Component, component, prop, route, Styles } from '@pyro/platform';
+import { Component, component, prop, route, Styles } from '@crvs/platform';
 
 @component()
 export default class HttpError extends Component {

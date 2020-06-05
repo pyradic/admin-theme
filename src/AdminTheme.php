@@ -1,7 +1,7 @@
 <?php namespace Pyro\AdminTheme;
 
 
-use Pyro\Platform\Addon\Theme\Theme;
+use Crvs\Platform\Addon\Theme\Theme;
 
 class AdminTheme extends Theme
 {

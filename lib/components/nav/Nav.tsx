@@ -1,4 +1,4 @@
-import { component, prop, Styles } from '@pyro/platform';
+import { component, prop, Styles } from '@crvs/platform';
 import Vue from 'vue';
 import { IMenu, IMenuItem } from '@pyro/menus-module/lib/interfaces';
 import 'vue-tsx-support/enable-check'

@@ -2,7 +2,7 @@
 
 namespace Pyro\AdminTheme\Components;
 
-use Pyro\Platform\Livewire\Component;
+use Crvs\Platform\Livewire\Component;
 
 class LayoutFooter extends Component
 {

@@ -6,7 +6,7 @@
     </component>
 </template>
 <script lang="ts">
-    import { component, inject, prop } from '@pyro/platform';
+    import { component, inject, prop } from '@crvs/platform';
     import Vue from 'vue';
     import Layout from '../layout/Layout.vue';
 

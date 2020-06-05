@@ -23,7 +23,7 @@
 </template>
 <script lang="ts">
 
-import { component, Component, inject, prop } from '@pyro/platform';
+import { component, Component, inject, prop } from '@crvs/platform';
 import { Form, FormItem }                     from 'element-ui';
 import {convertSize} from '../../utils/convertSize'
 @component()

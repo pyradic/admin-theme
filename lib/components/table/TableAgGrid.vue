@@ -14,7 +14,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Component, component, prop, Styles }                                from '@pyro/platform';
+import { Component, component, prop, Styles }                                from '@crvs/platform';
 import { ClientSideRowModelModule, ColDef, ColumnApi,Module, GridApi, GridOptions } from '@ag-grid-community/all-modules';
 // noinspection ES6UnusedImports
 import vue                                                                   from 'vue';

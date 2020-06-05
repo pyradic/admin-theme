@@ -1,5 +1,5 @@
 import Vue, { VNodeData, VueConstructor }        from 'vue';
-import { app, merge }                            from '@pyro/platform';
+import { app, merge }                            from '@crvs/platform';
 import { DialogSlots, ElDialog }                 from 'element-ui/types/dialog';
 import { AsyncComponent, AsyncComponentPromise } from 'vue/types/options';
 import { Dialog }                                from '../components/dialog';

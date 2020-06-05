@@ -35,7 +35,7 @@
     </div>
 </template>
 <script lang="ts">
-import { app, Component, component, Css3, prop, Styles }      from '@pyro/platform';
+import { app, Component, component, Css3, prop, Styles }      from '@crvs/platform';
 import { ColorPicker, Form, FormItem, Input, Option, Select } from 'element-ui';
 import { debounce }                                           from 'lodash-decorators';
 

@@ -2,7 +2,7 @@ import Vue                                 from 'vue';
 import originNaming                        from '@bem/sdk.naming.presets/origin';
 import { Stringify, stringifyWrapper }     from '@bem/sdk.naming.entity.stringify';
 import { EntityName }                      from '@bem/sdk.entity-name';
-import { Component, component, VuePlugin } from '@pyro/platform';
+import { Component, component, VuePlugin } from '@crvs/platform';
 
 const log = require('debug')('plugins:bem:install');
 

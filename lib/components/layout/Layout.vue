@@ -80,7 +80,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Collection, Component, component, Platform, prop, strEnsureRight, Styles, Css3 } from '@pyro/platform';
+import { Collection, Component, component, Platform, prop, strEnsureRight, Styles, Css3 } from '@crvs/platform';
 import { styleVars }                                                                from '../../styling/export';
 import { MenuDemo }                                                                 from '../menu';
 import { Dialog }                                                                   from 'element-ui';

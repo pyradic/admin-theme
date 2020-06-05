@@ -8,7 +8,7 @@
 </template>
 <script lang="ts">
 
-    import { component, prop, Styles } from '@pyro/platform';
+    import { component, prop, Styles } from '@crvs/platform';
     import Vue from 'vue';
 
     @component()
